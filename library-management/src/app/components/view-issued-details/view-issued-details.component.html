@@ -1,0 +1,94 @@
+<app-admin-functions></app-admin-functions>
+<body>
+
+    <br>
+    <h2 align="center">Issued Book Details</h2>
+
+
+<h6>Search By
+    <button (click)="searchBy='issueDate'" class="btn btn-info">IssueDate</button>&nbsp;&nbsp;&nbsp;
+    <button (click)="searchBy='dueDate'" class="btn btn-info">DueDate</button>&nbsp;&nbsp;&nbsp;
+</h6>
+
+
+
+    
+ 
+    <div *ngIf="searchBy=='issueDate'"><br>
+        <form novalidate [formGroup]="searchByIssueDate">
+            <input type="date" placeholder="Enter Issue Date" formControlName="issueDate" size="9px"
+                [(ngModel)]="textValue" (change)="getByIssueDate()">
+            <input [(ngModel)]="issueDate" [ngModelOptions]="{standalone: true} " [hidden]="true">
+
+        </form>
+    </div>
+    <div *ngIf="searchBy=='dueDate'"><br>
+        <form novalidate [formGroup]="searchByDueDate">
+            <input type="date" placeholder="Enter Due Date" formControlName="dueDate" size="9px" [(ngModel)]="textValue"
+                (change)="getByDueDate()">
+            <input [(ngModel)]="dueDate" [ngModelOptions]="{standalone: true} " [hidden]="true">
+
+        </form>
+    </div>
+
+
+
+
+
+    <div *ngIf="show">
+        <br><br>
+
+        <br><br>
+        <div class="reglist">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+
+                        <th>First Name</th>
+                        <th>Last Name</th>
+
+                        <th>User Role</th>
+
+
+                        <th>ISBN</th>
+                        <th>Book Name</th>
+                        <th>Author Name </th>
+
+                        <th>Issue Date</th>
+                        <th>Due Date</th>
+                        <th>Fine Amount</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let br of issuedDetails">
+
+
+
+                        <td>{{br.user.firstName}}</td>
+                        <td>{{br.user.lastName}}</td>
+
+                        <td>{{br.user.userRole}}</td>
+
+
+                        <td>{{br.book.isbn}}</td>
+                        <td>{{br.book.bookName}}</td>
+                        <td>{{br.book.authorName}}</td>
+                        <td>{{br.issueDate}}</td>
+                        <td>{{br.dueDate}}</td>
+                        <td>{{br.fineAmount}}</td>
+
+
+
+                    </tr>
+                </tbody>
+            </table>
+            <h3>&nbsp;&nbsp;&nbsp;{{errorMessage}}</h3>
+        </div>
+    </div>
+    <button style="width:80px" class="btn btn-dark" (click)="return()">Back</button>
+
+
+</body>

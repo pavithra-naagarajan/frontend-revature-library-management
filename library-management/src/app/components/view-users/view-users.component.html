@@ -1,0 +1,78 @@
+<app-admin-functions></app-admin-functions>
+<link rel="stylesheet" 
+href=
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body>
+    <br>
+    <h2 align="center">Users Details</h2>
+    <form novalidate [formGroup]="searchUserForm">
+        <h6>  <i class="fa fa-search icon"></i>Search User
+            <input type="text" placeholder="Enter User Details" formControlName="value" [(ngModel)]="textValue"
+                (keyup)="searchUser()">
+            <input [(ngModel)]="value" [ngModelOptions]="{standalone: true} " [hidden]="true">
+        </h6>
+    </form>
+
+    <div *ngIf="show">
+
+
+        <br><br>
+        <div class="reglist">
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+
+                            <th>First Name</th>
+                            <th>Last Name</th>
+
+                            <th>Mail Id</th>
+                            <th>User Role</th>
+                            <th>Mobile Number</th>
+
+                            <th>Delete</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let u of users">
+
+                            <td>
+                                {{u.firstName}}
+                            </td>
+
+                            <td>
+                                {{u.lastName}}
+                            </td>
+                            <td>
+                                {{u.mailId}}
+                            </td>
+                            <td>
+                                {{u.userRole}}
+                            </td>
+                            <td>
+                                {{u.mobileNumber}}
+                            </td>
+
+                            <td>
+
+                                <button class="btn btn-primary"
+                                    (click)="deleteAlertConfirmation(u.userId)">Delete</button>
+                            </td>
+
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <tr>
+            <h3 align="center">&nbsp;&nbsp;&nbsp;{{errorMessage}}</h3>
+        </tr>
+
+        <button style="width:80px" class="btn btn-dark" (click)="return()">Back</button>
+
+    </div>
+</body>

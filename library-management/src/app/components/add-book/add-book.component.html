@@ -1,0 +1,111 @@
+<app-admin-functions></app-admin-functions>
+
+<body>
+    <br>
+    <h3 align="center">Enter Book details </h3>
+
+
+    <div class="registration-form ">
+        <form novalidate style="margin-left: 430px;width: 450px;" [formGroup]="addBookForm" (ngSubmit)="addBookDetails()">
+            <fieldset>
+
+
+
+
+
+                <div class="form-group">
+                    <label>Book Name </label>
+                    <input type="text" class="form-control" formControlName="bookName">
+                    <div class="alert alert-danger"
+                        *ngIf="addBookForm.get('bookName').hasError('required') && addBookForm.get('bookName').dirty">
+                        Book Name is required
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label>Author Name </label>
+                    <input type="text" class="form-control" formControlName="authorName">
+                    <div class="alert alert-danger"
+                        *ngIf="addBookForm.get('authorName').hasError('required') && addBookForm.get('authorName').dirty">
+                        Author Name is required
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label>Publisher </label>
+                    <input type="text" class="form-control" formControlName="publisher">
+                    <div class="alert alert-danger"
+                        *ngIf="addBookForm.get('publisher').hasError('required') && addBookForm.get('publisher').dirty">
+                        Publisher Name is required
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-md-13">
+
+                        <label for="genre">Genre </label><br>
+                        <select class="form-control form-control-lg" name="genre" formControlName="genre" ngModel
+                            required>
+                            <option selected="selected"></option>
+                            <option>Java</option>
+                            <option>Python</option>
+                            <option>Autobiography</option>
+                            <option>RomCom</option>
+                            <option>Love</option>
+                            <option>Nature</option>
+                            <option>Politics</option>
+                            <option>History</option>
+                            <option>Comic</option>
+                            <option>Maths</option>
+                            <option>Advanced technology</option>
+                            <option>Science</option>
+                            <option>Others</option>
+
+                        </select>
+                        <div class="alert alert-danger"
+                            *ngIf="addBookForm.get('genre').hasError('required') && addBookForm.get('genre').dirty">
+                            Book Genre is required
+                        </div>
+                    </div>
+                </div><br>
+
+                <div class="form-group">
+                    <label>Volume </label>
+                    <input type="text" class="form-control" formControlName="volume">
+                    <div class="alert alert-danger"
+                        *ngIf="addBookForm.get('volume').hasError('required') && addBookForm.get('volume').dirty">
+                        Book Volume is required
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label>Edition </label>
+                    <input type="text" class="form-control" formControlName="edition">
+                    <div class="alert alert-danger"
+                        *ngIf="addBookForm.get('edition').hasError('required') && addBookForm.get('edition').dirty">
+                        Book Edition is required
+                    </div>
+
+                </div>
+
+                <div>
+                    <h4>
+                        <font color=red style="font-size: large;">{{errorMessage }}</font>
+                    </h4><br>
+                </div>
+
+            </fieldset>
+
+
+
+            <td>
+                <button type="submit" class="btn btn-primary" [disabled]="addBookForm.invalid">Add
+                    Book</button>&nbsp;&nbsp;
+                <button style="width:100px;" class="btn btn-dark" (click)="return()">Back</button>
+            </td>
+
+
+        </form>
+    </div>
+
+</body>

@@ -1,0 +1,104 @@
+<app-user-functions></app-user-functions>
+
+    <link rel="stylesheet" 
+          href=
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
+<body>
+    <br>
+    <h2 align="center">Book Details</h2>
+    
+
+    
+
+
+<br><br>
+
+
+    <form novalidate [formGroup]="searchBookForm"><h6>
+      
+           <i class="fa fa-search icon"></i>Search Book
+       
+        <input class="input-field" type="text" placeholder="Enter Book Details" formControlName="value" [(ngModel)]="textValue"
+            (keyup)="searchBook()">
+        <input [(ngModel)]="value" [ngModelOptions]="{standalone: true} " [hidden]="true">
+   
+</h6>
+    </form>
+
+
+
+
+
+    <br><br>
+    <div class="reglist">
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+
+                        <th>ISBN </th>
+                        <th>Book Name</th>
+                        <th>Author Name</th>
+                        <th>Publisher </th>
+                        <th>Genre </th>
+                        <th>Volume</th>
+                        <th>Edition</th>
+
+                        <th>Status</th>
+
+                        <th>Request Book</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let b of books">
+
+                        <td>
+                            {{b.isbn}}
+                        </td>
+
+                        <td>
+                            {{b.bookName}}
+                        </td>
+                        <td>
+                            {{b.authorName}}
+                        </td>
+                        <td>
+                            {{b.publisher}}
+                        </td>
+                        <td>
+                            {{b.genre}}
+                        </td>
+                        <td>
+                            {{b.volume}}
+                        </td>
+                        <td>
+                            {{b.edition}}
+                        </td>
+                        <td>
+                            {{b.status}}
+                        </td>
+
+                        <td *ngIf="b.status=='Available'"><button class="btn btn-primary"
+                                (click)="requestBook(b.bookId)">Send Request</button></td>
+
+
+                        <td *ngIf="b.status=='Issued'"><button class="btn btn-warning" [disabled]>Issued</button></td>
+
+
+                        <td *ngIf="b.status=='Requested'"><button class="btn btn-secondary" [disabled]>Requested</button>
+                        </td>
+                        <br><br>
+
+                    </tr>
+                </tbody>
+
+            </table>
+            <tr>
+                <h3>&nbsp;&nbsp;&nbsp;{{errorMessage}}</h3>
+            </tr>
+            <button class="btn btn-dark" (click)="return()">Back</button>
+        </div>
+    </div>
+</body>

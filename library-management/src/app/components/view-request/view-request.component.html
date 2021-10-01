@@ -1,0 +1,62 @@
+<app-admin-functions></app-admin-functions>
+<body>
+    <div *ngIf="show">
+        <br><br>
+        <h2 align="center">Book Request Details</h2>
+        <br><br>
+        <div class="reglist">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+
+
+
+                        <th>First Name</th>
+                        <th>Last Name</th>
+
+                        <th>User Role</th>
+
+
+                        <th>ISBN</th>
+                        <th>Book Name</th>
+                        <th>Author Name </th>
+
+                        <th>Number Of Days</th>
+                        <th>Approve</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let br of bookRequests">
+
+
+
+                        <td>{{br.user.firstName}}</td>
+                        <td>{{br.user.lastName}}</td>
+
+                        <td>{{br.user.userRole}}</td>
+
+
+                        <td>{{br.book.isbn}}</td>
+                        <td>{{br.book.bookName}}</td>
+                        <td>{{br.book.authorName}}</td>
+
+                        <td>{{br.numberOfDays}}</td>
+                        <td>
+                            <button class="btn btn-primary"
+                                (click)="approveRequest(br.user.userId,br.book.bookId,br.numberOfDays,br.requestId)">Approve</button>
+                        </td>
+
+
+                    </tr>
+                </tbody>
+            </table>
+            <h3>&nbsp;&nbsp;&nbsp;{{errorMessage}}</h3>
+
+        </div>
+    </div>
+    <button style="width:80px" class="btn btn-dark" (click)="return()">Back</button>
+
+
+</body>

@@ -1,0 +1,96 @@
+<app-user-functions></app-user-functions>
+
+<body>
+    <br><br>
+    <div>
+
+        <h6>
+            <table align="center">
+                <tr>
+                    <th> First Name </th>
+                    <td>:</td>
+                    <td>{{user.firstName}}</td>
+                </tr>
+                <tr>
+                    <th>Last Name </th>
+                    <td>:</td>
+                    <td>{{user.lastName}}</td>
+                </tr>
+                <tr>
+                    <th>ISBN </th>
+                    <td>:</td>
+                    <td>{{book.isbn}}</td>
+                </tr>
+                <tr>
+                    <th> Book Name </th>
+                    <td>:</td>
+                    <td>{{book.bookName}}</td>
+                </tr>
+                <tr>
+                    <th>Author Name </th>
+                    <td>:</td>
+                    <td>{{book.authorName}}</td>
+                </tr>
+
+                <tr>
+                    <th>Book Genre </th>
+                    <td>:</td>
+                    <td>{{book.genre}}</td>
+                </tr>
+                <tr>
+                    <th>Publisher </th>
+                    <td>:</td>
+                    <td>{{book.publisher}}</td>
+                </tr>
+                <tr>
+                    <th>Volume </th>
+                    <td>:</td>
+                    <td>{{book.volume}}</td>
+                </tr>
+                <tr>
+                    <th>Edition </th>
+                    <td>:</td>
+                    <td>{{book.edition}}</td>
+                </tr>
+
+
+
+                <br>
+
+
+
+
+
+            </table>
+        </h6>
+    </div>
+
+    <div class="registration-form">
+        <form novalidate style="margin-left: 420px;width: 450px;" [formGroup]="requestBookForm"
+            (ngSubmit)="addRequestBook()">
+
+            <div class="form-group">
+                <label>Number Of Days </label>
+                <input type="text" class="form-control" formControlName="numberOfDays">
+
+                <div class="alert alert-danger"
+                    *ngIf="requestBookForm.get('numberOfDays').hasError('required') && requestBookForm.get('numberOfDays').dirty">
+                    Enter the Number Of Days!
+                </div>
+
+                <div class="alert alert-danger"
+                    *ngIf="requestBookForm.get('numberOfDays').hasError('max') && requestBookForm.get('numberOfDays').dirty">
+                    The maximum number of days should be 25!
+                </div>
+            </div>
+
+            <br>
+
+            <button type="submit" class="btn btn-primary">Request</button>&nbsp;&nbsp;
+
+            <button class="btn btn-dark" (click)="return()">Back</button>
+        </form>
+    </div>
+    <br><br>
+
+</body>

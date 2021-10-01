@@ -1,0 +1,97 @@
+<app-admin-functions></app-admin-functions>
+
+<body>
+
+    <div class="registration-form ">
+
+        <h6>
+            <table align="center">
+
+                <tr>
+                    <th> First Name </th>
+                    <td>:</td>
+                    <td>{{user.firstName}}</td>
+                </tr>
+                <tr>
+                    <th>Last Name </th>
+                    <td>:</td>
+                    <td>{{user.lastName}}</td>
+                </tr>
+                <tr>
+                    <th>User Role </th>
+                    <td>:</td>
+                    <td>{{user.userRole}}</td>
+                </tr>
+                <tr>
+                    <th>ISBN </th>
+                    <td>:</td>
+                    <td>{{book.isbn}}</td>
+                </tr>
+                <tr>
+                    <th> Book Name </th>
+                    <td>:</td>
+                    <td>{{book.bookName}}</td>
+                </tr>
+                <tr>
+                    <th>Author Name </th>
+                    <td>:</td>
+                    <td>{{book.authorName}}</td>
+                </tr>
+                <tr>
+                    <th>Book Genre </th>
+                    <td>:</td>
+                    <td>{{book.genre}}</td>
+                </tr>
+
+                <tr>
+                    <th>Publisher </th>
+                    <td>:</td>
+                    <td>{{book.publisher}}</td>
+                </tr>
+
+
+                <tr>
+                    <th>Number Of Days </th>
+                    <td>:</td>
+                    <td>{{this.numberOfDays}} days</td>
+                </tr>
+            </table>
+        </h6>
+    </div>
+
+    <div class="registration-form">
+        <form novalidate style="margin-left: 420px;width: 450px;" [formGroup]="issueForm" (ngSubmit)="addIssueBook()">
+
+            <div class="form-group">
+                <label>Issue Date </label>
+                <input type="date" class="form-control" formControlName="issueDate">
+                <div class="alert alert-danger"
+                    *ngIf="issueForm.get('issueDate').hasError('required') && issueForm.get('issueDate').dirty">
+                    Issue Date is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Due Date </label>
+                <input type="date" class="form-control" formControlName="dueDate">
+                <div class="alert alert-danger"
+                    *ngIf="issueForm.get('dueDate').hasError('required') && issueForm.get('dueDate').dirty">
+                    Due Date is required
+                </div>
+            </div>
+            <div> 
+                <h4>
+                    <font color=red style="font-size: large;">{{errorMessage }}</font>
+                </h4><br>
+            </div>
+
+            <br>
+
+            <button type="submit" class="btn btn-primary">Issue Book</button>&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+            <button class="btn btn-dark" (click)="return()">Back</button>
+        </form>
+    </div>
+    <br><br>
+
+</body>
