@@ -4,5 +4,7 @@ export class Admin {
     adminPassword?:string;
     mailId?:string;
     adminRole?:string;
+    updatedOn?:Date;
+    createdOn?:Date;
 
 }

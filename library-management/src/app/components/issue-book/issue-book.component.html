@@ -70,14 +70,7 @@
                     Issue Date is required
                 </div>
             </div>
-            <div class="form-group">
-                <label>Due Date </label>
-                <input type="date" class="form-control" formControlName="dueDate">
-                <div class="alert alert-danger"
-                    *ngIf="issueForm.get('dueDate').hasError('required') && issueForm.get('dueDate').dirty">
-                    Due Date is required
-                </div>
-            </div>
+      
             <div> 
                 <h4>
                     <font color=red style="font-size: large;">{{errorMessage }}</font>

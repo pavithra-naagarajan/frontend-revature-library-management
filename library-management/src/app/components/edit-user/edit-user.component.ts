@@ -39,6 +39,7 @@ export class EditUserComponent implements OnInit {
           updatedOn: [this.user.updatedOn],
           gender: [this.user.gender, [Validators.required]],
           userRole: [this.user.userRole, [Validators.required]],
+          status:[this.user.status],
           age: [this.user.age, [Validators.required, Validators.minLength(18)]],
           mobileNumber: [this.user.mobileNumber, [Validators.required, Validators.minLength(10)]],
           mailId: [this.user.mailId, [Validators.required, Validators.email]],

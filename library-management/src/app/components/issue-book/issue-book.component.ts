@@ -82,22 +82,13 @@ export class IssueBookComponent implements OnInit {
     this.issueBook.book = this.book
     this.issueBook.user = this.user
     this.issueBook.issueDate = this.issueForm?.get('issueDate').value
-    this.issueBook.dueDate = this.issueForm?.get('dueDate').value
+    
 
     this.issueBook.issueId = -1
     this.issueBook.fineAmount = 0
 
-    if (this.issueBook.issueDate > this.issueBook.dueDate) {
-      this.errorMessage = "***Not a valid Issue and Due Date"
-    }
-
-    else if (this.issueBook.issueDate == this.issueBook.dueDate) {
-      this.errorMessage = "***Issue Date and Due Date are same!"
-    }
-
-    else {
-      this.errorMessage = ""
-      this.issueBookService.addIssueDetails(this.issueBook).subscribe(
+  
+      this.issueBookService.addIssueDetails(this.issueBook,this.numberOfDays).subscribe(
         response => {
         }, error => {
 
@@ -109,7 +100,7 @@ export class IssueBookComponent implements OnInit {
           this.router.navigate(['adminfunctions'])
         })
 
-    }
+    
   }
 
 

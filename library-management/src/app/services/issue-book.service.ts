@@ -60,8 +60,8 @@ httpOptions = {
   
 
 //add a issue
-  addIssueDetails(issueBook :IssueBook) :Observable<IssueBook>{
-    return this.http.post<IssueBook>(URL,issueBook,this.httpOptions).pipe(retry(0),
+  addIssueDetails(issueBook :IssueBook,numberOfDays:number) :Observable<IssueBook>{
+    return this.http.post<IssueBook>(`${URL}/${numberOfDays}`,issueBook,this.httpOptions).pipe(retry(0),
     catchError(this.errorHandler)
   );
   }

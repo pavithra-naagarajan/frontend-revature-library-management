@@ -34,7 +34,8 @@ export class EditAdminComponent implements OnInit {
 
           adminPassword: [this.admin.adminPassword, [Validators.required]],
           adminRole: [this.admin.adminRole],
-
+          updatedOn:[this.admin.updatedOn],
+          createdOn:[this.admin.createdOn],
           mailId: [this.admin.mailId, [Validators.required, Validators.email]],
 
         })

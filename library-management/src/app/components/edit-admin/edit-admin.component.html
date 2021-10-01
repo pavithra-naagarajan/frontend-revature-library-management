@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="text" class="form-control" formControlName="adminPassword">
+                    <input type="password" class="form-control" formControlName="adminPassword">
                     <div class="alert alert-danger"
                         *ngIf="editAdminForm.get('adminPassword').hasError('required') && editAdminForm.get('adminPassword').dirty">
                         Password is required

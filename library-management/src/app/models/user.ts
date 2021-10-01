@@ -12,5 +12,6 @@ export class User {
 	userRole?:string;
 	createdOn?:Date;
 	updatedOn?:Date;
+	status?:string;
 
 }

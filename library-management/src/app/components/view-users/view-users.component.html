@@ -54,12 +54,17 @@ href=
                                 {{u.mobileNumber}}
                             </td>
 
-                            <td>
+                            <td *ngIf="u.status=='Exist'">
 
                                 <button class="btn btn-primary"
                                     (click)="deleteAlertConfirmation(u.userId)">Delete</button>
                             </td>
+                            <td *ngIf="u.status=='Active'">
 
+                                <button class="btn btn-secondary"
+                                    [disabled]="true">Delete</button>
+                            </td>
+                            
 
 
                         </tr>
