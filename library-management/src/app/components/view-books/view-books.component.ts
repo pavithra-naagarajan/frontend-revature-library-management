@@ -42,10 +42,10 @@ export class ViewBooksComponent implements OnInit {
   }
   viewBooks() {
     this.bookService.getAllBooks().subscribe(
-      (res: any) => {
+      (data: any) => {
         this.show = true
-        this.books = res
-        this.books = this.books.res
+        this.books = data
+        this.books = this.books.data
       }
     )
   }
@@ -74,12 +74,13 @@ export class ViewBooksComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.deleteBook(userId)
+        this.viewBooks()
         Swal.fire(
           'Removed!',
           'Book deleted successfully!',
           'success'
         )
-        this.viewBooks()
+       
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(
           'Cancelled',
@@ -101,13 +102,14 @@ export class ViewBooksComponent implements OnInit {
       this.bookService.searchBook(this.searchBookForm.get('value')?.value).subscribe((data: any[]) => {
      
         this.books = data;
+        this.books =  this.books.data;
         if (this.books == null) {
           this.errorMessage = "No records found"
         }
         else {
           this.errorMessage = ""
         }
-      }, error => { this.errorMessage = "No records found" }
+      }
       )
     }
   }

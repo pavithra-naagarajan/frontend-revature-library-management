@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       this.user = data
   })
 
-    await delay(1000);
+    await delay(1500);
     this.check(credential);
   }
   check(credential: any) {

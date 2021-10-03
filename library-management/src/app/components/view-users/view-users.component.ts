@@ -16,7 +16,7 @@ interface Search {
 })
 export class ViewUsersComponent implements OnInit {
 show?:boolean;
-users:Observable<User>|any
+users:Observable<User[]>|any
 userRole?:string;
 
 value?:string
@@ -45,10 +45,11 @@ constructor(public router:Router,public userService:UserService,public formBuild
   
   viewUsers() {
     this.userService.getAllUsers().subscribe(
-      (res:any)=>{
+      (data:any[])=>{
+        this.users=data
+        this.users=this.users.data
        this.show=true
-        this.users=res
-        this.users=this.users.res
+        
      }
     )}  
 
@@ -79,6 +80,7 @@ this.router.navigate(['adminfunctions'])
         if (result.value) {
           this.deleteUser(userId)
           this.viewUsers()
+        
           Swal.fire(
             'Removed!',
             'User deleted successfully!',

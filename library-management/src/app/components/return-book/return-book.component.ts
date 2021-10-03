@@ -19,7 +19,7 @@ export class ReturnBookComponent implements OnInit {
   issueDetails:Observable<IssueBook>|any
   fine: number
 
-  details:Observable<IssueBook>|any
+  details:Observable<IssueBook[]>|any
   user:Observable<User>|any
   userId?: number
   constructor(public router: Router, public userService: UserService, public issueBookService: IssueBookService, public activatedRoute: ActivatedRoute,
@@ -32,10 +32,11 @@ export class ReturnBookComponent implements OnInit {
       this.user = data
       this.user =this.user.data
       this.userId = this.user.userId
-      this.issueBookService.getIssueDetailsByUserId(this.userId).subscribe(res => {
+      this.issueBookService.getIssueDetailsByUserId(this.userId).subscribe((data: any[] )=> {
 
-        this.details = res
-        this.details =  this.details.res
+        this.details = data
+        this.details =  this.details.data
+        console.log(this.details)
       })
     })
     this.returnForm = this.formBuilder.group({
@@ -47,13 +48,14 @@ export class ReturnBookComponent implements OnInit {
   }
   returnBook() {
     this.updateFine(this.returnForm.get('issueId').value)
+   
  }
   updateFine(issueId: number) {
 
     this.issueBookService.updateFine(issueId).subscribe(data => {
-      this.issueBookService.getIssueDetailsByIssueId(this.returnForm.get('issueId').value).subscribe(async res => {
-        this.issueDetails = res
-        this.issueDetails = this.issueDetails.res
+      this.issueBookService.getIssueDetailsByIssueId(this.returnForm.get('issueId').value).subscribe(async (data:any )=> {
+        this.issueDetails = data
+        this.issueDetails = this.issueDetails.data
         this.fine = this.issueDetails.fineAmount
         console.log(this.fine)
         await delay(1000)

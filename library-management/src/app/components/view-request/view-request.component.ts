@@ -15,7 +15,7 @@ export class ViewRequestComponent implements OnInit {
 
   show?:boolean;
   adminId?:number
-  bookRequests:Observable<RequestBook>|any
+  bookRequests:Observable<RequestBook[]>|any
   errorMessage: string;
   constructor(public router:Router,
     public requestBookService:RequestBookService,public activatedRoute:ActivatedRoute
@@ -34,19 +34,19 @@ export class ViewRequestComponent implements OnInit {
     }
     viewRequestBooks() {
       this.requestBookService.getAllRequestBookDetails().subscribe(
-        (res:any)=>{
+        (data:any[])=>{
          this.show=true
-          this.bookRequests=res
-          this.bookRequests=this.bookRequests.res
+          this.bookRequests=data
+          this.bookRequests=this.bookRequests.data
          
-         if(res==null){
+         if(data==null){
            this.errorMessage="No Records Found"
          }
          else{
           this.errorMessage="" 
          }
          
-       }
+       },error=>{this.errorMessage="No Records Found"}
       )}  
   approveRequest(userId:number,bookId:number,numberOfDays:number,requestId:number){
 this.router.navigate(['issuebook',userId,bookId,numberOfDays,requestId])

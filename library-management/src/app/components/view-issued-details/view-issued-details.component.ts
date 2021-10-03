@@ -55,10 +55,10 @@ export class ViewIssuedDetailsComponent implements OnInit {
   }
   viewIssuedBooks() {
     this.issueBookService.getAllIssuedDetails().subscribe(
-      (res: any) => {
+      (data: any[]) => {
         this.show = true
-        this.issuedDetails = res
-        this.issuedDetails = this.issuedDetails.res
+        this.issuedDetails = data
+        this.issuedDetails = this.issuedDetails.data
       }
     )
   }
