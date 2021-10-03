@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/services/book.service';
 import Swal from 'sweetalert2';
@@ -13,7 +14,7 @@ import Swal from 'sweetalert2';
 export class EditBookComponent implements OnInit {
 
   editBookForm: FormGroup;
-  book: Book;
+  book:Observable<Book>|any;
   bookId?: number;
   adminId?: number
   constructor(public router: Router, public bookService: BookService, public activatedRoute: ActivatedRoute,
@@ -30,7 +31,7 @@ export class EditBookComponent implements OnInit {
       .subscribe(data => {
      
         this.book = data
-        
+        this.book=this.book.data
 
         this.editBookForm = this.formBuilder.group({
           bookId: [this.book.bookId],

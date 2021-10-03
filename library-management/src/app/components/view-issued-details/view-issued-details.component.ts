@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { IssueBook } from 'src/app/models/issue-book';
 import { IssueBookService } from 'src/app/services/issue-book.service';
 import Swal from 'sweetalert2';
@@ -15,7 +16,7 @@ import Swal from 'sweetalert2';
 export class ViewIssuedDetailsComponent implements OnInit {
   selectedSort: String = "any";
   show?: boolean;
-  issuedDetails: IssueBook[] = []
+  issuedDetails:Observable<IssueBook[]>|any
 
   dueDate?: Date
   issueDate?: Date
@@ -57,7 +58,7 @@ export class ViewIssuedDetailsComponent implements OnInit {
       (res: any) => {
         this.show = true
         this.issuedDetails = res
-
+        this.issuedDetails = this.issuedDetails.res
       }
     )
   }
@@ -73,6 +74,7 @@ export class ViewIssuedDetailsComponent implements OnInit {
       this.issueBookService.getIssueDetailsByDueDate(this.searchByDueDate.get('dueDate')?.value).subscribe((data: any[]) => {
 
         this.issuedDetails = data;
+        this.issuedDetails =  this.issuedDetails.data;
         if (this.issuedDetails == null) {
           this.errorMessage = "No records found"
         }
@@ -94,6 +96,7 @@ export class ViewIssuedDetailsComponent implements OnInit {
 
 
         this.issuedDetails = data;
+        this.issuedDetails = this.issuedDetails.data;
         if (this.issuedDetails == null) {
           this.errorMessage = "No records found"
         }

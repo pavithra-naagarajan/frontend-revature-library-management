@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, ObservableInput } from 'rxjs';
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/services/book.service';
 
@@ -14,8 +15,7 @@ export class SearchBookComponent implements OnInit {
 
   dataFound: boolean = true;
   errorMessage?: string;
-  books: Book[] = [];
-
+  books:Observable<Book[]>|any
 
   searchBookForm?: FormGroup;
   textValue: any = null;
@@ -43,6 +43,7 @@ export class SearchBookComponent implements OnInit {
     this.bookService.getAllBooks().subscribe((data: any[]) => {
       
       this.books = data
+      this.books=this.books.data
       if (this.books == null) {
         this.errorMessage = "No records found"
       }
@@ -64,6 +65,7 @@ export class SearchBookComponent implements OnInit {
       this.bookService.searchBook(this.searchBookForm.get('value')?.value).subscribe((data: any[]) => {
       
         this.books = data;
+        this.books=this.books.data
         if (this.books == null) {
           this.errorMessage = "No records found"
         }

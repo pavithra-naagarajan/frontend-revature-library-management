@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { IssueBook } from 'src/app/models/issue-book';
 import { User } from 'src/app/models/user';
 import { IssueBookService } from 'src/app/services/issue-book.service';
@@ -15,11 +16,11 @@ import Swal from 'sweetalert2';
 export class ReturnBookComponent implements OnInit {
   mailId?: string
   returnForm?: FormGroup
-  issueDetails: IssueBook
+  issueDetails:Observable<IssueBook>|any
   fine: number
 
-  details?: IssueBook[] = []
-  user?: User
+  details:Observable<IssueBook>|any
+  user:Observable<User>|any
   userId?: number
   constructor(public router: Router, public userService: UserService, public issueBookService: IssueBookService, public activatedRoute: ActivatedRoute,
     public formBuilder: FormBuilder) { }
@@ -29,10 +30,12 @@ export class ReturnBookComponent implements OnInit {
     this.userService.getUserByMailId(this.mailId).subscribe(data => {
 
       this.user = data
+      this.user =this.user.data
       this.userId = this.user.userId
       this.issueBookService.getIssueDetailsByUserId(this.userId).subscribe(res => {
 
         this.details = res
+        this.details =  this.details.res
       })
     })
     this.returnForm = this.formBuilder.group({
@@ -50,6 +53,7 @@ export class ReturnBookComponent implements OnInit {
     this.issueBookService.updateFine(issueId).subscribe(data => {
       this.issueBookService.getIssueDetailsByIssueId(this.returnForm.get('issueId').value).subscribe(async res => {
         this.issueDetails = res
+        this.issueDetails = this.issueDetails.res
         this.fine = this.issueDetails.fineAmount
         console.log(this.fine)
         await delay(1000)

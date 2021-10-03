@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Admin } from 'src/app/models/admin';
 import { AdminService } from 'src/app/services/admin.service';
 import Swal from 'sweetalert2';
@@ -13,7 +14,7 @@ import Swal from 'sweetalert2';
 export class ViewAdminsComponent implements OnInit {
 
   show?: boolean;
-  admins: Admin[] = []
+  admins: Observable<Admin[]>|any
 
   constructor(public router: Router, public adminService: AdminService, public formBuilder: FormBuilder) { }
 
@@ -29,7 +30,7 @@ export class ViewAdminsComponent implements OnInit {
       (res: any) => {
         this.show = true
         this.admins = res
-
+        this.admins = this.admins.res
       }
     )
   }

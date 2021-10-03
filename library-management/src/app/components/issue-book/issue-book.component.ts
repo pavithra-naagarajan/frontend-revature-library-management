@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Book } from 'src/app/models/book';
 import { IssueBook } from 'src/app/models/issue-book';
 import { User } from 'src/app/models/user';
@@ -19,9 +20,9 @@ export class IssueBookComponent implements OnInit {
 
   bookId?: number
   userId?: number
-  book: Book;
-  user: User;
-  issueBook?: IssueBook;
+  book: Observable<Book>|any;
+  user: Observable<User>|any;
+  issueBook?:IssueBook;
   issueForm?: FormGroup
   numberOfDays?: number
   requestId?: number
@@ -49,14 +50,14 @@ export class IssueBookComponent implements OnInit {
       subscribe(data => {
 
         this.book = data
-
+        this.book = this.book .data
 
       })
 
     this.userService.getUserById(this.userId).subscribe((data: User) => {
 
       this.user = data
-
+      this.user=this.user.data
 
     })
 

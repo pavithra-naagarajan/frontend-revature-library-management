@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Book } from 'src/app/models/book';
 import { RequestBook } from 'src/app/models/request-book';
 import { User } from 'src/app/models/user';
@@ -18,9 +19,9 @@ export class RequestBookComponent implements OnInit {
 
   bookId?: number;
   mailId?: string;
-  book: Book;
-  user: User;
-  requestBook?: RequestBook
+  book:Observable<Book>|any;
+  user: Observable<User>|any;
+  requestBook?:RequestBook
   requestBookForm?: FormGroup
   constructor(public router: Router, public bookService: BookService, public requestBookService: RequestBookService, public userService: UserService, public activatedRoute: ActivatedRoute,
     public formBuilder: FormBuilder) { }
@@ -34,11 +35,13 @@ export class RequestBookComponent implements OnInit {
     this.bookService.getBookById(this.bookId).
       subscribe(data => {
         this.book = data
+        this.book =this.book.data
       })
 
     this.userService.getUserByMailId(this.mailId).subscribe(data => {
 
       this.user = data
+      this.user =this.user.data
     })
 
     this.requestBookForm = this.formBuilder.group({

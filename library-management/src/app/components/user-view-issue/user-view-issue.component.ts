@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { IssueBook } from 'src/app/models/issue-book';
 import { User } from 'src/app/models/user';
 import { IssueBookService } from 'src/app/services/issue-book.service';
@@ -13,9 +14,9 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserViewIssueComponent implements OnInit {
   mailId?:string
-  user?:User
+  user:Observable<User>|any
   userId?:number
-  issuedDetails:IssueBook[]=[]
+  issuedDetails:Observable<IssueBook[]>|any
   errorMessage?:string
   show?:boolean
   constructor(public router:Router,
@@ -32,11 +33,12 @@ export class UserViewIssueComponent implements OnInit {
     {
     this.userService.getUserByMailId(this.mailId).subscribe(data=>{
       this.user=data
-
+      this.user=this.user.data
 this.userId=this.user.userId
       this.issueBookService.getIssueDetailsByUserId(this.userId).subscribe((data:any[])=>{
      
         this.issuedDetails=data;
+        this.issuedDetails=this.issuedDetails.data;
         if(this.issuedDetails == null){
           this.errorMessage = "No records found"
       }

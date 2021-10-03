@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Admin } from 'src/app/models/admin';
 import { AdminService } from 'src/app/services/admin.service';
 import Swal from 'sweetalert2';
@@ -12,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class EditAdminComponent implements OnInit {
   editAdminForm: FormGroup;
-  admin?: Admin;
+  admin:Observable<Admin>|any;
   adminId?: number;
   constructor(public router: Router, public adminService: AdminService, public activatedRoute: ActivatedRoute,
     public formBuilder: FormBuilder) { }
@@ -27,7 +28,7 @@ export class EditAdminComponent implements OnInit {
       .subscribe(data => {
      
         this.admin = data
-
+        this.admin=this.admin.data
         this.editAdminForm = this.formBuilder.group({
           adminId: [this.admin.adminId],
           adminName: [this.admin.adminName, [Validators.required]],

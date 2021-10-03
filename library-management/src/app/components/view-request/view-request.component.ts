@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { RequestBook } from 'src/app/models/request-book';
 import { RequestBookService } from 'src/app/services/request-book.service';
 import Swal from 'sweetalert2';
@@ -14,7 +15,7 @@ export class ViewRequestComponent implements OnInit {
 
   show?:boolean;
   adminId?:number
-  bookRequests:RequestBook[]=[]
+  bookRequests:Observable<RequestBook>|any
   errorMessage: string;
   constructor(public router:Router,
     public requestBookService:RequestBookService,public activatedRoute:ActivatedRoute
@@ -36,7 +37,7 @@ export class ViewRequestComponent implements OnInit {
         (res:any)=>{
          this.show=true
           this.bookRequests=res
-       
+          this.bookRequests=this.bookRequests.res
          
          if(res==null){
            this.errorMessage="No Records Found"

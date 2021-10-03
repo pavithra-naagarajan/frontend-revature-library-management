@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/services/book.service';
 
@@ -14,7 +15,7 @@ import Swal from 'sweetalert2';
 export class ViewBooksComponent implements OnInit {
 
   show?: boolean;
-  books: Book[] = []
+  books:Observable<Book[]>|any
 
   value?: string
 
@@ -44,7 +45,7 @@ export class ViewBooksComponent implements OnInit {
       (res: any) => {
         this.show = true
         this.books = res
-       
+        this.books = this.books.res
       }
     )
   }

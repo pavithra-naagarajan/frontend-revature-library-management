@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
@@ -15,7 +16,7 @@ interface Search {
 })
 export class ViewUsersComponent implements OnInit {
 show?:boolean;
-users:User[]=[]
+users:Observable<User>|any
 userRole?:string;
 
 value?:string
@@ -47,7 +48,7 @@ constructor(public router:Router,public userService:UserService,public formBuild
       (res:any)=>{
        this.show=true
         this.users=res
-       
+        this.users=this.users.res
      }
     )}  
 
@@ -103,6 +104,7 @@ this.router.navigate(['adminfunctions'])
         this.userService.getUserByRole(this.userRole).subscribe((data:any[])=>{
         
           this.users=data;
+          this.users= this.users.data
           if(this.users.length==0){
             this.errorMessage = "No records found"
           }
@@ -122,6 +124,7 @@ this.router.navigate(['adminfunctions'])
         this.userService.searchUser(this.searchUserForm.get('value')?.value).subscribe((data: any[]) => {
  
           this.users = data;
+          this.users =this.users.data
           if (this.users == null) {
             this.errorMessage = "No records found"
           }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { IssueBook } from 'src/app/models/issue-book';
 import { User } from 'src/app/models/user';
 import { IssueBookService } from 'src/app/services/issue-book.service';
@@ -15,8 +16,8 @@ import Swal from 'sweetalert2';
 export class RenewBookComponent implements OnInit {
   mailId?: string
   renewForm?: FormGroup
-  details?: IssueBook[] = []
-  user?: User
+  details:Observable<IssueBook>|any 
+  user:Observable<User>|any
   userId?: number
   constructor(public router: Router, public userService: UserService, public issueBookService: IssueBookService,
     public activatedRoute: ActivatedRoute,
@@ -27,10 +28,12 @@ export class RenewBookComponent implements OnInit {
     this.userService.getUserByMailId(this.mailId).subscribe(data => {
 
       this.user = data
+      this.user=this.user.data
       this.userId = this.user.userId
       this.issueBookService.getIssueDetailsByUserId(this.userId).subscribe(res => {
 
         this.details = res
+        this.details=this.details.res
       })
     })
     this.renewForm = this.formBuilder.group({
