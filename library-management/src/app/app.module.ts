@@ -36,7 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
- 
+
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -55,7 +55,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
     SearchBookComponent,
     UserFunctionsComponent,
-   
+
     IssueBookComponent,
     RequestBookComponent,
     ViewRequestComponent,
@@ -68,16 +68,18 @@ import { NgxPaginationModule } from 'ngx-pagination';
     EditAdminComponent,
     RenewBookComponent,
     LoginComponent,
-   
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,HttpClientModule,ReactiveFormsModule,FormsModule,FormsModule, BrowserAnimationsModule,
+    AppRoutingModule, HttpClientModule, 
+    ReactiveFormsModule, FormsModule, 
+    FormsModule, BrowserAnimationsModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
-    MatInputModule,NgxPaginationModule 
-   
+    MatInputModule, NgxPaginationModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

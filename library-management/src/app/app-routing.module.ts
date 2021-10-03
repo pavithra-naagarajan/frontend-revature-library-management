@@ -27,33 +27,33 @@ import { ViewUsersComponent } from './components/view-users/view-users.component
 
 const routes: Routes = [
 
-  { path: 'usersignup', component:UserSignupComponent },
-  { path: 'adminfunctions', component:AdminFunctionsComponent },
-  
-  { path: 'viewusers', component:ViewUsersComponent},
-  { path: 'viewbooks', component:ViewBooksComponent},
-  { path: 'addbooks', component:AddBookComponent},
-  { path: 'viewrequest', component:ViewRequestComponent},
-  { path: 'viewissuedbooks', component:ViewIssuedDetailsComponent},
-  { path: 'edituser', component:EditUserComponent},
-  { path: 'editbook/:bookId/', component:EditBookComponent},
-  { path: 'userfunctions', component:UserFunctionsComponent},
-  { path: 'userfunctions/:userId', component:UserFunctionsComponent},
+  { path: 'usersignup', component: UserSignupComponent },
+  { path: 'adminfunctions', component: AdminFunctionsComponent },
 
-  
-  { path: 'searchbooks', component:SearchBookComponent},
-  { path: 'requestbook/:bookId', component:RequestBookComponent},
-  { path: 'issuebook/:userId/:bookId/:numberOfDays/:requestId', component:IssueBookComponent},
-  { path: 'forgotpassword', component:ForgotPasswordComponent},
-  { path: 'returnbook', component:ReturnBookComponent},
-  { path: 'superadmin', component:SuperadminDashboardComponent},
-  { path: 'viewadmins', component:ViewAdminsComponent},
-  { path: 'addadmin', component:AddAdminComponent},
-  { path: 'viewissue', component:UserViewIssueComponent},
-  { path: 'editadmin', component:EditAdminComponent},
-  { path: 'renewbook', component:RenewBookComponent},
-  { path: '**', component:LoginComponent},
-  { path: 'login', component:LoginComponent},
+  { path: 'viewusers', component: ViewUsersComponent },
+  { path: 'viewbooks', component: ViewBooksComponent },
+  { path: 'addbooks', component: AddBookComponent },
+  { path: 'viewrequest', component: ViewRequestComponent },
+  { path: 'viewissuedbooks', component: ViewIssuedDetailsComponent },
+  { path: 'edituser', component: EditUserComponent },
+  { path: 'editbook/:bookId/', component: EditBookComponent },
+  { path: 'userfunctions', component: UserFunctionsComponent },
+  { path: 'userfunctions/:userId', component: UserFunctionsComponent },
+
+
+  { path: 'searchbooks', component: SearchBookComponent },
+  { path: 'requestbook/:bookId', component: RequestBookComponent },
+  { path: 'issuebook/:userId/:bookId/:numberOfDays/:requestId', component: IssueBookComponent },
+  { path: 'forgotpassword', component: ForgotPasswordComponent },
+  { path: 'returnbook', component: ReturnBookComponent },
+  { path: 'superadmin', component: SuperadminDashboardComponent },
+  { path: 'viewadmins', component: ViewAdminsComponent },
+  { path: 'addadmin', component: AddAdminComponent },
+  { path: 'viewissue', component: UserViewIssueComponent },
+  { path: 'editadmin', component: EditAdminComponent },
+  { path: 'renewbook', component: RenewBookComponent },
+  { path: '**', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
 
 ];
 

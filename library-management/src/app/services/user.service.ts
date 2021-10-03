@@ -11,77 +11,77 @@ const URL = "http://localhost:9090/user"
 })
 export class UserService {
 
-  constructor(public http:HttpClient) { }
-// Http Headers
-httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json'
-  })
-}
-   
+  constructor(public http: HttpClient) { }
+  // Http Headers
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
+
 
   //get user by id
   getUserById(userId: number): Observable<User> {
     return this.http.get<User>(`${URL}/${userId}`)
-      
+
   }
 
   //get user by mailId
-  getUserByMailId(mailId:string) :Observable<User> {
+  getUserByMailId(mailId: string): Observable<User> {
     return this.http.get<User>(`${URL}/mail/${mailId}`)
-      
+
   }
   //get user by mobileNumber
-  getUserByMobileNumber(mobileNumber:string) :Observable<User> {
+  getUserByMobileNumber(mobileNumber: string): Observable<User> {
     return this.http.get<User>(`${URL}/mobile/${mobileNumber}`)
-      
+
   }
-  
+
   //delete a user
   deleteUser(userId: number): Observable<User> {
     return this.http.delete(`${URL}/${userId}`)
-    
+
   }
-  searchUser(value:string): Observable<User[]>{
+  searchUser(value: string): Observable<User[]> {
     return this.http.get<User[]>(`${URL}/searchusers/${value}`)
-  
+
   }
-  
+
   //user login
 
-  userLogin(mailId:string,password:string): Observable<User> {
+  userLogin(mailId: string, password: string): Observable<User> {
     return this.http.get<User>(`${URL}/login/${mailId}/${password}`)
-     
+
   }
-//add a user
-  addUser(user :User) :Observable<User>{
-    return this.http.post<User>(URL,user,this.httpOptions)
+  //add a user
+  addUser(user: User): Observable<User> {
+    return this.http.post<User>(URL, user, this.httpOptions)
   }
   //update a user
-  updateUser(user :User): Observable<User> {
+  updateUser(user: User): Observable<User> {
     return this.http.put<User>(URL, user)
-     
+
   }
 
-  forgotPassword(mailId :string): Observable<User> {
-    return this.http.put<User>(`${URL}/forgotpassword/${mailId}`,this.httpOptions)
-      
+  forgotPassword(mailId: string): Observable<User> {
+    return this.http.put<User>(`${URL}/forgotpassword/${mailId}`, this.httpOptions)
+
   }
 
   //get all users
-  getAllUsers() :Observable<User[]>{
+  getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`http://localhost:9090/user`);
   }
-  getUserByRole(userRole:string) :Observable<User[]>{
+  getUserByRole(userRole: string): Observable<User[]> {
     return this.http.get<User[]>(`${URL}/role/${userRole}`);
   }
 
-  getUserByName(firstName:string) :Observable<User[]>{
+  getUserByName(firstName: string): Observable<User[]> {
     return this.http.get<User[]>(`${URL}/name/${firstName}`);
   }
 
 
-  
+
 
 }
 
