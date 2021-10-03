@@ -76,31 +76,22 @@ export class IssueBookComponent implements OnInit {
   }
 
   addIssueBook() {
-
-
-
     this.issueBook.book = this.book
     this.issueBook.user = this.user
     this.issueBook.issueDate = this.issueForm?.get('issueDate').value
-    
-
     this.issueBook.issueId = -1
     this.issueBook.fineAmount = 0
+    this.issueBookService.addIssueDetails(this.issueBook, this.numberOfDays).subscribe(
+      response => {
+        this.requestBookService.deleteRequestBookDetails(this.requestId).subscribe(response => {
 
-  
-      this.issueBookService.addIssueDetails(this.issueBook,this.numberOfDays).subscribe(
-        response => {
-        }, error => {
-
-          this.requestBookService.deleteRequestBookDetails(this.requestId).subscribe(response => {
-          }, error => {
-
-          })
-          this.successNotification();
-          this.router.navigate(['adminfunctions'])
         })
+        this.successNotification();
+        this.router.navigate(['adminfunctions'])
 
-    
+      })
+
+
   }
 
 

@@ -29,8 +29,6 @@ export class AddAdminComponent implements OnInit {
     this.adminService.addAdmin(this.addAdminForm?.value)
       .subscribe(
         response => {
-
-        }, error => {
           this.successNotification();
           this.router.navigate(['superadmin'])
         })

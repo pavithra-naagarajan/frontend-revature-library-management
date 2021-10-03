@@ -39,7 +39,6 @@ export class AddBookComponent implements OnInit {
     this.bookService.addBook(this.addBookForm?.value)
       .subscribe(
         response => {
-        }, error => {
           this.successNotification();
           this.router.navigate(['adminfunctions'])
         })

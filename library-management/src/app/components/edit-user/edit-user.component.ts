@@ -53,13 +53,9 @@ export class EditUserComponent implements OnInit {
     this.userService.updateUser(this.editUserForm?.value)
       .subscribe(
         response => {
-
-
-        }, error => {
-
-       
           this.successNotification()
           this.router.navigate(['userfunctions'])
+
         });
   }
   return() {

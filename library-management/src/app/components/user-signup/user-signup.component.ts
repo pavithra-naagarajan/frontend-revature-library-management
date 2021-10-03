@@ -32,7 +32,7 @@ export class UserSignupComponent implements OnInit {
       gender: ['', [Validators.required]],
       userRole: ['', [Validators.required]],
       age: ['', [Validators.required, Validators.minLength(18)]],
-      mobileNumber: ['', [Validators.required, Validators.minLength(10)]],
+      mobileNumber: ['', [Validators.required, Validators.minLength(10),Validators.maxLength(10)]],
       mailId: ['', [Validators.required, Validators.email]],
       address: ['', [Validators.required]]
     },
@@ -44,12 +44,13 @@ export class UserSignupComponent implements OnInit {
 
   mailCheck(mailId:string) {
     
-    console.log("mailcheck")
-    console.log("value"+mailId)
+    
+    
     this.userService.getUserByMailId(mailId).subscribe(data => {
       this.mailUser = data
       if (this.mailUser == null) {
        
+        this.errorMessage = ""
 
       }
       else {
@@ -79,10 +80,7 @@ export class UserSignupComponent implements OnInit {
         response => {
 
           this.user = response
-          console.log(this.user)
-
-        }, error => {
-
+         
           this.successNotification()
           this.router.navigate(['**'])
         })

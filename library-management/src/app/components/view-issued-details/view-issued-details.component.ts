@@ -79,7 +79,7 @@ export class ViewIssuedDetailsComponent implements OnInit {
         else {
           this.errorMessage = ""
         }
-      }, error => { this.errorMessage = "No records found" }
+      }
       )
     }
   }
@@ -100,7 +100,7 @@ export class ViewIssuedDetailsComponent implements OnInit {
         else {
           this.errorMessage = ""
         }
-      }, error => { this.errorMessage = "No records found" }
+      }
       )
     }
   }

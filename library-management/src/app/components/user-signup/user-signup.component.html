@@ -150,6 +150,10 @@
                     *ngIf="signupForm.get('mobileNumber').hasError('minlength') && signupForm.get('mobileNumber').dirty">
                     Enter Appropriate 10 digit Mobile Number
                 </div>
+                <div class="alert alert-danger"
+                *ngIf="signupForm.get('mobileNumber').hasError('maxlength') && signupForm.get('mobileNumber').dirty">
+                Mobile Number should not exceed 10 digit!
+            </div>
             </div>
 
             <div class="form-group">

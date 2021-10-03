@@ -48,12 +48,9 @@ export class EditAdminComponent implements OnInit {
       .subscribe(
         response => {
 
-
-        }, error => {
-
-      
           this.successNotification()
           this.router.navigate(['adminfunctions'])
+
         });
   }
   return() {

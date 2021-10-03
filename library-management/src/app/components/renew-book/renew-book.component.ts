@@ -25,32 +25,24 @@ export class RenewBookComponent implements OnInit {
   ngOnInit(): void {
     this.mailId = localStorage.getItem('userEmail') as string;
     this.userService.getUserByMailId(this.mailId).subscribe(data => {
-     
+
       this.user = data
       this.userId = this.user.userId
       this.issueBookService.getIssueDetailsByUserId(this.userId).subscribe(res => {
-        
+
         this.details = res
       })
     })
-
-
-
     this.renewForm = this.formBuilder.group({
-   issueId: ['', Validators.required],
-      
+      issueId: ['', Validators.required],
+
 
     })
 
 
   }
   renewBook() {
-    
-   
-
     this.issueBookService.updateDueDate(this.renewForm.get('issueId').value).subscribe(data => {
-
-    }, error => {
       this.successNotification()
     })
   }

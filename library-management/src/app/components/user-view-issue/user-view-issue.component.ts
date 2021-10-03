@@ -44,7 +44,7 @@ this.userId=this.user.userId
         this.errorMessage = ""
         this.show=true
       }
-      }, error => {this.errorMessage = "No records found"}
+      }
       )
   
     })

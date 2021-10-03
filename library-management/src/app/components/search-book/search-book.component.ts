@@ -49,7 +49,7 @@ export class SearchBookComponent implements OnInit {
       else {
         this.errorMessage = ""
       }
-    }, error => { this.errorMessage = "No records found" })
+    })
 
   }
 
@@ -70,7 +70,7 @@ export class SearchBookComponent implements OnInit {
         else {
           this.errorMessage = ""
         }
-      }, error => { this.errorMessage = "No records found" }
+      }
       )
     }
   }

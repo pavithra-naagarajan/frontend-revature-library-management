@@ -30,9 +30,6 @@ export class ViewAdminsComponent implements OnInit {
         this.show = true
         this.admins = res
 
-      }, error => {
-        this.show = true
-
       }
     )
   }

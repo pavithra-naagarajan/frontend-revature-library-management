@@ -44,19 +44,10 @@ export class ReturnBookComponent implements OnInit {
   }
   returnBook() {
     this.updateFine(this.returnForm.get('issueId').value)
-  
-   
-
-    
-
-
-  }
+ }
   updateFine(issueId: number) {
 
     this.issueBookService.updateFine(issueId).subscribe(data => {
-
-
-    }, error => {
       this.issueBookService.getIssueDetailsByIssueId(this.returnForm.get('issueId').value).subscribe(async res => {
         this.issueDetails = res
         this.fine = this.issueDetails.fineAmount
@@ -70,6 +61,7 @@ export class ReturnBookComponent implements OnInit {
         })
         this.router.navigate(['userfunctions'])
       })
+
     }
     )
 

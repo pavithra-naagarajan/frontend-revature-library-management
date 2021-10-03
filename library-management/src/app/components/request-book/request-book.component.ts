@@ -16,65 +16,57 @@ import Swal from 'sweetalert2';
 })
 export class RequestBookComponent implements OnInit {
 
-  bookId?:number;
-  mailId?:string;
-  book:Book;
-  user:User;
-  requestBook?:RequestBook
-  requestBookForm?:FormGroup
-  constructor(public router:Router,public bookService:BookService,public requestBookService:RequestBookService,public userService:UserService,public activatedRoute:ActivatedRoute,
-    public formBuilder:FormBuilder) { }
+  bookId?: number;
+  mailId?: string;
+  book: Book;
+  user: User;
+  requestBook?: RequestBook
+  requestBookForm?: FormGroup
+  constructor(public router: Router, public bookService: BookService, public requestBookService: RequestBookService, public userService: UserService, public activatedRoute: ActivatedRoute,
+    public formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.book=new Book()
-    this.user=new User()
-    this.requestBook=new RequestBook()
+    this.book = new Book()
+    this.user = new User()
+    this.requestBook = new RequestBook()
     this.bookId = this.activatedRoute.snapshot.params['bookId'];
     this.mailId = localStorage.getItem('userEmail') as string;
     this.bookService.getBookById(this.bookId).
-    subscribe(data=>{
-      
-      this.book=data
+      subscribe(data => {
+        this.book = data
+      })
 
-  
-    }) 
-  
-  this.userService.getUserByMailId(this.mailId).subscribe(data=>{
-   
-    this.user=data
+    this.userService.getUserByMailId(this.mailId).subscribe(data => {
 
+      this.user = data
+    })
 
-  })
-  
+    this.requestBookForm = this.formBuilder.group({
 
+      numberOfDays: ['', [Validators.required, Validators.max(25)]]
 
-  this.requestBookForm = this.formBuilder.group({
-
- numberOfDays: ['',[ Validators.required,Validators.max(25)]]
-
-  })
-  }
- 
-
-  addRequestBook(){
-    this.requestBook.book=this.book
-  this.requestBook.user=this.user
-    this.requestBook.numberOfDays=this.requestBookForm?.get('numberOfDays').value
-    this.requestBook.requestId=-1
-  
-   this.requestBookService.addRequestBookDetails(this.requestBook).subscribe(
-    response => {
-    },error => {
-      this.successNotification();
-      this.router.navigate(['userfunctions'])
     })
   }
 
-    return(){
-      this.router.navigate(['userfunctions'])
-    }
 
-    successNotification(){
-      Swal.fire('Success', 'Book request sent Successfully!', 'success')
-    }
+  addRequestBook() {
+    this.requestBook.book = this.book
+    this.requestBook.user = this.user
+    this.requestBook.numberOfDays = this.requestBookForm?.get('numberOfDays').value
+    this.requestBook.requestId = -1
+
+    this.requestBookService.addRequestBookDetails(this.requestBook).subscribe(
+      response => {
+        this.successNotification();
+        this.router.navigate(['userfunctions'])
+      })
+  }
+
+  return() {
+    this.router.navigate(['userfunctions'])
+  }
+
+  successNotification() {
+    Swal.fire('Success', 'Book request sent Successfully!', 'success')
+  }
 }

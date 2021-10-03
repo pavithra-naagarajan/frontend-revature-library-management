@@ -51,7 +51,9 @@ constructor(public router:Router,public userService:UserService,public formBuild
      }
     )}  
 
-
+    notification(){
+      Swal.fire('WRONG', 'You cannot delete Active User!', 'error')    
+    }
    
 
     return(){
@@ -61,9 +63,7 @@ this.router.navigate(['adminfunctions'])
       this.userService.deleteUser(userId).subscribe(
         (res:any)=>{
         
-          }
-          
-          );
+          });
     }
 
     deleteAlertConfirmation(userId:number){
@@ -109,7 +109,7 @@ this.router.navigate(['adminfunctions'])
           else{
           this.errorMessage = ""
           }
-          }, error => {this.errorMessage = "No records found"}
+          }
         )
       }
     }
@@ -128,7 +128,7 @@ this.router.navigate(['adminfunctions'])
           else {
             this.errorMessage = ""
           }
-        }, error => { this.errorMessage = "No records found" }
+        }
         )
       }
     }

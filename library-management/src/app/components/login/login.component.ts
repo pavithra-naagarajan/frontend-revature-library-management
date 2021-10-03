@@ -23,17 +23,10 @@ export class LoginComponent implements OnInit {
   async onLogin(credential: any) {
     this.adminService.getAdminById(credential.username).subscribe(response => {
       this.admin = response
-    
-
-
     })
     this.userService.getUserByMailId(credential.username).subscribe(data => {
       this.user = data
-  
-
-
-
-    })
+  })
 
     await delay(1000);
     this.check(credential);
