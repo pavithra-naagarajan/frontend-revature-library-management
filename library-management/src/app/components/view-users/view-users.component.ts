@@ -52,7 +52,12 @@ export class ViewUsersComponent implements OnInit {
           currentPage: 1,
           totalItems: this.users.count
         };
-
+        if (this.users == null) {
+          this.errorMessage = "No records found"
+        }
+        else {
+          this.errorMessage = ""
+        }
       }
     )
   }

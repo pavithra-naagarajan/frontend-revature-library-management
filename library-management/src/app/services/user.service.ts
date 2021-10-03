@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, retry } from 'rxjs/operators';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 
 const URL = "http://localhost:9090/user"
@@ -64,7 +66,7 @@ export class UserService {
   }
 
   forgotPassword(mailId: string): Observable<User> {
-    return this.http.put<User>(`${URL}/forgotpassword/${mailId}`, this.httpOptions)
+    return this.http.put<User>(`${URL}/forgotpassword/${mailId}`, this.httpOptions) 
 
   }
 
@@ -84,6 +86,8 @@ export class UserService {
 
 
 }
+
+
 
 
 
