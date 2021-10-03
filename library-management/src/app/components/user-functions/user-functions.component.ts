@@ -7,34 +7,34 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./user-functions.component.css']
 })
 export class UserFunctionsComponent implements OnInit {
-mailId?:string;
-  constructor(public router:Router,public activatedRoute:ActivatedRoute,) { }
+  mailId?: string;
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
     this.mailId = localStorage.getItem('userEmail') as string;
 
-    
+
   }
-  view(){
-   
+  view() {
+
     this.router.navigate(['edituser'])
   }
- 
-  searchBooks(){
+
+  searchBooks() {
     this.router.navigate(['searchbooks'])
   }
-  viewIssueDetails(){
+  viewIssueDetails() {
     this.router.navigate(['viewissue'])
 
   }
-  returnBook(){
+  returnBook() {
     this.router.navigate(['returnbook'])
 
   }
-  renewBook(){
+  renewBook() {
     this.router.navigate(['renewbook'])
   }
-  logout(){
+  logout() {
     localStorage.removeItem('userEmail');
     this.router.navigate(['login'])
 

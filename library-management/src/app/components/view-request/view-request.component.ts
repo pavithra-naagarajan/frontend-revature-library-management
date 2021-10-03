@@ -13,56 +13,57 @@ import Swal from 'sweetalert2';
 })
 export class ViewRequestComponent implements OnInit {
 
-  show?:boolean;
-  adminId?:number
-  bookRequests:Observable<RequestBook[]>|any
+  show?: boolean;
+  adminId?: number
+  bookRequests: Observable<RequestBook[]> | any
   errorMessage: string;
-  config:any;
-  constructor(public router:Router,
-    public requestBookService:RequestBookService,public activatedRoute:ActivatedRoute
-    ) { }
+  config: any;
+  constructor(public router: Router,
+    public requestBookService: RequestBookService, public activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     this.adminId = localStorage.getItem('adminId') as any;
 
     this.viewRequestBooks();
-  
-  
+
+
   }
 
-    successNotification(){
-      Swal.fire('Success', 'Book request sent Successfully!', 'success')
-    }
-    viewRequestBooks() {
-      this.requestBookService.getAllRequestBookDetails().subscribe(
-        (data:any[])=>{
-         this.show=true
-          this.bookRequests=data
-          this.bookRequests=this.bookRequests.data
-          this.config = {
-            itemsPerPage: 3,
-            currentPage: 1,
-            totalItems: this.bookRequests.count
-          };
-         if(data==null){
-           this.errorMessage="No Records Found"
-         }
-         else{
-          this.errorMessage="" 
-         }
-         
-       },error=>{this.errorMessage="No Records Found"}
-      )}  
-
-
-      pageChanged(event: any){
-        this.config.currentPage = event;
-      }
-      
-  approveRequest(userId:number,bookId:number,numberOfDays:number,requestId:number){
-this.router.navigate(['issuebook',userId,bookId,numberOfDays,requestId])
+  successNotification() {
+    Swal.fire('Success', 'Book request sent Successfully!', 'success')
   }
-  return(){
+  viewRequestBooks() {
+    this.requestBookService.getAllRequestBookDetails().subscribe(
+      (data: any[]) => {
+        this.show = true
+        this.bookRequests = data
+        this.bookRequests = this.bookRequests.data
+        this.config = {
+          itemsPerPage: 3,
+          currentPage: 1,
+          totalItems: this.bookRequests.count
+        };
+        if (data == null) {
+          this.errorMessage = "No Records Found"
+        }
+        else {
+          this.errorMessage = ""
+        }
+
+      }, error => { this.errorMessage = "No Records Found" }
+    )
+  }
+
+
+  pageChanged(event: any) {
+    this.config.currentPage = event;
+  }
+
+  approveRequest(userId: number, bookId: number, numberOfDays: number, requestId: number) {
+    this.router.navigate(['issuebook', userId, bookId, numberOfDays, requestId])
+  }
+  return() {
     this.router.navigate(['adminfunctions'])
   }
 }

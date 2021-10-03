@@ -20,9 +20,9 @@ export class IssueBookComponent implements OnInit {
 
   bookId?: number
   userId?: number
-  book: Observable<Book>|any;
-  user: Observable<User>|any;
-  issueBook?:IssueBook;
+  book: Observable<Book> | any;
+  user: Observable<User> | any;
+  issueBook?: IssueBook;
   issueForm?: FormGroup
   numberOfDays?: number
   requestId?: number
@@ -51,14 +51,14 @@ export class IssueBookComponent implements OnInit {
       subscribe(data => {
 
         this.book = data
-        this.book = this.book .data
+        this.book = this.book.data
 
       })
 
     this.userService.getUserById(this.userId).subscribe((data: User) => {
 
       this.user = data
-      this.user=this.user.data
+      this.user = this.user.data
 
     })
 

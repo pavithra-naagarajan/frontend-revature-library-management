@@ -1,30 +1,29 @@
 <app-user-functions></app-user-functions>
 
-    <link rel="stylesheet" 
-          href=
-"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 <body>
     <br>
     <h2 align="center">Book Details</h2>
-    
-
-    
 
 
-<br><br>
 
 
-    <form novalidate [formGroup]="searchBookForm"><h6>
-      
-           <i class="fa fa-search icon"></i>Search Book
-       
-        <input class="input-field" type="text" placeholder="Enter Book Details" formControlName="value" [(ngModel)]="textValue"
-            (keyup)="searchBook()">
-        <input [(ngModel)]="value" [ngModelOptions]="{standalone: true} " [hidden]="true">
-   
-</h6>
+
+    <br><br>
+
+
+    <form novalidate [formGroup]="searchBookForm">
+        <h6>
+
+            <i class="fa fa-search icon"></i>Search Book
+
+            <input class="input-field" type="text" placeholder="Enter Book Details" formControlName="value"
+                [(ngModel)]="textValue" (keyup)="searchBook()">
+            <input [(ngModel)]="value" [ngModelOptions]="{standalone: true} " [hidden]="true">
+
+        </h6>
     </form>
 
 
@@ -87,7 +86,8 @@
                         <td *ngIf="b.status=='Issued'"><button class="btn btn-warning" [disabled]>Issued</button></td>
 
 
-                        <td *ngIf="b.status=='Requested'"><button class="btn btn-secondary" [disabled]>Requested</button>
+                        <td *ngIf="b.status=='Requested'"><button class="btn btn-secondary"
+                                [disabled]>Requested</button>
                         </td>
                         <br><br>
 

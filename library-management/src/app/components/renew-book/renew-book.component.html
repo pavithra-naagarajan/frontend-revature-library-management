@@ -1,38 +1,40 @@
 <app-user-functions></app-user-functions>
+
 <body>
     <br><br>
     <div class="registration-form">
-    <h3 align="center">Renew Book</h3><br><br>
+        <h3 align="center">Renew Book</h3><br><br>
 
-    <form novalidate 
-    [formGroup]="renewForm" (ngSubmit)="renewBook()">
-        <fieldset>
-          
-  <br>
-   
- <div class="form-group">
-            <div class="col-md-13">
+        <form novalidate [formGroup]="renewForm" (ngSubmit)="renewBook()">
+            <fieldset>
 
-                <label for="issueId">Select Book to Renew</label><br>
-                <select class="form-control form-control-lg"   name="issueId" formControlName="issueId" ngModel required>
-                  <option>---select</option>
-                    <option *ngFor="let d of details" [value]="d.issueId">{{d.book.isbn}}-{{d.book.bookName}}-{{d.book.authorName}}</option>
-                 
-                   
-                </select>
-              
-          </div>
-          </div><br>
-        
-        </fieldset>
-        <br>
-        <td>
-            <button type="submit" class="btn btn-primary" >Renew Book</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button  class="btn btn-dark" (click)="return()">Back</button>
-        </td>
-    
-      
-     
+                <br>
+
+                <div class="form-group">
+                    <div class="col-md-13">
+
+                        <label for="issueId">Select Book to Renew</label><br>
+                        <select class="form-control form-control-lg" name="issueId" formControlName="issueId" ngModel
+                            required>
+                            <option>---select</option>
+                            <option *ngFor="let d of details" [value]="d.issueId">
+                                {{d.book.isbn}}-{{d.book.bookName}}-{{d.book.authorName}}</option>
+
+
+                        </select>
+
+                    </div>
+                </div><br>
+
+            </fieldset>
+            <br>
+            <td>
+                <button type="submit" class="btn btn-primary">Renew Book</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-dark" (click)="return()">Back</button>
+            </td>
+
+
+
         </form>
-        </div>
-    </body>
+    </div>
+</body>

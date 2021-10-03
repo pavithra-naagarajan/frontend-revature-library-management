@@ -19,9 +19,9 @@ export class RequestBookComponent implements OnInit {
 
   bookId?: number;
   mailId?: string;
-  book:Observable<Book>|any;
-  user: Observable<User>|any;
-  requestBook?:RequestBook
+  book: Observable<Book> | any;
+  user: Observable<User> | any;
+  requestBook?: RequestBook
   requestBookForm?: FormGroup
   constructor(public router: Router, public bookService: BookService, public requestBookService: RequestBookService, public userService: UserService, public activatedRoute: ActivatedRoute,
     public formBuilder: FormBuilder) { }
@@ -35,13 +35,13 @@ export class RequestBookComponent implements OnInit {
     this.bookService.getBookById(this.bookId).
       subscribe(data => {
         this.book = data
-        this.book =this.book.data
+        this.book = this.book.data
       })
 
     this.userService.getUserByMailId(this.mailId).subscribe(data => {
 
       this.user = data
-      this.user =this.user.data
+      this.user = this.user.data
     })
 
     this.requestBookForm = this.formBuilder.group({

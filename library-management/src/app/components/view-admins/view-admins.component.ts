@@ -14,8 +14,8 @@ import Swal from 'sweetalert2';
 export class ViewAdminsComponent implements OnInit {
 
   show?: boolean;
-  admins: Observable<Admin[]>|any
-config:any
+  admins: Observable<Admin[]> | any
+  config: any
   constructor(public router: Router, public adminService: AdminService, public formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -24,12 +24,12 @@ config:any
 
 
   }
-  pageChanged(event: any){
+  pageChanged(event: any) {
     this.config.currentPage = event;
   }
   viewAdmins() {
     this.adminService.getAllAdmins().subscribe(
-      (data:any[]) => {
+      (data: any[]) => {
         this.show = true
         this.admins = data
         this.admins = this.admins.data

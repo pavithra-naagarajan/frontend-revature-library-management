@@ -13,57 +13,57 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./user-view-issue.component.css']
 })
 export class UserViewIssueComponent implements OnInit {
-  mailId?:string
-  user:Observable<User>|any
-  userId?:number
-  issuedDetails:Observable<IssueBook[]>|any
-  errorMessage?:string
-  show?:boolean
-config:any
+  mailId?: string
+  user: Observable<User> | any
+  userId?: number
+  issuedDetails: Observable<IssueBook[]> | any
+  errorMessage?: string
+  show?: boolean
+  config: any
 
-  constructor(public router:Router,
-    public issueBookService:IssueBookService,public userService:UserService,public formBuilder:FormBuilder
-    ,public activatedRoute:ActivatedRoute) { }
+  constructor(public router: Router,
+    public issueBookService: IssueBookService, public userService: UserService, public formBuilder: FormBuilder
+    , public activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.mailId = localStorage.getItem('userEmail') as string;
-    this.show=true
+    this.show = true
     this.getIssueByUserId();
   }
 
-  pageChanged(event: any){
+  pageChanged(event: any) {
     this.config.currentPage = event;
   }
 
-  getIssueByUserId(){
+  getIssueByUserId() {
     {
-    this.userService.getUserByMailId(this.mailId).subscribe(data=>{
-      this.user=data
-      this.user=this.user.data
-this.userId=this.user.userId
-      this.issueBookService.getIssueDetailsByUserId(this.userId).subscribe((data:any[])=>{
-     
-        this.issuedDetails=data;
-        this.issuedDetails=this.issuedDetails.data;
-        this.config = {
-          itemsPerPage: 3,
-          currentPage: 1,
-          totalItems: this.issuedDetails.count
-        };
-        if(this.issuedDetails == null){
-          this.errorMessage = "No records found"
-      }
-      else{
-        this.errorMessage = ""
-        this.show=true
-      }
-      }
-      )
-  
-    })
+      this.userService.getUserByMailId(this.mailId).subscribe(data => {
+        this.user = data
+        this.user = this.user.data
+        this.userId = this.user.userId
+        this.issueBookService.getIssueDetailsByUserId(this.userId).subscribe((data: any[]) => {
+
+          this.issuedDetails = data;
+          this.issuedDetails = this.issuedDetails.data;
+          this.config = {
+            itemsPerPage: 3,
+            currentPage: 1,
+            totalItems: this.issuedDetails.count
+          };
+          if (this.issuedDetails == null) {
+            this.errorMessage = "No records found"
+          }
+          else {
+            this.errorMessage = ""
+            this.show = true
+          }
+        }
+        )
+
+      })
+    }
   }
-  }
-  return(){
+  return() {
     this.router.navigate(['userfunctions'])
   }
 }

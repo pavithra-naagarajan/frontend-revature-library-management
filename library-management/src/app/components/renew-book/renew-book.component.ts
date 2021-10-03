@@ -17,12 +17,12 @@ import Swal from 'sweetalert2';
 export class RenewBookComponent implements OnInit {
   mailId?: string
   renewForm?: FormGroup
-  details:Observable<IssueBook[]>|any 
-  user:Observable<User>|any
+  details: Observable<IssueBook[]> | any
+  user: Observable<User> | any
   userId?: number
-  fine?:number
+  fine?: number
   constructor(public router: Router, public userService: UserService, public issueBookService: IssueBookService,
-    public activatedRoute: ActivatedRoute,
+
     public formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -30,12 +30,12 @@ export class RenewBookComponent implements OnInit {
     this.userService.getUserByMailId(this.mailId).subscribe(data => {
 
       this.user = data
-      this.user=this.user.data
+      this.user = this.user.data
       this.userId = this.user.userId
-      this.issueBookService.getIssueDetailsByUserId(this.userId).subscribe((data:any[]) => {
+      this.issueBookService.getIssueDetailsByUserId(this.userId).subscribe((data: any[]) => {
 
         this.details = data
-        this.details=this.details.data
+        this.details = this.details.data
       })
     })
     this.renewForm = this.formBuilder.group({
@@ -48,32 +48,32 @@ export class RenewBookComponent implements OnInit {
   }
   renewBook() {
     this.updateFine(this.renewForm.get('issueId').value)
-   
+
   }
-  
 
- updateFine(issueId: number) {
 
-   this.issueBookService.updateFine(issueId).subscribe(data => {
-     this.issueBookService.getIssueDetailsByIssueId(this.renewForm.get('issueId').value).subscribe(async (data:any) => {
-       this.details = data
-       this.details = this.details.data
-       this.fine = this.details.fineAmount
-       console.log(this.fine)
-       await delay(1000)
-       this.successNotification()
-       await delay(1000)
-       this.issueBookService.updateDueDate(this.renewForm.get('issueId').value).subscribe(async data => {
-     
-      
+  updateFine(issueId: number) {
+
+    this.issueBookService.updateFine(issueId).subscribe(data => {
+      this.issueBookService.getIssueDetailsByIssueId(this.renewForm.get('issueId').value).subscribe(async (data: any) => {
+        this.details = data
+        this.details = this.details.data
+        this.fine = this.details.fineAmount
+       
+        await delay(1000)
+        this.successNotification()
+        await delay(1000)
+        this.issueBookService.updateDueDate(this.renewForm.get('issueId').value).subscribe(async data => {
+
+
+        })
+        this.router.navigate(['userfunctions'])
       })
-       this.router.navigate(['userfunctions'])
-     })
 
-   }
-   )
+    }
+    )
 
- }
+  }
   return() {
     this.router.navigate(['userfunctions'])
   }

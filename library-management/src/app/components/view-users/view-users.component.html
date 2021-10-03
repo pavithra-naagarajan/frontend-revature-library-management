@@ -1,12 +1,11 @@
 <app-admin-functions></app-admin-functions>
-<link rel="stylesheet" 
-href=
-"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <body>
     <br>
     <h2 align="center">Users Details</h2>
     <form novalidate [formGroup]="searchUserForm">
-        <h6>  <i class="fa fa-search icon"></i>Search User
+        <h6> <i class="fa fa-search icon"></i>Search User
             <input type="text" placeholder="Enter User Details" formControlName="value" [(ngModel)]="textValue"
                 (keyup)="searchUser()">
             <input [(ngModel)]="value" [ngModelOptions]="{standalone: true} " [hidden]="true">
@@ -59,12 +58,11 @@ href=
                                 <button class="btn btn-primary"
                                     (click)="deleteAlertConfirmation(u.userId)">Delete</button>
                             </td>
-                           
-                            
+
+
                             <td *ngIf="u.status=='Active'">
 
-                                <button class="btn btn-secondary"
-                                    (click)="notification()">Delete</button>
+                                <button class="btn btn-secondary" (click)="notification()">Delete</button>
                             </td>
 
                         </tr>

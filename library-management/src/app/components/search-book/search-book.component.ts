@@ -15,14 +15,14 @@ export class SearchBookComponent implements OnInit {
 
   dataFound: boolean = true;
   errorMessage?: string;
-  books:Observable<Book[]>|any
-config:any
+  books: Observable<Book[]> | any
+  config: any
   searchBookForm?: FormGroup;
   textValue: any = null;
   value?: string
   mailId?: string;
   constructor(public bookService: BookService, public formBuilder: FormBuilder,
-    public router: Router, public activatedRoute: ActivatedRoute) { }
+    public router: Router) { }
 
   ngOnInit(): void {
 
@@ -41,9 +41,9 @@ config:any
 
   refreshBooks() {
     this.bookService.getAllBooks().subscribe((data: any[]) => {
-      
+
       this.books = data
-      this.books=this.books.data
+      this.books = this.books.data
       this.config = {
         itemsPerPage: 3,
         currentPage: 1,
@@ -58,7 +58,7 @@ config:any
     })
 
   }
-  pageChanged(event: any){
+  pageChanged(event: any) {
     this.config.currentPage = event;
   }
 
@@ -70,9 +70,9 @@ config:any
 
     else {
       this.bookService.searchBook(this.searchBookForm.get('value')?.value).subscribe((data: any[]) => {
-      
+
         this.books = data;
-        this.books=this.books.data
+        this.books = this.books.data
         if (this.books == null) {
           this.errorMessage = "No records found"
         }

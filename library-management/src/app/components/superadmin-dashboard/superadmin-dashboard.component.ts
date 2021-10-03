@@ -8,18 +8,18 @@ import { Router } from '@angular/router';
 })
 export class SuperadminDashboardComponent implements OnInit {
 
-  constructor(public router:Router) { }
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
   }
-  viewAdmins(){
+  viewAdmins() {
     this.router.navigate(['viewadmins'])
   }
-  addAdmins(){
+  addAdmins() {
     this.router.navigate(['addadmin'])
 
   }
-  logout(){
+  logout() {
     this.router.navigate(['login'])
 
   }

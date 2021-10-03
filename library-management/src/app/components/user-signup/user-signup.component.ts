@@ -32,7 +32,7 @@ export class UserSignupComponent implements OnInit {
       gender: ['', [Validators.required]],
       userRole: ['', [Validators.required]],
       age: ['', [Validators.required, Validators.minLength(18)]],
-      mobileNumber: ['', [Validators.required, Validators.minLength(10),Validators.maxLength(10)]],
+      mobileNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       mailId: ['', [Validators.required, Validators.email]],
       address: ['', [Validators.required]]
     },
@@ -42,14 +42,14 @@ export class UserSignupComponent implements OnInit {
       })
   }
 
-  mailCheck(mailId:string) {
-    
-    
-    
+  mailCheck(mailId: string) {
+
+
+
     this.userService.getUserByMailId(mailId).subscribe(data => {
       this.mailUser = data
       if (this.mailUser == null) {
-       
+
         this.errorMessage = ""
 
       }
@@ -59,19 +59,19 @@ export class UserSignupComponent implements OnInit {
     })
   }
 
- mobileCheck(mobileNumber:string) {
+  mobileCheck(mobileNumber: string) {
     this.userService.getUserByMobileNumber(mobileNumber).subscribe(data => {
       this.mobileUser = data
       if (this.mobileUser == null) {
         this.errorMessage = ""
-        
+
 
       }
       else {
         this.errorMessage = "*** Mobile Number already exists!"
       }
     })
-  } 
+  }
 
   userSignUp() {
 
@@ -80,7 +80,7 @@ export class UserSignupComponent implements OnInit {
         response => {
 
           this.user = response
-         
+
           this.successNotification()
           this.router.navigate(['**'])
         })
