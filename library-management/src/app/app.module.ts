@@ -31,6 +31,13 @@ import { UserViewIssueComponent } from './components/user-view-issue/user-view-i
 import { EditAdminComponent } from './components/edit-admin/edit-admin.component';
 import { RenewBookComponent } from './components/renew-book/renew-book.component';
 import { LoginComponent } from './components/login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+ 
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -63,7 +70,11 @@ import { LoginComponent } from './components/login/login.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,HttpClientModule,ReactiveFormsModule,FormsModule,FormsModule,
+    AppRoutingModule,HttpClientModule,ReactiveFormsModule,FormsModule,FormsModule, BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule 
    
   ],
   providers: [],

@@ -31,6 +31,7 @@ export class IssueBookComponent implements OnInit {
   totalDays?: number;
   days?: number
   adminId?: number
+  minDate = new Date();
   constructor(public router: Router, public bookService: BookService, public issueBookService: IssueBookService,
     public userService: UserService, public activatedRoute: ActivatedRoute,
     public formBuilder: FormBuilder, public requestBookService: RequestBookService) { }
