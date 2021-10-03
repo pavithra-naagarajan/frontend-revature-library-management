@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'library-management-system';
-  minDate = new Date();
+  
   constructor(public router:Router){}
  
 }

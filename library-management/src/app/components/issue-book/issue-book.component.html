@@ -70,11 +70,18 @@
                     Issue Date is required
                 </div>
             </div> -->
+            <div class="form-group">
             <mat-form-field>
-                <input matInput [matDatepicker]="picker" [min]="minDate" placeholder="Choose a date">
+                <label>Issue Date </label>
+                <input matInput [matDatepicker]="picker" [min]="minDate" class="form-control" formControlName="issueDate">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker ></mat-datepicker>
               </mat-form-field>
+              <div class="alert alert-danger"
+                    *ngIf="issueForm.get('issueDate').hasError('required') && issueForm.get('issueDate').dirty">
+                    Issue Date is required
+                </div>
+                </div>
             <div> 
                 <h4>
                     <font color=red style="font-size: large;">{{errorMessage }}</font>

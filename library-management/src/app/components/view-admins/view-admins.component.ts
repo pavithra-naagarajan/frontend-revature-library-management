@@ -27,10 +27,10 @@ export class ViewAdminsComponent implements OnInit {
 
   viewAdmins() {
     this.adminService.getAllAdmins().subscribe(
-      (res: any) => {
+      (data:any[]) => {
         this.show = true
-        this.admins = res
-        this.admins = this.admins.res
+        this.admins = data
+        this.admins = this.admins.data
       }
     )
   }
