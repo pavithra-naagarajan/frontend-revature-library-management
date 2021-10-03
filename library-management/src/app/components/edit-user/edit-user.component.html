@@ -1,8 +1,9 @@
 <app-user-functions></app-user-functions>
+
 <body>
 
     <div class="registration-form" id="center">
-      
+
         <h3 align="center" style="color:black;font-size: x-large ;">My Profile</h3>
         <form novalidate style="margin-left: 430px;width: 450px;" [formGroup]="editUserForm"
             (ngSubmit)="updateUserDetails()">
@@ -145,7 +146,7 @@
             <br>
 
 
-            <button type="submit" class="btn btn-primary" >Update</button>&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary">Update</button>&nbsp;&nbsp;
             <button class="btn btn-dark" (click)="return()">Back</button>
         </form>
         <br><br><br>

@@ -1,4 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body{
+    background-color: #dee9ff;
+    height:1300px;
+  }
+  
+  .registration-form{
+  padding: 50px 0;
+  }
+  
+  .registration-form form{
+    background-color: #fff;
+    max-width: 600px;
+    margin: auto;
+    padding: 50px 70px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+  }
+
+ 
+  th{
+	
+	background:rgb(128, 213, 241);
+    color:black;
+    font-weight: 500;
+	
+}
+

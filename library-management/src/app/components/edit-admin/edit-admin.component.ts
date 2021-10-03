@@ -13,9 +13,9 @@ import Swal from 'sweetalert2';
 })
 export class EditAdminComponent implements OnInit {
   editAdminForm: FormGroup;
-  admin:Observable<Admin>|any;
+  admin: Observable<Admin> | any;
   adminId?: number;
-  constructor(public router: Router, public adminService: AdminService, public activatedRoute: ActivatedRoute,
+  constructor(public router: Router, public adminService: AdminService,
     public formBuilder: FormBuilder) { }
 
 
@@ -26,17 +26,17 @@ export class EditAdminComponent implements OnInit {
 
     this.adminService.getAdminById(this.adminId)
       .subscribe(data => {
-     
+
         this.admin = data
-        this.admin=this.admin.data
+        this.admin = this.admin.data
         this.editAdminForm = this.formBuilder.group({
           adminId: [this.admin.adminId],
           adminName: [this.admin.adminName, [Validators.required]],
 
           adminPassword: [this.admin.adminPassword, [Validators.required]],
           adminRole: [this.admin.adminRole],
-          updatedOn:[this.admin.updatedOn],
-          createdOn:[this.admin.createdOn],
+          updatedOn: [this.admin.updatedOn],
+          createdOn: [this.admin.createdOn],
           mailId: [this.admin.mailId, [Validators.required, Validators.email]],
 
         })

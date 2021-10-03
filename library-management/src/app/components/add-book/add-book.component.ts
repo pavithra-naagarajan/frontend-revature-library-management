@@ -16,6 +16,7 @@ export class AddBookComponent implements OnInit {
   isbnBook?: Book
   errorMessage: string;
   adminId?: number
+
   constructor(public bookService: BookService, public formBuilder: FormBuilder, public router: Router,
     public activatedRoute: ActivatedRoute) { }
 
@@ -45,7 +46,7 @@ export class AddBookComponent implements OnInit {
 
 
   }
- 
+
   return() {
     this.router.navigate(['adminfunctions'])
   }

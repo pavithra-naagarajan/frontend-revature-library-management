@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 export class EditBookComponent implements OnInit {
 
   editBookForm: FormGroup;
-  book:Observable<Book>|any;
+  book: Observable<Book> | any;
   bookId?: number;
   adminId?: number
   constructor(public router: Router, public bookService: BookService, public activatedRoute: ActivatedRoute,
@@ -29,9 +29,9 @@ export class EditBookComponent implements OnInit {
 
     this.bookService.getBookById(this.bookId)
       .subscribe(data => {
-     
+
         this.book = data
-        this.book=this.book.data
+        this.book = this.book.data
 
         this.editBookForm = this.formBuilder.group({
           bookId: [this.book.bookId],

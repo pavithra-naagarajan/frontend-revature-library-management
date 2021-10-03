@@ -33,9 +33,6 @@ export class ForgotPasswordComponent implements OnInit {
         this.wrongGeneration()
       }
       this.passwordGeneration()
-      
-      this.passwordGeneration()
-
       this.router.navigate(['userlogin'])
     })
 

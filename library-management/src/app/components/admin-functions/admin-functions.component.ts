@@ -12,9 +12,9 @@ import Swal from 'sweetalert2';
 export class AdminFunctionsComponent implements OnInit {
 
   adminId?: number
-  issuedDetails: IssueBook[] = [];
-  
-  constructor(public router: Router, public activatedRoute: ActivatedRoute, public issueBookService: IssueBookService) { }
+
+
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
     this.adminId = localStorage.getItem('adminId') as any;
@@ -46,9 +46,9 @@ export class AdminFunctionsComponent implements OnInit {
   }
 
 
-     
 
-  logout(){
+
+  logout() {
     localStorage.removeItem('adminId');
 
     this.router.navigate(['login'])
