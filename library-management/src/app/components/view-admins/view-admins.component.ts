@@ -15,7 +15,7 @@ export class ViewAdminsComponent implements OnInit {
 
   show?: boolean;
   admins: Observable<Admin[]>|any
-
+config:any
   constructor(public router: Router, public adminService: AdminService, public formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -24,13 +24,21 @@ export class ViewAdminsComponent implements OnInit {
 
 
   }
-
+  pageChanged(event: any){
+    this.config.currentPage = event;
+  }
   viewAdmins() {
     this.adminService.getAllAdmins().subscribe(
       (data:any[]) => {
         this.show = true
         this.admins = data
         this.admins = this.admins.data
+
+        this.config = {
+          itemsPerPage: 3,
+          currentPage: 1,
+          totalItems: this.admins.count
+        };
       }
     )
   }

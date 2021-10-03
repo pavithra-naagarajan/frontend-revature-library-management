@@ -17,6 +17,7 @@ export class ViewRequestComponent implements OnInit {
   adminId?:number
   bookRequests:Observable<RequestBook[]>|any
   errorMessage: string;
+  config:any;
   constructor(public router:Router,
     public requestBookService:RequestBookService,public activatedRoute:ActivatedRoute
     ) { }
@@ -38,7 +39,11 @@ export class ViewRequestComponent implements OnInit {
          this.show=true
           this.bookRequests=data
           this.bookRequests=this.bookRequests.data
-         
+          this.config = {
+            itemsPerPage: 3,
+            currentPage: 1,
+            totalItems: this.bookRequests.count
+          };
          if(data==null){
            this.errorMessage="No Records Found"
          }
@@ -48,6 +53,12 @@ export class ViewRequestComponent implements OnInit {
          
        },error=>{this.errorMessage="No Records Found"}
       )}  
+
+
+      pageChanged(event: any){
+        this.config.currentPage = event;
+      }
+      
   approveRequest(userId:number,bookId:number,numberOfDays:number,requestId:number){
 this.router.navigate(['issuebook',userId,bookId,numberOfDays,requestId])
   }

@@ -19,6 +19,8 @@ export class UserViewIssueComponent implements OnInit {
   issuedDetails:Observable<IssueBook[]>|any
   errorMessage?:string
   show?:boolean
+config:any
+
   constructor(public router:Router,
     public issueBookService:IssueBookService,public userService:UserService,public formBuilder:FormBuilder
     ,public activatedRoute:ActivatedRoute) { }
@@ -27,6 +29,10 @@ export class UserViewIssueComponent implements OnInit {
     this.mailId = localStorage.getItem('userEmail') as string;
     this.show=true
     this.getIssueByUserId();
+  }
+
+  pageChanged(event: any){
+    this.config.currentPage = event;
   }
 
   getIssueByUserId(){
@@ -39,6 +45,11 @@ this.userId=this.user.userId
      
         this.issuedDetails=data;
         this.issuedDetails=this.issuedDetails.data;
+        this.config = {
+          itemsPerPage: 3,
+          currentPage: 1,
+          totalItems: this.issuedDetails.count
+        };
         if(this.issuedDetails == null){
           this.errorMessage = "No records found"
       }

@@ -16,7 +16,7 @@ export class SearchBookComponent implements OnInit {
   dataFound: boolean = true;
   errorMessage?: string;
   books:Observable<Book[]>|any
-
+config:any
   searchBookForm?: FormGroup;
   textValue: any = null;
   value?: string
@@ -44,6 +44,11 @@ export class SearchBookComponent implements OnInit {
       
       this.books = data
       this.books=this.books.data
+      this.config = {
+        itemsPerPage: 3,
+        currentPage: 1,
+        totalItems: this.books.count
+      };
       if (this.books == null) {
         this.errorMessage = "No records found"
       }
@@ -53,7 +58,9 @@ export class SearchBookComponent implements OnInit {
     })
 
   }
-
+  pageChanged(event: any){
+    this.config.currentPage = event;
+  }
 
 
   searchBook() {

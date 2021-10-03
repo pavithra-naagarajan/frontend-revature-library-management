@@ -20,7 +20,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let a of admins">
+            <tr *ngFor="let a of admins | paginate: config">
 
               <td>
                 {{a.adminName}}
@@ -44,6 +44,7 @@
             </tr>
           </tbody>
         </table>
+        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
       </div>
     </div>
     <br>

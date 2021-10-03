@@ -35,7 +35,7 @@ href=
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let u of users">
+                        <tr *ngFor="let u of users | paginate: config">
 
                             <td>
                                 {{u.firstName}}
@@ -70,6 +70,7 @@ href=
                         </tr>
                     </tbody>
                 </table>
+                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
             </div>
         </div>
         <br>

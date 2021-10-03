@@ -39,6 +39,8 @@ import { MatInputModule } from '@angular/material/input';
  
 import { MatNativeDateModule } from '@angular/material/core';
 
+import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +76,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
-    MatInputModule 
+    MatInputModule,NgxPaginationModule 
    
   ],
   providers: [],

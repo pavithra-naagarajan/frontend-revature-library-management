@@ -7,9 +7,6 @@ href=
     <br><br>
     <h2 align="center">Book Details</h2>
 
-
-
-
     <form novalidate [formGroup]="searchBookForm"><h6><i class="fa fa-search icon"></i>Search Book
         <input type="text" placeholder="Enter Book Details" formControlName="value" [(ngModel)]="textValue"
             (keyup)="searchBook()">
@@ -39,7 +36,7 @@ href=
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let b of books">
+                        <tr *ngFor="let b of books | paginate: config">
 
                             <td>
                                 {{b.isbn}}
@@ -92,6 +89,7 @@ href=
                         <h3>&nbsp;&nbsp;&nbsp;{{errorMessage}}</h3>
                     </tr>
                 </table>
+                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
             </div>
         </div>
         <br>

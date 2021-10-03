@@ -63,7 +63,7 @@
                 </thead>
 
                 <tbody>
-                    <tr *ngFor="let br of issuedDetails">
+                    <tr *ngFor="let br of issuedDetails | paginate: config">
 
 
 
@@ -86,6 +86,8 @@
                 </tbody>
             </table>
             <h3>&nbsp;&nbsp;&nbsp;{{errorMessage}}</h3>
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+           
         </div>
     </div>
     <button style="width:80px" class="btn btn-dark" (click)="return()">Back</button>

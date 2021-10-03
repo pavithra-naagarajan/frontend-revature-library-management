@@ -29,7 +29,7 @@
                 </thead>
 
                 <tbody>
-                    <tr *ngFor="let br of issuedDetails">
+                    <tr *ngFor="let br of issuedDetails | paginate: config">
 
                         <td>{{br.issueDate}}</td>
                         <td>{{br.dueDate}}</td>
@@ -54,6 +54,7 @@
             <tr>
                 <h3>&nbsp;&nbsp;&nbsp;{{errorMessage}}</h3>
             </tr>
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
         </div>
     </div>
   

@@ -18,7 +18,7 @@ export class ViewUsersComponent implements OnInit {
 show?:boolean;
 users:Observable<User[]>|any
 userRole?:string;
-
+config:any
 value?:string
 searchBy:String = "default";
 textValue:any=null;
@@ -42,6 +42,7 @@ constructor(public router:Router,public userService:UserService,public formBuild
     
    
   }
+
   
   viewUsers() {
     this.userService.getAllUsers().subscribe(
@@ -49,9 +50,21 @@ constructor(public router:Router,public userService:UserService,public formBuild
         this.users=data
         this.users=this.users.data
        this.show=true
+
+       this.config = {
+        itemsPerPage: 3,
+        currentPage: 1,
+        totalItems: this.users.count
+      };
         
      }
     )}  
+
+    
+    pageChanged(event: any){
+      this.config.currentPage = event;
+    }
+    
 
     notification(){
       Swal.fire('WRONG', 'You cannot delete Active User!', 'error')    

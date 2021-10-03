@@ -52,7 +52,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let b of books">
+                    <tr *ngFor="let b of books | paginate: config">
 
                         <td>
                             {{b.isbn}}
@@ -98,6 +98,7 @@
             <tr>
                 <h3>&nbsp;&nbsp;&nbsp;{{errorMessage}}</h3>
             </tr>
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
             <button class="btn btn-dark" (click)="return()">Back</button>
         </div>
     </div>

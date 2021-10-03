@@ -28,7 +28,7 @@
                 </thead>
 
                 <tbody>
-                    <tr *ngFor="let br of bookRequests">
+                    <tr *ngFor="let br of bookRequests | paginate: config">
 
 
 
@@ -53,6 +53,7 @@
                 </tbody>
             </table>
             <h3>&nbsp;&nbsp;&nbsp;{{errorMessage}}</h3>
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
 
         </div>
     </div>

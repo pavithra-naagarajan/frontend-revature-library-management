@@ -23,7 +23,7 @@ export class ViewIssuedDetailsComponent implements OnInit {
   searchBy: String = "default";
   textValue: any = null;
   errorMessage?: string
-
+  config:any
   searchByIssueDate?: FormGroup
   searchByDueDate?: FormGroup
   adminId?: number
@@ -59,9 +59,20 @@ export class ViewIssuedDetailsComponent implements OnInit {
         this.show = true
         this.issuedDetails = data
         this.issuedDetails = this.issuedDetails.data
+
+        this.config = {
+          itemsPerPage: 3,
+          currentPage: 1,
+          totalItems: this.issuedDetails.count
+        };
       }
     )
   }
+
+
+pageChanged(event: any){
+  this.config.currentPage = event;
+}
 
 
   getByDueDate() {

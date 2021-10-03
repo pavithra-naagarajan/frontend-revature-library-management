@@ -24,7 +24,16 @@ export class ViewBooksComponent implements OnInit {
   searchBookForm?: FormGroup
 
   adminId?: number
-  constructor(public router: Router, public bookService: BookService, public formBuilder: FormBuilder, public activatedRoute: ActivatedRoute) { }
+
+
+
+  config: any;
+ constructor(public router: Router, public bookService: BookService,
+     public formBuilder: FormBuilder, public activatedRoute: ActivatedRoute) {
+
+     
+
+      }
 
   ngOnInit(): void {
     this.adminId = localStorage.getItem('adminId') as any;
@@ -37,6 +46,10 @@ export class ViewBooksComponent implements OnInit {
 
 
   }
+
+
+
+
   editBook(bookId: number) {
     this.router.navigate(['editbook', bookId])
   }
@@ -46,9 +59,21 @@ export class ViewBooksComponent implements OnInit {
         this.show = true
         this.books = data
         this.books = this.books.data
+
+        this.config = {
+          itemsPerPage: 3,
+          currentPage: 1,
+          totalItems: this.books.count
+        };
+      })
+    
+      
       }
-    )
-  }
+      pageChanged(event: any){
+        this.config.currentPage = event;
+      }
+    
+  
 
 
 
@@ -113,5 +138,10 @@ export class ViewBooksComponent implements OnInit {
       )
     }
   }
+
+
+
+  
+ 
 }
 
