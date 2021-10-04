@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToasterService } from './services/toaster.service';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'library-management-system';
   
-  constructor(public router:Router){}
+  constructor(){}
+ 
  
 }

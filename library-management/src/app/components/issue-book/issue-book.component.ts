@@ -8,6 +8,7 @@ import { User } from 'src/app/models/user';
 import { BookService } from 'src/app/services/book.service';
 import { IssueBookService } from 'src/app/services/issue-book.service';
 import { RequestBookService } from 'src/app/services/request-book.service';
+import { ToasterService } from 'src/app/services/toaster.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -34,7 +35,8 @@ export class IssueBookComponent implements OnInit {
   minDate = new Date();
   constructor(public router: Router, public bookService: BookService, public issueBookService: IssueBookService,
     public userService: UserService, public activatedRoute: ActivatedRoute,
-    public formBuilder: FormBuilder, public requestBookService: RequestBookService) { }
+    public formBuilder: FormBuilder, public requestBookService: RequestBookService,
+    public toasterService:ToasterService) { }
 
   ngOnInit(): void {
     this.adminId = localStorage.getItem('adminId') as any;
@@ -103,7 +105,7 @@ export class IssueBookComponent implements OnInit {
   }
 
   successNotification() {
-    Swal.fire('Success', 'Book issued Successfully!', 'success')
+    this.toasterService.success( 'Book issued Successfully!')
   }
 
 

@@ -40,6 +40,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ToasterService } from './services/toaster.service';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MatInputModule, NgxPaginationModule
 
   ],
-  providers: [],
+  providers: [ToasterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

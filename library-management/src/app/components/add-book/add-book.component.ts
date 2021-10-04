@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/services/book.service';
+import { ToasterService } from 'src/app/services/toaster.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,7 +19,7 @@ export class AddBookComponent implements OnInit {
   adminId?: number
 
   constructor(public bookService: BookService, public formBuilder: FormBuilder, public router: Router,
-    public activatedRoute: ActivatedRoute) { }
+    public activatedRoute: ActivatedRoute,public toasterService:ToasterService) { }
 
   ngOnInit(): void {
     this.adminId = localStorage.getItem('adminId') as any;
@@ -40,8 +41,9 @@ export class AddBookComponent implements OnInit {
     this.bookService.addBook(this.addBookForm?.value)
       .subscribe(
         response => {
-          this.successNotification();
+          this.success();
           this.router.navigate(['adminfunctions'])
+          
         })
 
 
@@ -52,6 +54,9 @@ export class AddBookComponent implements OnInit {
   }
   successNotification() {
     Swal.fire('Success', 'Book Added Successfully!', 'success')
+  }
+  success() {
+   this.toasterService.success("Book Addded successfully!")
   }
 }
 
