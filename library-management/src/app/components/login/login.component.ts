@@ -23,9 +23,13 @@ export class LoginComponent implements OnInit {
   async onLogin(credential: any) {
     this.adminService.getAdminById(credential.username).subscribe(response => {
       this.admin = response
+    },error=>{
+      console.log(error)
     })
     this.userService.getUserByMailId(credential.username).subscribe(data => {
       this.user = data
+  },error=>{
+    console.log(error)
   })
 
     await delay(1500);
