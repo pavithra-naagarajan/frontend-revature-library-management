@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Admin } from 'src/app/models/admin';
 import { User } from 'src/app/models/user';
 import { AdminService } from 'src/app/services/admin.service';
@@ -12,8 +13,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user?: User
-  admin?: Admin
+  user:Observable<User>|any
+  admin:Observable<Admin>|any
   constructor(private router: Router, public userService: UserService, public adminService: AdminService) { }
 
   ngOnInit(): void {
@@ -21,15 +22,16 @@ export class LoginComponent implements OnInit {
   }
 
   async onLogin(credential: any) {
-    this.adminService.getAdminById(credential.username).subscribe(response => {
-      this.admin = response
-    },error=>{
-      console.log(error)
+    this.adminService.getAdminById(credential.username).subscribe(data => {
+      this.admin = data
+      this.admin=this.admin.data
+      console.log(this.admin.adminPassword)
+    
     })
     this.userService.getUserByMailId(credential.username).subscribe(data => {
       this.user = data
-  },error=>{
-    console.log(error)
+      this.user=this.user.data
+      console.log(this.user.password)
   })
 
     await delay(1500);
@@ -41,16 +43,16 @@ export class LoginComponent implements OnInit {
       
       this.successNotification()
       this.router.navigate(['superadmin']);
-    } else if (this.user != null) {
+    } else if (this.user != null && this.user.password==credential.password ) {
       this.successNotification()
       localStorage.setItem('userEmail',credential.username);
       this.router.navigate(['userfunctions']);
-    } else if (this.admin != null) {
+    } else if (this.admin != null && this.admin.adminPassword==credential.password ) {
       this.successNotification()
       localStorage.setItem('adminId',credential.username);
       this.router.navigate(['adminfunctions']);
     }
-    else if (this.user == null && this.admin == null) {
+    else{
       this.WrongLoginNotification()
     }
   }
