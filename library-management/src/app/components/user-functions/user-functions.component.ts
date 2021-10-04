@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-functions',
@@ -8,11 +11,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UserFunctionsComponent implements OnInit {
   mailId?: string;
-  constructor(public router: Router) { }
+  user: Observable<User> | any
+  constructor(public router: Router, public service: UserService) { }
 
   ngOnInit(): void {
     this.mailId = localStorage.getItem('userEmail') as string;
+    this.service.getUserByMailId(this.mailId).subscribe(data => {
+      this.user = data
+      this.user = this.user.data
 
+    })
 
   }
   view() {

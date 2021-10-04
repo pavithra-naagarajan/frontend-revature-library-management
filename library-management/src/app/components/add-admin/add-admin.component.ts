@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
+import { ToasterService } from 'src/app/services/toaster.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,7 +13,8 @@ import Swal from 'sweetalert2';
 export class AddAdminComponent implements OnInit {
 
   addAdminForm?: FormGroup;
-  constructor(public adminService: AdminService, public formBuilder: FormBuilder, public router: Router) { }
+  constructor(public adminService: AdminService, public formBuilder: FormBuilder, 
+    public router: Router,public toaster:ToasterService) { }
 
   ngOnInit(): void {
     this.addAdminForm = this.formBuilder.group({
@@ -29,7 +31,7 @@ export class AddAdminComponent implements OnInit {
     this.adminService.addAdmin(this.addAdminForm?.value)
       .subscribe(
         response => {
-          this.successNotification();
+          this.success()
           this.router.navigate(['superadmin'])
         })
 
@@ -42,4 +44,7 @@ export class AddAdminComponent implements OnInit {
   successNotification() {
     Swal.fire('Success', 'Admin Added Successfully!', 'success')
   }
+  success() {
+    this.toaster.success("Book Addded successfully!")
+   }
 }

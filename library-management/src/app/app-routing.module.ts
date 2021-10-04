@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: 'viewrequest', component: ViewRequestComponent },
   { path: 'viewissuedbooks', component: ViewIssuedDetailsComponent },
   { path: 'edituser', component: EditUserComponent },
-  { path: 'editbook/:bookId/', component: EditBookComponent },
+  { path: 'editbook/:bookId', component: EditBookComponent },
   { path: 'userfunctions', component: UserFunctionsComponent },
   { path: 'userfunctions/:userId', component: UserFunctionsComponent },
 

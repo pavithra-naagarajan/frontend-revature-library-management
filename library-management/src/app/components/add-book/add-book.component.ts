@@ -41,9 +41,9 @@ export class AddBookComponent implements OnInit {
     this.bookService.addBook(this.addBookForm?.value)
       .subscribe(
         response => {
-          this.success();
-          this.router.navigate(['adminfunctions'])
           
+          this.router.navigate(['adminfunctions'])
+          this.success();
         })
 
 

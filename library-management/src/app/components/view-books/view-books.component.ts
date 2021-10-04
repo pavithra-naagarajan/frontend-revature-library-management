@@ -61,7 +61,7 @@ export class ViewBooksComponent implements OnInit {
         this.books = this.books.data
 
         this.config = {
-          itemsPerPage: 3,
+          itemsPerPage: 4,
           currentPage: 1,
           totalItems: this.books.count
         };
