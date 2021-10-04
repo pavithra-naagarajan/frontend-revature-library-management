@@ -65,6 +65,12 @@ export class ViewBooksComponent implements OnInit {
           currentPage: 1,
           totalItems: this.books.count
         };
+        if (this.books == null) {
+          this.errorMessage = "No records found"
+        }
+        else {
+          this.errorMessage = ""
+        }
       })
     
       
@@ -129,6 +135,7 @@ export class ViewBooksComponent implements OnInit {
         this.books = data;
         this.books =  this.books.data;
         if (this.books == null) {
+          this.show=false
           this.errorMessage = "No records found"
         }
         else {

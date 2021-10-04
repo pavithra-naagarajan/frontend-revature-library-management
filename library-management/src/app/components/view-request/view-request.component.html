@@ -1,7 +1,7 @@
 <app-admin-functions></app-admin-functions>
 
 <body>
-    <div *ngIf="show">
+    <div>
         <br><br>
         <h2 align="center">Book Request Details</h2>
         <br><br>
@@ -28,7 +28,7 @@
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody *ngIf="show">
                     <tr *ngFor="let br of bookRequests | paginate: config">
 
 
@@ -53,9 +53,10 @@
                     </tr>
                 </tbody>
             </table>
-            <h3>&nbsp;&nbsp;&nbsp;{{errorMessage}}</h3>
-            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
-
+            <h3 style="margin-left:500px">&nbsp;&nbsp;&nbsp;{{errorMessage}}</h3>
+            <tr *ngIf="show">
+                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+            </tr>
         </div>
     </div>
     <button style="width:80px" class="btn btn-dark" (click)="return()">Back</button>

@@ -35,7 +35,7 @@
 
 
 
-    <div *ngIf="show">
+    <div >
         <br><br>
 
         <br><br>
@@ -62,7 +62,7 @@
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody *ngIf="show">
                     <tr *ngFor="let br of issuedDetails | paginate: config">
 
 
@@ -85,9 +85,10 @@
                     </tr>
                 </tbody>
             </table>
-            <h3>&nbsp;&nbsp;&nbsp;{{errorMessage}}</h3>
+            <h3 style="margin-left:500px;">&nbsp;&nbsp;&nbsp;{{errorMessage}}</h3>
+            <tr *ngIf="show">
             <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
-           
+        </tr>
         </div>
     </div>
     <button style="width:80px" class="btn btn-dark" (click)="return()">Back</button>

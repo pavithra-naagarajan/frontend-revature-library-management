@@ -60,6 +60,14 @@ export class ViewIssuedDetailsComponent implements OnInit {
         this.issuedDetails = data
         this.issuedDetails = this.issuedDetails.data
 
+       
+        if (this.issuedDetails == null) {
+          this.show=false
+          this.errorMessage = "No records found"
+        }
+        else {
+          this.errorMessage = ""
+        }
         this.config = {
           itemsPerPage: 3,
           currentPage: 1,
@@ -87,9 +95,11 @@ pageChanged(event: any){
         this.issuedDetails = data;
         this.issuedDetails =  this.issuedDetails.data;
         if (this.issuedDetails == null) {
+          this.show=false
           this.errorMessage = "No records found"
         }
         else {
+          this.show=true
           this.errorMessage = ""
         }
       }
@@ -109,9 +119,11 @@ pageChanged(event: any){
         this.issuedDetails = data;
         this.issuedDetails = this.issuedDetails.data;
         if (this.issuedDetails == null) {
+          this.show=false
           this.errorMessage = "No records found"
         }
         else {
+          this.show=true
           this.errorMessage = ""
         }
       }

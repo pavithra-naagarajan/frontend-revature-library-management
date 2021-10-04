@@ -39,19 +39,21 @@ export class ViewRequestComponent implements OnInit {
         this.show = true
         this.bookRequests = data
         this.bookRequests = this.bookRequests.data
-        this.config = {
-          itemsPerPage: 3,
-          currentPage: 1,
-          totalItems: this.bookRequests.count
-        };
-        if (data == null) {
+        
+        if ( this.bookRequests == null) {
+          this.show=false
           this.errorMessage = "No Records Found"
         }
         else {
           this.errorMessage = ""
         }
+        this.config = {
+          itemsPerPage: 3,
+          currentPage: 1,
+          totalItems: this.bookRequests.count
+        };
 
-      }, error => { this.errorMessage = "No Records Found" }
+      }
     )
   }
 

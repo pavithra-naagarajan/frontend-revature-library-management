@@ -113,25 +113,7 @@ export class ViewUsersComponent implements OnInit {
     })
   }
 
-  getUserByRole(event: any) {
-    if (this.userRole == "any") {
-      this.viewUsers()
-    }
-    else {
-      this.userService.getUserByRole(this.userRole).subscribe((data: any[]) => {
-
-        this.users = data;
-        this.users = this.users.data
-        if (this.users.length == 0) {
-          this.errorMessage = "No records found"
-        }
-        else {
-          this.errorMessage = ""
-        }
-      }
-      )
-    }
-  }
+ 
   searchUser() {
     if (this.textValue == "") {
       this.viewUsers()
@@ -142,12 +124,16 @@ export class ViewUsersComponent implements OnInit {
 
         this.users = data;
         this.users = this.users.data
-        if (this.users == null) {
+        
+       
+        if (this.users== null) {
+          this.show=false
           this.errorMessage = "No records found"
         }
         else {
           this.errorMessage = ""
-        }
+        }  
+       
       }
       )
     }

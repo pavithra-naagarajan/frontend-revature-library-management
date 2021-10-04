@@ -45,18 +45,20 @@ export class UserViewIssueComponent implements OnInit {
 
           this.issuedDetails = data;
           this.issuedDetails = this.issuedDetails.data;
-          this.config = {
-            itemsPerPage: 3,
-            currentPage: 1,
-            totalItems: this.issuedDetails.count
-          };
+         console.log(this.issuedDetails)
           if (this.issuedDetails == null) {
+            this.show=false
             this.errorMessage = "No records found"
           }
           else {
             this.errorMessage = ""
             this.show = true
           }
+          this.config = {
+            itemsPerPage: 3,
+            currentPage: 1,
+            totalItems: this.issuedDetails.count
+          };
         }
         )
 

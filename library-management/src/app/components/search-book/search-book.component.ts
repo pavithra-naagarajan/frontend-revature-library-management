@@ -13,7 +13,7 @@ import { BookService } from 'src/app/services/book.service';
 })
 export class SearchBookComponent implements OnInit {
 
-  dataFound: boolean = true;
+ 
   errorMessage?: string;
   books: Observable<Book[]> | any
   config: any
@@ -21,6 +21,7 @@ export class SearchBookComponent implements OnInit {
   textValue: any = null;
   value?: string
   mailId?: string;
+  show: boolean;
   constructor(public bookService: BookService, public formBuilder: FormBuilder,
     public router: Router) { }
 
@@ -44,17 +45,20 @@ export class SearchBookComponent implements OnInit {
 
       this.books = data
       this.books = this.books.data
+    
+      if (this.books == null) {
+        this.show=false
+        this.errorMessage = "No records found"
+      }
+      else {
+        this.show=true
+        this.errorMessage = ""
+      }
       this.config = {
         itemsPerPage: 3,
         currentPage: 1,
         totalItems: this.books.count
       };
-      if (this.books == null) {
-        this.errorMessage = "No records found"
-      }
-      else {
-        this.errorMessage = ""
-      }
     })
 
   }
@@ -74,11 +78,14 @@ export class SearchBookComponent implements OnInit {
         this.books = data;
         this.books = this.books.data
         if (this.books == null) {
+          this.show=false
           this.errorMessage = "No records found"
         }
         else {
+          this.show=true
           this.errorMessage = ""
         }
+        
       }
       )
     }
