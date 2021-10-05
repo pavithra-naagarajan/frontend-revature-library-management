@@ -86,11 +86,12 @@ export class IssueBookComponent implements OnInit {
     this.issueBook.issueId = -1
     this.issueBook.fineAmount = 0
     this.issueBookService.addIssueDetails(this.issueBook, this.numberOfDays).subscribe(
-      response => {
+      async response => {
         this.requestBookService.deleteRequestBookDetails(this.requestId).subscribe(response => {
 
         })
         this.successNotification();
+        await delay(1000)
         this.router.navigate(['adminfunctions'])
 
       })
@@ -109,4 +110,7 @@ export class IssueBookComponent implements OnInit {
   }
 
 
+}
+function delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }

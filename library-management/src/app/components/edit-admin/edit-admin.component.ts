@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+
 import { Admin } from 'src/app/models/admin';
 import { AdminService } from 'src/app/services/admin.service';
+import { ToasterService } from 'src/app/services/toaster.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,7 +18,7 @@ export class EditAdminComponent implements OnInit {
   admin: Observable<Admin> | any;
   adminId?: number;
   constructor(public router: Router, public adminService: AdminService,
-    public formBuilder: FormBuilder) { }
+    public formBuilder: FormBuilder,public toaster:ToasterService) { }
 
 
   ngOnInit(): void {
@@ -47,9 +49,10 @@ export class EditAdminComponent implements OnInit {
   updateAdminDetails() {
     this.adminService.updateAdmin(this.editAdminForm?.value)
       .subscribe(
-        response => {
+        async response => {
 
           this.successNotification()
+          await delay(1000)
           this.router.navigate(['adminfunctions'])
 
         });
@@ -60,7 +63,10 @@ export class EditAdminComponent implements OnInit {
 
 
   successNotification() {
-    Swal.fire('Success', 'Admin details are Updated Successfully!..', 'success')
+    this.toaster.info("Your profile updated successfully!")
   }
 
+}
+function delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }

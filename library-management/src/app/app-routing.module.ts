@@ -21,6 +21,7 @@ import { UserViewIssueComponent } from './components/user-view-issue/user-view-i
 import { ViewAdminsComponent } from './components/view-admins/view-admins.component';
 import { ViewBooksComponent } from './components/view-books/view-books.component';
 import { ViewIssuedDetailsComponent } from './components/view-issued-details/view-issued-details.component';
+import { ViewMoreIssuedetailsComponent } from './components/view-more-issuedetails/view-more-issuedetails.component';
 
 import { ViewRequestComponent } from './components/view-request/view-request.component';
 import { ViewUsersComponent } from './components/view-users/view-users.component';
@@ -40,7 +41,7 @@ const routes: Routes = [
   { path: 'userfunctions', component: UserFunctionsComponent },
   { path: 'userfunctions/:userId', component: UserFunctionsComponent },
 
-
+  { path: 'viewmore/:issueId', component: ViewMoreIssuedetailsComponent },
   { path: 'searchbooks', component: SearchBookComponent },
   { path: 'requestbook/:bookId', component: RequestBookComponent },
   { path: 'issuebook/:userId/:bookId/:numberOfDays/:requestId', component: IssueBookComponent },

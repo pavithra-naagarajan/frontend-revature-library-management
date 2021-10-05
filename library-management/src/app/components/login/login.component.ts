@@ -37,23 +37,25 @@ export class LoginComponent implements OnInit {
     await delay(1500);
     this.check(credential);
   }
-  check(credential: any) {
+  async check(credential: any) {
     if (credential.username == '1' && credential.password == 'admin1111') {
 
       
       this.successNotification()
-      this.router.navigate(['superadmin']);
+      this.router.navigate(['viewadmins']);
     } else if (this.user != null && this.user.password==credential.password ) {
       this.successNotification()
       localStorage.setItem('userEmail',credential.username);
-      this.router.navigate(['userfunctions']);
+      this.router.navigate(['searchbooks']);
     } else if (this.admin != null && this.admin.adminPassword==credential.password ) {
       this.successNotification()
       localStorage.setItem('adminId',credential.username);
-      this.router.navigate(['adminfunctions']);
+      this.router.navigate(['viewusers']);
     }
     else{
       this.WrongLoginNotification()
+      await delay(500)
+      window.location.reload()
     }
   }
 

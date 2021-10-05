@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+
 import { Book } from 'src/app/models/book';
 import { RequestBook } from 'src/app/models/request-book';
 import { User } from 'src/app/models/user';
 import { BookService } from 'src/app/services/book.service';
 import { RequestBookService } from 'src/app/services/request-book.service';
+import { ToasterService } from 'src/app/services/toaster.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -23,8 +25,9 @@ export class RequestBookComponent implements OnInit {
   user: Observable<User> | any;
   requestBook?: RequestBook
   requestBookForm?: FormGroup
-  constructor(public router: Router, public bookService: BookService, public requestBookService: RequestBookService, public userService: UserService, public activatedRoute: ActivatedRoute,
-    public formBuilder: FormBuilder) { }
+  constructor(public router: Router, public bookService: BookService, 
+    public requestBookService: RequestBookService, public userService: UserService, public activatedRoute: ActivatedRoute,
+    public formBuilder: FormBuilder,public toaster:ToasterService) { }
 
   ngOnInit(): void {
     this.book = new Book()
@@ -59,8 +62,9 @@ export class RequestBookComponent implements OnInit {
     this.requestBook.requestId = -1
 
     this.requestBookService.addRequestBookDetails(this.requestBook).subscribe(
-      response => {
-        this.successNotification();
+      async response => {
+        this.success();
+        await delay(1000)
         this.router.navigate(['userfunctions'])
       })
   }
@@ -69,7 +73,10 @@ export class RequestBookComponent implements OnInit {
     this.router.navigate(['userfunctions'])
   }
 
-  successNotification() {
-    Swal.fire('Success', 'Book request sent Successfully!', 'success')
-  }
+  success() {
+    this.toaster.success("Book Request sent Successfully!")
+   }
+}
+function delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }

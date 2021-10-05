@@ -41,6 +41,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToasterService } from './services/toaster.service';
+import { ViewMoreIssuedetailsComponent } from './components/view-more-issuedetails/view-more-issuedetails.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { ToasterService } from './services/toaster.service';
     EditAdminComponent,
     RenewBookComponent,
     LoginComponent,
+    ViewMoreIssuedetailsComponent,
 
   ],
   imports: [

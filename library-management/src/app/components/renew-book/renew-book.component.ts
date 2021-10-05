@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { IssueBook } from 'src/app/models/issue-book';
 import { User } from 'src/app/models/user';
 import { IssueBookService } from 'src/app/services/issue-book.service';
+import { ToasterService } from 'src/app/services/toaster.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -21,9 +22,9 @@ export class RenewBookComponent implements OnInit {
   user: Observable<User> | any
   userId?: number
   fine?: number
-  constructor(public router: Router, public userService: UserService, public issueBookService: IssueBookService,
-
-    public formBuilder: FormBuilder) { }
+  constructor(public router: Router, public userService: UserService, 
+    public issueBookService: IssueBookService,
+    public formBuilder: FormBuilder,public toaster:ToasterService) { }
 
   ngOnInit(): void {
     this.mailId = localStorage.getItem('userEmail') as string;
@@ -60,14 +61,14 @@ export class RenewBookComponent implements OnInit {
         this.details = this.details.data
         this.fine = this.details.fineAmount
        
-        await delay(1000)
-        this.successNotification()
+  
+        this.success()
         await delay(1000)
         this.issueBookService.updateDueDate(this.renewForm.get('issueId').value).subscribe(async data => {
 
 
         })
-        this.router.navigate(['userfunctions'])
+        this.renewForm.reset()
       })
 
     }
@@ -77,9 +78,10 @@ export class RenewBookComponent implements OnInit {
   return() {
     this.router.navigate(['userfunctions'])
   }
-  successNotification() {
-    Swal.fire('Success', 'Book Renewal finished Successfully! You have fine amount RS.' + this.fine + ' for the issued book', 'success')
-  }
+ 
+  success() {
+    this.toaster.success("Book Renewal finished Successfully! You have fine amount RS." + this.fine + " for the issued book")
+   }
 }
 function delay(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms));

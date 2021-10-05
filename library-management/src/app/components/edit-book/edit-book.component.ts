@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/services/book.service';
+import { ToasterService } from 'src/app/services/toaster.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,8 +19,9 @@ export class EditBookComponent implements OnInit {
   book: Observable<Book> | any;
   bookId?: number;
   adminId?: number
-  constructor(public router: Router, public bookService: BookService, public activatedRoute: ActivatedRoute,
-    public formBuilder: FormBuilder) { }
+  constructor(public router: Router, public bookService: BookService,
+     public activatedRoute: ActivatedRoute,
+    public formBuilder: FormBuilder,public toasterService:ToasterService) { }
 
 
   ngOnInit(): void {
@@ -54,10 +57,11 @@ export class EditBookComponent implements OnInit {
   updateBookDetails() {
     this.bookService.updateBook(this.editBookForm?.value)
       .subscribe(
-        response => {
+        async response => {
 
           this.successNotification()
-          this.router.navigate(['adminfunctions'])
+          await delay(1000)
+          this.router.navigate(['viewbooks'])
         });
   }
   return() {
@@ -66,7 +70,10 @@ export class EditBookComponent implements OnInit {
 
 
   successNotification() {
-    Swal.fire('Success', 'User details Updated Successfully!', 'success')
+    this.toasterService.info("Book details updated successfully!")
   }
 
+}
+function delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }

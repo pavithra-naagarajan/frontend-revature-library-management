@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Action } from 'rxjs/internal/scheduler/Action';
+
+
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/services/book.service';
 import { ToasterService } from 'src/app/services/toaster.service';
@@ -40,10 +41,12 @@ export class AddBookComponent implements OnInit {
   addBookDetails() {
     this.bookService.addBook(this.addBookForm?.value)
       .subscribe(
-        response => {
-          
-          this.router.navigate(['adminfunctions'])
+        async response => {
           this.success();
+          
+          this.addBookForm.reset()
+          
+          
         })
 
 
@@ -59,5 +62,6 @@ export class AddBookComponent implements OnInit {
    this.toasterService.success("Book Addded successfully!")
   }
 }
+
 
 

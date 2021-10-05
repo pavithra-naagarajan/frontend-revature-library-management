@@ -30,9 +30,10 @@ export class AddAdminComponent implements OnInit {
   addAdminDetails() {
     this.adminService.addAdmin(this.addAdminForm?.value)
       .subscribe(
-        response => {
+        async response => {
           this.success()
-          this.router.navigate(['superadmin'])
+         
+         this.addAdminForm.reset()
         })
 
 
@@ -41,10 +42,8 @@ export class AddAdminComponent implements OnInit {
   return() {
     this.router.navigate(['superadmin'])
   }
-  successNotification() {
-    Swal.fire('Success', 'Admin Added Successfully!', 'success')
-  }
+ 
   success() {
-    this.toaster.success("Book Addded successfully!")
+    this.toaster.success("Admin Addded successfully!")
    }
 }

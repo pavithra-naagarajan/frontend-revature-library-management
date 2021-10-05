@@ -3,7 +3,7 @@
 <body>
     <div class="registration-form">
         <h3 align="center">Return Book</h3><br><br>
-        <form novalidate [formGroup]="returnForm" (ngSubmit)="returnBook()">
+        <form novalidate [formGroup]="returnForm" (ngSubmit)="returnBook()" >
             <fieldset>
 
 
@@ -25,8 +25,9 @@
             </fieldset>
             <br>
             <td>
-                <button type="submit" class="btn btn-primary">Return Book</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                <button class="btn btn-dark" (click)="return()">Back</button>
+                <button type="submit" class="btn btn-primary" >Return Book</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-dark" (click)="return()">Back</button><br>
+                
             </td>
 
             <br><br>

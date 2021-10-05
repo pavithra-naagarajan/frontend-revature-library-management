@@ -20,12 +20,13 @@ export class UserViewIssueComponent implements OnInit {
   errorMessage?: string
   show?: boolean
   config: any
-
+url:any
   constructor(public router: Router,
     public issueBookService: IssueBookService, public userService: UserService, public formBuilder: FormBuilder
     , public activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+  
     this.mailId = localStorage.getItem('userEmail') as string;
     this.show = true
     this.getIssueByUserId();
@@ -68,4 +69,15 @@ export class UserViewIssueComponent implements OnInit {
   return() {
     this.router.navigate(['userfunctions'])
   }
+  generatePdf(issueId:number){
+    
+   
+    this.url=`http://localhost:9090/issuebook/generatepdf`+`/${issueId}`
+   
+  }
+
+
+
+
+  
 }

@@ -82,7 +82,9 @@ pageChanged(event: any){
   this.config.currentPage = event;
 }
 
-
+viewMoreIssuedDetails(issueId:number){
+this.router.navigate(['viewmore',issueId])
+}
   getByDueDate() {
 
     if (this.textValue == "") {

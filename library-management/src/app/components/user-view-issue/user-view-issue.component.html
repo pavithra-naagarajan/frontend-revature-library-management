@@ -1,7 +1,7 @@
 <app-user-functions></app-user-functions>
 
 <body>
-    <div >
+    <div>
         <br><br>
         <h2 align="center">Issued Book Details</h2>
         <br><br>
@@ -23,7 +23,7 @@
                         <th>Book Name</th>
                         <th>Author Name </th>
                         <th>Genre</th>
-
+                        <th>Fine Receipt</th>
 
                     </tr>
                 </thead>
@@ -43,9 +43,10 @@
                         <td>{{br.book.bookName}}</td>
                         <td>{{br.book.authorName}}</td>
                         <td>{{br.book.genre}}</td>
-
-
-
+                        <td>
+                            <button class="btn btn-link" (click)="generatePdf(br.issueId)"> <a href={{url}}>Fine Receipt</a></button>
+                            
+                        </td>
                     </tr>
 
                 </tbody>
@@ -55,11 +56,12 @@
                 <h3>&nbsp;&nbsp;&nbsp;{{errorMessage}}</h3>
             </tr>
             <tr *ngIf="show">
-            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls></tr>
+                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+            </tr>
         </div>
     </div>
 
     <button class="btn btn-dark" (click)="return()">Back</button>
-   
+
 
 </body>

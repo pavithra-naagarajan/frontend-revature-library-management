@@ -61,17 +61,18 @@ export class ReturnBookComponent implements OnInit {
         await delay(1000)
         this.successNotification()
         await delay(1000)
+
         this.issueBookService.deleteIssueDetails(this.returnForm.get('issueId').value).subscribe(data => {
-
-
         })
-        this.router.navigate(['userfunctions'])
+        this.returnForm.reset()
       })
 
     }
     )
 
   }
+
+
 
   return() {
     this.router.navigate(['userfunctions'])

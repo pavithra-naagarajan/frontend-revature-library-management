@@ -1,0 +1,142 @@
+<app-admin-functions></app-admin-functions>
+
+<body>
+    <br>
+<h2 align="center">Issued Book Details</h2>
+<div class="registration-form" id="center">
+<div style="float:left; margin-left:300px">
+
+
+    
+    <form style="width:380px">
+        <h3 align="center" style="color:black;font-size: x-large ;">User Details</h3>
+        <br>
+        <table align="center">
+
+            <tr>
+                FirstName
+                <td>:</td>
+                <td>{{issuedDetails.user.firstName}}</td>
+            </tr>
+            <tr>
+                LastName
+                <td>:</td>
+                <td>{{issuedDetails.user.lastName}}</td>
+            </tr>
+            <tr>
+                 Role
+                <td>:</td>
+                <td>{{issuedDetails.user.userRole}}</td>
+            </tr>
+            <tr>
+                Mail Id
+                <td>:</td>
+                <td>{{issuedDetails.user.mailId}}</td>
+            </tr>
+            <tr>
+                MobileNumber
+                <td>:</td>
+                <td>{{issuedDetails.user.mobileNumber}}</td>
+            </tr>
+            <tr>
+                Age
+                <td>:</td>
+                <td>{{issuedDetails.user.age}}</td>
+            </tr>
+            <tr>
+                Gender
+                <td>:</td>
+                <td>{{issuedDetails.user.gender}}</td>
+            </tr>
+            <tr>
+                Address
+                <td>:</td>
+                <td>{{issuedDetails.user.address}}</td>
+            </tr>
+            <tr>
+                Status
+                <td>:</td>
+                <td>{{issuedDetails.user.status}}</td>
+            </tr>
+            <tr>
+                FineAmount
+                <td>:</td>
+                <td>{{issuedDetails.fineAmount | currency:"INR"}}</td>
+            </tr>
+   
+    </table>
+    </form>
+</div>
+
+<div style="float:left; margin-left:10px">
+
+
+    
+    <form>
+        
+        <h3 align="center" style="color:black;font-size: x-large ;">Book Details</h3>
+        <br>
+            <table align="center">
+
+                <tr>
+                    ISBN
+                    <td>:</td>
+                    <td>{{issuedDetails.book.isbn}}</td>
+                </tr>
+                <tr>
+                    Book Name
+                    <td>:</td>
+                    <td>{{issuedDetails.book.bookName}}</td>
+                </tr>
+                <tr>
+                    Author Name
+                    <td>:</td>
+                    <td>{{issuedDetails.book.authorName}}</td>
+                </tr>
+                <tr>
+                    Genre
+                    <td>:</td>
+                    <td>{{issuedDetails.book.genre}}</td>
+                </tr>
+                <tr>
+                    Publisher
+                    <td>:</td>
+                    <td>{{issuedDetails.book.publisher}}</td>
+                </tr>
+                <tr>
+                    Volume
+                    <td>:</td>
+                    <td>{{issuedDetails.book.volume}}</td>
+                </tr>
+                <tr>
+                    Edition
+                    <td>:</td>
+                    <td>{{issuedDetails.book.edition}}</td>
+                </tr>
+                <tr>
+                    Status
+                    <td>:</td>
+                    <td>{{issuedDetails.book.status}}</td>
+                </tr>
+                <tr>
+                    Issue Date
+                    <td>:</td>
+                    <td>{{issuedDetails.issueDate}}</td>
+                </tr>
+                <tr>
+                    Due Date
+                    <td>:</td>
+                    <td>{{issuedDetails.dueDate}}</td>
+                </tr>
+               
+                
+        </table>
+    </form>
+</div>
+
+</div>
+
+
+<button style="width:80px; margin-left: 650px;" class="btn btn-dark" (click)="return()">Back</button>
+
+</body>
