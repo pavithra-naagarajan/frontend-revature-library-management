@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { IssueBook } from 'src/app/models/issue-book';
-import { IssueBookService } from 'src/app/services/issue-book.service';
-import Swal from 'sweetalert2';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-functions',
@@ -54,9 +51,7 @@ export class AdminFunctionsComponent implements OnInit {
     this.router.navigate(['login'])
 
   }
-  successNotification() {
-    Swal.fire('Success', 'Fine Updated Successfully!', 'success')
-  }
+ 
 
 
 }

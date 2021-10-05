@@ -46,7 +46,7 @@ url:any
 
           this.issuedDetails = data;
           this.issuedDetails = this.issuedDetails.data;
-         console.log(this.issuedDetails)
+         
           if (this.issuedDetails == null) {
             this.show=false
             this.errorMessage = "No records found"

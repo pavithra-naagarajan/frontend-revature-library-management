@@ -68,9 +68,6 @@ export class ViewUsersComponent implements OnInit {
   }
 
 
-  notification() {
-    Swal.fire('WRONG', 'You cannot delete Active User!', 'error')
-  }
 
 
   return() {

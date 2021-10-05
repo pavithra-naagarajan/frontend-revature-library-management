@@ -36,7 +36,7 @@ export class ReturnBookComponent implements OnInit {
 
         this.details = data
         this.details = this.details.data
-        console.log(this.details)
+       
       })
     })
     this.returnForm = this.formBuilder.group({

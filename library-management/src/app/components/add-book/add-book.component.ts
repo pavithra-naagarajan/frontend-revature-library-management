@@ -3,10 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
-import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/services/book.service';
 import { ToasterService } from 'src/app/services/toaster.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-book',
@@ -15,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class AddBookComponent implements OnInit {
   addBookForm?: FormGroup;
-  isbnBook?: Book
+  
   errorMessage: string;
   adminId?: number
 
@@ -55,9 +53,7 @@ export class AddBookComponent implements OnInit {
   return() {
     this.router.navigate(['adminfunctions'])
   }
-  successNotification() {
-    Swal.fire('Success', 'Book Added Successfully!', 'success')
-  }
+
   success() {
    this.toasterService.success("Book Addded successfully!")
   }

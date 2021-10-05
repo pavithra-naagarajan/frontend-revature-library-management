@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { Admin } from 'src/app/models/admin';
 import { AdminService } from 'src/app/services/admin.service';
 import { ToasterService } from 'src/app/services/toaster.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-admin',
@@ -52,7 +51,7 @@ export class EditAdminComponent implements OnInit {
         async response => {
 
           this.successNotification()
-          await delay(1000)
+          await delay(500)
           this.router.navigate(['adminfunctions'])
 
         });

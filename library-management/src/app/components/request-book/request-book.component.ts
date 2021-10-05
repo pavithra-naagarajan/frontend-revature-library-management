@@ -10,7 +10,6 @@ import { BookService } from 'src/app/services/book.service';
 import { RequestBookService } from 'src/app/services/request-book.service';
 import { ToasterService } from 'src/app/services/toaster.service';
 import { UserService } from 'src/app/services/user.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-request-book',

@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { RequestBook } from 'src/app/models/request-book';
 import { RequestBookService } from 'src/app/services/request-book.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-view-request',
@@ -30,9 +28,7 @@ export class ViewRequestComponent implements OnInit {
 
   }
 
-  successNotification() {
-    Swal.fire('Success', 'Book request sent Successfully!', 'success')
-  }
+
   viewRequestBooks() {
     this.requestBookService.getAllRequestBookDetails().subscribe(
       (data: any[]) => {

@@ -16,14 +16,14 @@ import Swal from 'sweetalert2';
 export class ViewIssuedDetailsComponent implements OnInit {
   selectedSort: String = "any";
   show?: boolean;
-  issuedDetails:Observable<IssueBook[]>|any
+  issuedDetails: Observable<IssueBook[]> | any
 
   dueDate?: Date
   issueDate?: Date
   searchBy: String = "default";
   textValue: any = null;
   errorMessage?: string
-  config:any
+  config: any
   searchByIssueDate?: FormGroup
   searchByDueDate?: FormGroup
   adminId?: number
@@ -60,9 +60,9 @@ export class ViewIssuedDetailsComponent implements OnInit {
         this.issuedDetails = data
         this.issuedDetails = this.issuedDetails.data
 
-       
+
         if (this.issuedDetails == null) {
-          this.show=false
+          this.show = false
           this.errorMessage = "No records found"
         }
         else {
@@ -78,13 +78,15 @@ export class ViewIssuedDetailsComponent implements OnInit {
   }
 
 
-pageChanged(event: any){
-  this.config.currentPage = event;
-}
+  pageChanged(event: any) {
+    this.config.currentPage = event;
+  }
 
-viewMoreIssuedDetails(issueId:number){
-this.router.navigate(['viewmore',issueId])
-}
+  viewMoreIssuedDetails(issueId: number) {
+    this.router.navigate(['viewmore', issueId])
+  }
+
+
   getByDueDate() {
 
     if (this.textValue == "") {
@@ -95,13 +97,13 @@ this.router.navigate(['viewmore',issueId])
       this.issueBookService.getIssueDetailsByDueDate(this.searchByDueDate.get('dueDate')?.value).subscribe((data: any[]) => {
 
         this.issuedDetails = data;
-        this.issuedDetails =  this.issuedDetails.data;
+        this.issuedDetails = this.issuedDetails.data;
         if (this.issuedDetails == null) {
-          this.show=false
+          this.show = false
           this.errorMessage = "No records found"
         }
         else {
-          this.show=true
+          this.show = true
           this.errorMessage = ""
         }
       }
@@ -121,11 +123,11 @@ this.router.navigate(['viewmore',issueId])
         this.issuedDetails = data;
         this.issuedDetails = this.issuedDetails.data;
         if (this.issuedDetails == null) {
-          this.show=false
+          this.show = false
           this.errorMessage = "No records found"
         }
         else {
-          this.show=true
+          this.show = true
           this.errorMessage = ""
         }
       }

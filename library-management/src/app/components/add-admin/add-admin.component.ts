@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
 import { ToasterService } from 'src/app/services/toaster.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-admin',

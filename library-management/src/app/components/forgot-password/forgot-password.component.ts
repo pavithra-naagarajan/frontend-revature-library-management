@@ -59,8 +59,6 @@ errorMessage?:string;
   passwordGeneration() {
     Swal.fire('Success', 'Password generated succesfully!', 'success')
   }
-  wrongGeneration() {
-    Swal.fire('WRONG', 'You are not a registered user!', 'error')
-  }
+  
 
 }

@@ -82,13 +82,13 @@ export class UserSignupComponent implements OnInit {
           this.user = response
 
           this.successNotification()
-          this.router.navigate(['**'])
+          this.router.navigate(['login'])
         })
 
   }
 
   return() {
-    this.router.navigate(['**'])
+    this.router.navigate(['login'])
   }
   successNotification() {
     Swal.fire('Success', 'User Account created Successfully!', 'success')

@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/services/book.service';
 import { ToasterService } from 'src/app/services/toaster.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-book',
@@ -60,7 +59,7 @@ export class EditBookComponent implements OnInit {
         async response => {
 
           this.successNotification()
-          await delay(1000)
+          await delay(600)
           this.router.navigate(['viewbooks'])
         });
   }

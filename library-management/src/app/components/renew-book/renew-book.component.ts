@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { IssueBook } from 'src/app/models/issue-book';
@@ -8,7 +8,6 @@ import { User } from 'src/app/models/user';
 import { IssueBookService } from 'src/app/services/issue-book.service';
 import { ToasterService } from 'src/app/services/toaster.service';
 import { UserService } from 'src/app/services/user.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-renew-book',
