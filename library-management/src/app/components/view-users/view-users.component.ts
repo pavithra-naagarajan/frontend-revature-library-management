@@ -5,10 +5,7 @@ import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
-interface Search {
-  value: string;
-  viewValue: string;
-}
+
 @Component({
   selector: 'app-view-users',
   templateUrl: './view-users.component.html',
