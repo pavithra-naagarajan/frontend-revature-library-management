@@ -9,72 +9,65 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-view-users',
   templateUrl: './view-users.component.html',
-  styleUrls: ['./view-users.component.css']
+  styleUrls: ['./view-users.component.css'],
 })
 export class ViewUsersComponent implements OnInit {
   show?: boolean;
-  users: Observable<User[]> | any
+  users: Observable<User[]> | any;
   userRole?: string;
-  config: any
-  value?: string
-  searchBy: String = "default";
+  config: any;
+  value?: string;
+  searchBy: String = 'default';
   textValue: any = null;
-  errorMessage?: string
+  errorMessage?: string;
 
-
-  searchUserForm?: FormGroup
-  adminId?: number
-  constructor(public router: Router, public userService: UserService, public formBuilder: FormBuilder, public activatedRoute: ActivatedRoute) { }
+  searchUserForm?: FormGroup;
+  adminId?: number;
+  constructor(
+    public router: Router,
+    public userService: UserService,
+    public formBuilder: FormBuilder,
+    public activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.adminId = localStorage.getItem('adminId') as any;
 
-    this.viewUsers()
+    this.viewUsers();
 
     this.searchUserForm = this.formBuilder.group({
-      value: ['', Validators.required]
-    })
-}
-
-
-  viewUsers() {
-    this.userService.getAllUsers().subscribe(
-      (data: any[]) => {
-        this.users = data
-        this.users = this.users.data
-        this.show = true
-
-        this.config = {
-          itemsPerPage: 3,
-          currentPage: 1,
-          totalItems: this.users.count
-        };
-        if (this.users == null) {
-          this.errorMessage = "No records found"
-        }
-        else {
-          this.errorMessage = ""
-        }
-      }
-    )
+      value: ['', Validators.required],
+    });
   }
 
+  viewUsers() {
+    this.userService.getAllUsers().subscribe((data: any[]) => {
+      this.users = data;
+      this.users = this.users.data;
+      this.show = true;
+
+      this.config = {
+        itemsPerPage: 3,
+        currentPage: 1,
+        totalItems: this.users.count,
+      };
+      if (this.users == null) {
+        this.errorMessage = 'No records found';
+      } else {
+        this.errorMessage = '';
+      }
+    });
+  }
 
   pageChanged(event: any) {
     this.config.currentPage = event;
   }
 
-
-
-
   return() {
-    this.router.navigate(['adminfunctions'])
+    this.router.navigate(['adminfunctions']);
   }
   deleteUser(userId: number) {
-    this.userService.deleteUser(userId).subscribe(
-      (res: any) => {
-
-      });
+    this.userService.deleteUser(userId).subscribe((res: any) => {});
   }
 
   deleteAlertConfirmation(userId: number) {
@@ -84,58 +77,40 @@ export class ViewUsersComponent implements OnInit {
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, go ahead.',
-      cancelButtonText: 'No, let me think'
+      cancelButtonText: 'No, let me think',
     }).then((result) => {
       if (result.value) {
-        this.deleteUser(userId)
-        this.viewUsers()
+        this.deleteUser(userId);
+        this.viewUsers();
 
-        Swal.fire(
-          'Removed!',
-          'User deleted successfully!',
-          'success'
-
-        )
-
+        Swal.fire('Removed!', 'User deleted successfully!', 'success');
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-          'Cancelled',
-          'User Not Deleted!',
-          'error'
-        )
+        Swal.fire('Cancelled', 'User Not Deleted!', 'error');
       }
-    })
+    });
   }
 
- 
   searchUser() {
-    if (this.textValue == "") {
-      this.viewUsers()
-    }
+    if (this.textValue == '') {
+      this.viewUsers();
+    } else {
+      this.userService
+        .searchUser(this.searchUserForm.get('value')?.value)
+        .subscribe((data: any[]) => {
+          this.users = data;
+          this.users = this.users.data;
 
-    else {
-      this.userService.searchUser(this.searchUserForm.get('value')?.value).subscribe((data: any[]) => {
-
-        this.users = data;
-        this.users = this.users.data
-        
-       
-        if (this.users== null) {
-          this.show=false
-          this.errorMessage = "No records found"
-        }
-        else {
-          this.errorMessage = ""
-        }  
-       
-      }
-      )
+          if (this.users == null) {
+            this.show = false;
+            this.errorMessage = 'No records found';
+          } else {
+            this.errorMessage = '';
+          }
+        });
     }
   }
 
-notification(){
- 
-    Swal.fire('WRONG', 'You cannot delete Active user!', 'error')
-
-}
+  notification() {
+    Swal.fire('WRONG', 'You cannot delete Active user!', 'error');
+  }
 }

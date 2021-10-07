@@ -1,100 +1,113 @@
 <app-admin-functions></app-admin-functions>
 
 <body>
+  <br />
+  <h2 align="center">Issued Book Details</h2>
 
-    <br>
-    <h2 align="center">Issued Book Details</h2>
+  <h6>
+    Search By
+    <button (click)="searchBy = 'issueDate'" class="btn btn-info">
+      IssueDate</button
+    >&nbsp;&nbsp;&nbsp;
+    <button (click)="searchBy = 'dueDate'" class="btn btn-info">DueDate</button
+    >&nbsp;&nbsp;&nbsp;
+  </h6>
 
+  <div *ngIf="searchBy == 'issueDate'">
+    <br />
+    <form novalidate [formGroup]="searchByIssueDate">
+      <input
+        type="date"
+        placeholder="Enter Issue Date"
+        formControlName="issueDate"
+        size="9px"
+        [(ngModel)]="textValue"
+        (change)="getByIssueDate()"
+      />
+      <input
+        [(ngModel)]="issueDate"
+        [ngModelOptions]="{ standalone: true }"
+        [hidden]="true"
+      />
+    </form>
+  </div>
+  <div *ngIf="searchBy == 'dueDate'">
+    <br />
+    <form novalidate [formGroup]="searchByDueDate">
+      <input
+        type="date"
+        placeholder="Enter Due Date"
+        formControlName="dueDate"
+        size="9px"
+        [(ngModel)]="textValue"
+        (change)="getByDueDate()"
+      />
+      <input
+        [(ngModel)]="dueDate"
+        [ngModelOptions]="{ standalone: true }"
+        [hidden]="true"
+      />
+    </form>
+  </div>
 
-    <h6>Search By
-        <button (click)="searchBy='issueDate'" class="btn btn-info">IssueDate</button>&nbsp;&nbsp;&nbsp;
-        <button (click)="searchBy='dueDate'" class="btn btn-info">DueDate</button>&nbsp;&nbsp;&nbsp;
-    </h6>
+  <div>
+    <br /><br />
 
+    <br /><br />
+    <div class="reglist">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
 
+            <th>User Role</th>
 
+            <th>ISBN</th>
+            <th>Book Name</th>
+            <th>Author Name</th>
 
+            <th>Issue Date</th>
+            <th>Due Date</th>
+            <th>Fine Amount</th>
+            <th>View More</th>
+          </tr>
+        </thead>
 
-    <div *ngIf="searchBy=='issueDate'"><br>
-        <form novalidate [formGroup]="searchByIssueDate">
-            <input type="date" placeholder="Enter Issue Date" formControlName="issueDate" size="9px"
-                [(ngModel)]="textValue" (change)="getByIssueDate()">
-            <input [(ngModel)]="issueDate" [ngModelOptions]="{standalone: true} " [hidden]="true">
+        <tbody *ngIf="show">
+          <tr *ngFor="let br of issuedDetails | paginate: config">
+            <td>{{ br.user.firstName }}</td>
+            <td>{{ br.user.lastName }}</td>
 
-        </form>
+            <td>{{ br.user.userRole }}</td>
+
+            <td>{{ br.book.isbn }}</td>
+            <td>{{ br.book.bookName }}</td>
+            <td>{{ br.book.authorName }}</td>
+            <td>{{ br.issueDate }}</td>
+            <td>{{ br.dueDate }}</td>
+            <td>{{ br.fineAmount | currency: "INR" }}</td>
+
+            <td>
+              <button
+                class="btn btn-link"
+                (click)="viewMoreIssuedDetails(br.issueId)"
+              >
+                View More
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h3 style="margin-left: 500px">&nbsp;&nbsp;&nbsp;{{ errorMessage }}</h3>
+      <tr *ngIf="show">
+        <pagination-controls
+          (pageChange)="pageChanged($event)"
+        ></pagination-controls>
+      </tr>
     </div>
-    <div *ngIf="searchBy=='dueDate'"><br>
-        <form novalidate [formGroup]="searchByDueDate">
-            <input type="date" placeholder="Enter Due Date" formControlName="dueDate" size="9px" [(ngModel)]="textValue"
-                (change)="getByDueDate()">
-            <input [(ngModel)]="dueDate" [ngModelOptions]="{standalone: true} " [hidden]="true">
-
-        </form>
-    </div>
-
-
-
-
-
-    <div>
-        <br><br>
-
-        <br><br>
-        <div class="reglist">
-
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-
-                        <th>First Name</th>
-                        <th>Last Name</th>
-
-                        <th>User Role</th>
-
-
-                        <th>ISBN</th>
-                        <th>Book Name</th>
-                        <th>Author Name </th>
-
-                        <th>Issue Date</th>
-                        <th>Due Date</th>
-                        <th>Fine Amount</th>
-                        <th>View More</th>
-                    </tr>
-                </thead>
-
-                <tbody *ngIf="show">
-                    <tr *ngFor="let br of issuedDetails | paginate: config">
-
-
-
-                        <td>{{br.user.firstName}}</td>
-                        <td>{{br.user.lastName}}</td>
-
-                        <td>{{br.user.userRole}}</td>
-
-
-                        <td>{{br.book.isbn}}</td>
-                        <td>{{br.book.bookName}}</td>
-                        <td>{{br.book.authorName}}</td>
-                        <td>{{br.issueDate}}</td>
-                        <td>{{br.dueDate}}</td>
-                        <td>{{br.fineAmount |currency:"INR"}}</td>
-
-                        <td>
-                            <button class="btn btn-link" (click)="viewMoreIssuedDetails(br.issueId)">View More</button>
-                        </td>
-
-                    </tr>
-                </tbody>
-            </table>
-            <h3 style="margin-left:500px;">&nbsp;&nbsp;&nbsp;{{errorMessage}}</h3>
-            <tr *ngIf="show">
-                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
-            </tr>
-        </div>
-    </div>
-    <button style="width:80px" class="btn btn-dark" (click)="return()">Back</button>
-
-
+  </div>
+  <button style="width: 80px" class="btn btn-dark" (click)="return()">
+    Back
+  </button>
 </body>

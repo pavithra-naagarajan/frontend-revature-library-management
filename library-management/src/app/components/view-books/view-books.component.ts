@@ -10,88 +10,68 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-view-books',
   templateUrl: './view-books.component.html',
-  styleUrls: ['./view-books.component.css']
+  styleUrls: ['./view-books.component.css'],
 })
 export class ViewBooksComponent implements OnInit {
-
   show?: boolean;
-  books:Observable<Book[]>|any
+  books: Observable<Book[]> | any;
 
-  value?: string
+  value?: string;
 
   textValue: any = null;
-  errorMessage?: string
-  searchBookForm?: FormGroup
+  errorMessage?: string;
+  searchBookForm?: FormGroup;
 
-  adminId?: number
-
-
+  adminId?: number;
 
   config: any;
- constructor(public router: Router, public bookService: BookService,
-     public formBuilder: FormBuilder, public activatedRoute: ActivatedRoute) {
-
-     
-
-      }
+  constructor(
+    public router: Router,
+    public bookService: BookService,
+    public formBuilder: FormBuilder,
+    public activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.adminId = localStorage.getItem('adminId') as any;
 
-    this.viewBooks()
+    this.viewBooks();
 
     this.searchBookForm = this.formBuilder.group({
-      value: ['', Validators.required]
-    })
-
-
+      value: ['', Validators.required],
+    });
   }
-
-
-
 
   editBook(bookId: number) {
-    this.router.navigate(['editbook', bookId])
+    this.router.navigate(['editbook', bookId]);
   }
   viewBooks() {
-    this.bookService.getAllBooks().subscribe(
-      (data: any) => {
-        this.show = true
-        this.books = data
-        this.books = this.books.data
+    this.bookService.getAllBooks().subscribe((data: any) => {
+      this.show = true;
+      this.books = data;
+      this.books = this.books.data;
 
-        this.config = {
-          itemsPerPage: 4,
-          currentPage: 1,
-          totalItems: this.books.count
-        };
-        if (this.books == null) {
-          this.errorMessage = "No records found"
-        }
-        else {
-          this.errorMessage = ""
-        }
-      })
-    
-      
+      this.config = {
+        itemsPerPage: 4,
+        currentPage: 1,
+        totalItems: this.books.count,
+      };
+      if (this.books == null) {
+        this.errorMessage = 'No records found';
+      } else {
+        this.errorMessage = '';
       }
-      pageChanged(event: any){
-        this.config.currentPage = event;
-      }
-    
-  
-
-
-
+    });
+  }
+  pageChanged(event: any) {
+    this.config.currentPage = event;
+  }
 
   return() {
-    this.router.navigate(['adminfunctions'])
+    this.router.navigate(['adminfunctions']);
   }
   deleteBook(bookId: number) {
-    this.bookService.deleteBook(bookId).subscribe(
-      (res: any) => {
-
-      });
+    this.bookService.deleteBook(bookId).subscribe((res: any) => {});
   }
 
   deleteAlertConfirmation(userId: number) {
@@ -101,54 +81,34 @@ export class ViewBooksComponent implements OnInit {
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, go ahead.',
-      cancelButtonText: 'No, let me think'
+      cancelButtonText: 'No, let me think',
     }).then((result) => {
       if (result.value) {
-        this.deleteBook(userId)
-        this.viewBooks()
-        Swal.fire(
-          'Removed!',
-          'Book deleted successfully!',
-          'success'
-        )
-       
+        this.deleteBook(userId);
+        this.viewBooks();
+        Swal.fire('Removed!', 'Book deleted successfully!', 'success');
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-          'Cancelled',
-          'Book Not Deleted!',
-          'error'
-        )
+        Swal.fire('Cancelled', 'Book Not Deleted!', 'error');
       }
-    })
+    });
   }
-
-
 
   searchBook() {
-    if (this.textValue == "") {
-      this.viewBooks()
-    }
-
-    else {
-      this.bookService.searchBook(this.searchBookForm.get('value')?.value).subscribe((data: any[]) => {
-     
-        this.books = data;
-        this.books =  this.books.data;
-        if (this.books == null) {
-          this.show=false
-          this.errorMessage = "No records found"
-        }
-        else {
-          this.errorMessage = ""
-        }
-      }
-      )
+    if (this.textValue == '') {
+      this.viewBooks();
+    } else {
+      this.bookService
+        .searchBook(this.searchBookForm.get('value')?.value)
+        .subscribe((data: any[]) => {
+          this.books = data;
+          this.books = this.books.data;
+          if (this.books == null) {
+            this.show = false;
+            this.errorMessage = 'No records found';
+          } else {
+            this.errorMessage = '';
+          }
+        });
     }
   }
-
-
-
-  
- 
 }
-

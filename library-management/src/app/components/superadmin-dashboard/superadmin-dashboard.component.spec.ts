@@ -8,9 +8,8 @@ describe('SuperadminDashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SuperadminDashboardComponent ]
-    })
-    .compileComponents();
+      declarations: [SuperadminDashboardComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

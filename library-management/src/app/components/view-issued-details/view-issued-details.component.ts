@@ -9,27 +9,28 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-view-issued-details',
   templateUrl: './view-issued-details.component.html',
-  styleUrls: ['./view-issued-details.component.css']
+  styleUrls: ['./view-issued-details.component.css'],
 })
-
-
 export class ViewIssuedDetailsComponent implements OnInit {
-  selectedSort: String = "any";
+  selectedSort: String = 'any';
   show?: boolean;
-  issuedDetails: Observable<IssueBook[]> | any
+  issuedDetails: Observable<IssueBook[]> | any;
 
-  dueDate?: Date
-  issueDate?: Date
-  searchBy: String = "default";
+  dueDate?: Date;
+  issueDate?: Date;
+  searchBy: String = 'default';
   textValue: any = null;
-  errorMessage?: string
-  config: any
-  searchByIssueDate?: FormGroup
-  searchByDueDate?: FormGroup
-  adminId?: number
-  constructor(public router: Router,
-    public issueBookService: IssueBookService, public formBuilder: FormBuilder, public activatedRoute: ActivatedRoute
-  ) { }
+  errorMessage?: string;
+  config: any;
+  searchByIssueDate?: FormGroup;
+  searchByDueDate?: FormGroup;
+  adminId?: number;
+  constructor(
+    public router: Router,
+    public issueBookService: IssueBookService,
+    public formBuilder: FormBuilder,
+    public activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.adminId = localStorage.getItem('adminId') as any;
@@ -37,109 +38,90 @@ export class ViewIssuedDetailsComponent implements OnInit {
     this.viewIssuedBooks();
 
     this.searchByIssueDate = this.formBuilder.group({
-      issueDate: ['', Validators.required]
-    })
+      issueDate: ['', Validators.required],
+    });
 
     this.searchByDueDate = this.formBuilder.group({
-      dueDate: ['', Validators.required]
-    })
-
+      dueDate: ['', Validators.required],
+    });
   }
 
   successNotification() {
-    Swal.fire('Success', 'Book request sent Successfully!', 'success')
+    Swal.fire('Success', 'Book request sent Successfully!', 'success');
   }
   successFineNotification() {
-    Swal.fire('Success', 'Fine Amount updated Successfully!', 'success')
-
+    Swal.fire('Success', 'Fine Amount updated Successfully!', 'success');
   }
   viewIssuedBooks() {
-    this.issueBookService.getAllIssuedDetails().subscribe(
-      (data: any[]) => {
-        this.show = true
-        this.issuedDetails = data
-        this.issuedDetails = this.issuedDetails.data
+    this.issueBookService.getAllIssuedDetails().subscribe((data: any[]) => {
+      this.show = true;
+      this.issuedDetails = data;
+      this.issuedDetails = this.issuedDetails.data;
 
-
-        if (this.issuedDetails == null) {
-          this.show = false
-          this.errorMessage = "No records found"
-        }
-        else {
-          this.errorMessage = ""
-        }
-        this.config = {
-          itemsPerPage: 3,
-          currentPage: 1,
-          totalItems: this.issuedDetails.count
-        };
+      if (this.issuedDetails == null) {
+        this.show = false;
+        this.errorMessage = 'No records found';
+      } else {
+        this.errorMessage = '';
       }
-    )
+      this.config = {
+        itemsPerPage: 3,
+        currentPage: 1,
+        totalItems: this.issuedDetails.count,
+      };
+    });
   }
-
 
   pageChanged(event: any) {
     this.config.currentPage = event;
   }
 
   viewMoreIssuedDetails(issueId: number) {
-    this.router.navigate(['viewmore', issueId])
+    this.router.navigate(['viewmore', issueId]);
   }
 
-
   getByDueDate() {
-
-    if (this.textValue == "") {
-      this.viewIssuedBooks()
-    }
-
-    else {
-      this.issueBookService.getIssueDetailsByDueDate(this.searchByDueDate.get('dueDate')?.value).subscribe((data: any[]) => {
-
-        this.issuedDetails = data;
-        this.issuedDetails = this.issuedDetails.data;
-        if (this.issuedDetails == null) {
-          this.show = false
-          this.errorMessage = "No records found"
-        }
-        else {
-          this.show = true
-          this.errorMessage = ""
-        }
-      }
-      )
+    if (this.textValue == '') {
+      this.viewIssuedBooks();
+    } else {
+      this.issueBookService
+        .getIssueDetailsByDueDate(this.searchByDueDate.get('dueDate')?.value)
+        .subscribe((data: any[]) => {
+          this.issuedDetails = data;
+          this.issuedDetails = this.issuedDetails.data;
+          if (this.issuedDetails == null) {
+            this.show = false;
+            this.errorMessage = 'No records found';
+          } else {
+            this.show = true;
+            this.errorMessage = '';
+          }
+        });
     }
   }
   getByIssueDate() {
-
-    if (this.textValue == "") {
-      this.viewIssuedBooks()
-    }
-
-    else {
-      this.issueBookService.getIssueDetailsByIssueDate(this.searchByIssueDate.get('issueDate')?.value).subscribe((data: any[]) => {
-
-
-        this.issuedDetails = data;
-        this.issuedDetails = this.issuedDetails.data;
-        if (this.issuedDetails == null) {
-          this.show = false
-          this.errorMessage = "No records found"
-        }
-        else {
-          this.show = true
-          this.errorMessage = ""
-        }
-      }
-      )
+    if (this.textValue == '') {
+      this.viewIssuedBooks();
+    } else {
+      this.issueBookService
+        .getIssueDetailsByIssueDate(
+          this.searchByIssueDate.get('issueDate')?.value
+        )
+        .subscribe((data: any[]) => {
+          this.issuedDetails = data;
+          this.issuedDetails = this.issuedDetails.data;
+          if (this.issuedDetails == null) {
+            this.show = false;
+            this.errorMessage = 'No records found';
+          } else {
+            this.show = true;
+            this.errorMessage = '';
+          }
+        });
     }
   }
 
   return() {
-    this.router.navigate(['adminfunctions'])
+    this.router.navigate(['adminfunctions']);
   }
-
-
-
-
 }

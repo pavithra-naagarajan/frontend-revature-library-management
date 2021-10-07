@@ -14,68 +14,70 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-request-book',
   templateUrl: './request-book.component.html',
-  styleUrls: ['./request-book.component.css']
+  styleUrls: ['./request-book.component.css'],
 })
 export class RequestBookComponent implements OnInit {
-
   bookId?: number;
   mailId?: string;
   book: Observable<Book> | any;
   user: Observable<User> | any;
-  requestBook?: RequestBook
-  requestBookForm?: FormGroup
-  constructor(public router: Router, public bookService: BookService, 
-    public requestBookService: RequestBookService, public userService: UserService, public activatedRoute: ActivatedRoute,
-    public formBuilder: FormBuilder,public toaster:ToasterService) { }
+  requestBook?: RequestBook;
+  requestBookForm?: FormGroup;
+  constructor(
+    public router: Router,
+    public bookService: BookService,
+    public requestBookService: RequestBookService,
+    public userService: UserService,
+    public activatedRoute: ActivatedRoute,
+    public formBuilder: FormBuilder,
+    public toaster: ToasterService
+  ) {}
 
   ngOnInit(): void {
-    this.book = new Book()
-    this.user = new User()
-    this.requestBook = new RequestBook()
+    this.book = new Book();
+    this.user = new User();
+    this.requestBook = new RequestBook();
     this.bookId = this.activatedRoute.snapshot.params['bookId'];
     this.mailId = localStorage.getItem('userEmail') as string;
-    this.bookService.getBookById(this.bookId).
-      subscribe(data => {
-        this.book = data
-        this.book = this.book.data
-      })
+    this.bookService.getBookById(this.bookId).subscribe((data) => {
+      this.book = data;
+      this.book = this.book.data;
+    });
 
-    this.userService.getUserByMailId(this.mailId).subscribe(data => {
-
-      this.user = data
-      this.user = this.user.data
-    })
+    this.userService.getUserByMailId(this.mailId).subscribe((data) => {
+      this.user = data;
+      this.user = this.user.data;
+    });
 
     this.requestBookForm = this.formBuilder.group({
-
-      numberOfDays: ['', [Validators.required, Validators.max(25)]]
-
-    })
+      numberOfDays: ['', [Validators.required, Validators.max(25)]],
+    });
   }
 
-
   addRequestBook() {
-    this.requestBook.book = this.book
-    this.requestBook.user = this.user
-    this.requestBook.numberOfDays = this.requestBookForm?.get('numberOfDays').value
-    this.requestBook.requestId = -1
+    this.requestBook.book = this.book;
+    this.requestBook.user = this.user;
+    this.requestBook.numberOfDays =
+      this.requestBookForm?.get('numberOfDays').value;
+    this.requestBook.requestId = -1;
 
-    this.requestBookService.addRequestBookDetails(this.requestBook).subscribe(
-      async response => {
+    this.requestBookService
+      .addRequestBookDetails(this.requestBook)
+      .subscribe(async (response) => {
         this.success();
-        await delay(1000)
-        this.router.navigate(['userfunctions'])
-      })
+        await delay(1000);
+        this.router.navigate(['userfunctions']);
+      });
   }
 
   return() {
-    this.router.navigate(['userfunctions'])
+    this.router.navigate(['userfunctions']);
   }
 
   success() {
-    this.toaster.success("Book Request sent Successfully!")
-   }
+    this.toaster.success('Book Request sent Successfully!');
+  }
 }
 function delay(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }

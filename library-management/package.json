@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "spotlessApply": "prettier src/**/**/**/**/**/**/*.{ts,js,html,css,json,md} e2e/**/*.{ts,js,json} --write",
+    "spotlessCheck": "prettier src/**/**/**/**/**/**/*.{ts,js,html,css,json,md} e2e/**/*.{ts,js,json} --c"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +24,7 @@
     "@angular/router": "~12.2.0",
     "ngx-pagination": "^5.1.1",
     "rxjs": "~6.6.0",
+    "spotless": "0.0.1",
     "sweetalert2": "^11.1.7",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -38,6 +41,7 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "prettier": "2.4.1",
     "typescript": "~4.3.5"
   }
 }

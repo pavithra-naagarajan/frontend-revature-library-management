@@ -1,37 +1,38 @@
 <app-user-functions></app-user-functions>
 
 <body>
-    <div class="registration-form">
-        <h3 align="center">Return Book</h3><br><br>
-        <form novalidate [formGroup]="returnForm" (ngSubmit)="returnBook()" >
-            <fieldset>
+  <div class="registration-form">
+    <h3 align="center">Return Book</h3>
+    <br /><br />
+    <form novalidate [formGroup]="returnForm" (ngSubmit)="returnBook()">
+      <fieldset>
+        <div class="form-group">
+          <div class="col-md-13">
+            <label for="issueId">Select Book to Return</label><br />
+            <select
+              class="form-control form-control-lg"
+              name="issueId"
+              formControlName="issueId"
+              ngModel
+              required
+            >
+              <option>---select</option>
+              <option *ngFor="let d of details" [value]="d.issueId">
+                {{ d.book.isbn }}-{{ d.book.bookName }}-{{ d.book.authorName }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <br />
+      </fieldset>
+      <br />
+      <td>
+        <button type="submit" class="btn btn-primary">Return Book</button
+        >&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-dark" (click)="return()">Back</button><br />
+      </td>
 
-
-                <div class="form-group">
-                    <div class="col-md-13">
-
-                        <label for="issueId">Select Book to Return</label><br>
-                        <select class="form-control form-control-lg" name="issueId" formControlName="issueId" ngModel
-                            required>
-                            <option>---select</option>
-                            <option *ngFor="let d of details" [value]="d.issueId">
-                                {{d.book.isbn}}-{{d.book.bookName}}-{{d.book.authorName}}</option>
-
-
-                        </select>
-
-                    </div>
-                </div><br>
-            </fieldset>
-            <br>
-            <td>
-                <button type="submit" class="btn btn-primary" >Return Book</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                <button class="btn btn-dark" (click)="return()">Back</button><br>
-                
-            </td>
-
-            <br><br>
-
-        </form>
-    </div>
+      <br /><br />
+    </form>
+  </div>
 </body>

@@ -4,52 +4,40 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { RequestBook } from '../models/request-book';
 
-const URL = "http://localhost:9090/requestbook"
+const URL = 'http://localhost:9090/requestbook';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RequestBookService {
-
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient) {}
   // Http Headers
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
+      'Content-Type': 'application/json',
+    }),
+  };
 
   //get request by Id
   getIssueDetailsByRequestId(requestId: number): Observable<RequestBook> {
-    return this.http.get<RequestBook>(`${URL}/user/${requestId}`)
+    return this.http.get<RequestBook>(`${URL}/user/${requestId}`);
   }
 
   //delete a requestBook
   deleteRequestBookDetails(requestId: number): Observable<RequestBook> {
-    return this.http.delete(`${URL}/${requestId}`)
-
+    return this.http.delete(`${URL}/${requestId}`);
   }
-
 
   //add a request book
   addRequestBookDetails(requestBook: RequestBook): Observable<RequestBook> {
-    return this.http.post<RequestBook>(URL, requestBook, this.httpOptions)
-
+    return this.http.post<RequestBook>(URL, requestBook, this.httpOptions);
   }
   //update a request
   updateRequestBookDetails(requestBook: RequestBook): Observable<RequestBook> {
-    return this.http.put<RequestBook>(URL, requestBook)
-
+    return this.http.put<RequestBook>(URL, requestBook);
   }
 
   //get all RequestBookDetails
   getAllRequestBookDetails(): Observable<RequestBook[]> {
-    return this.http.get<RequestBook[]>(`http://localhost:9090/requestbook`)
-
+    return this.http.get<RequestBook[]>(`http://localhost:9090/requestbook`);
   }
-
-
-
 }
-
-
-

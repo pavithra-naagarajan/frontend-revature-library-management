@@ -10,25 +10,28 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-user-view-issue',
   templateUrl: './user-view-issue.component.html',
-  styleUrls: ['./user-view-issue.component.css']
+  styleUrls: ['./user-view-issue.component.css'],
 })
 export class UserViewIssueComponent implements OnInit {
-  mailId?: string
-  user: Observable<User> | any
-  userId?: number
-  issuedDetails: Observable<IssueBook[]> | any
-  errorMessage?: string
-  show?: boolean
-  config: any
-url:any
-  constructor(public router: Router,
-    public issueBookService: IssueBookService, public userService: UserService, public formBuilder: FormBuilder
-    , public activatedRoute: ActivatedRoute) { }
+  mailId?: string;
+  user: Observable<User> | any;
+  userId?: number;
+  issuedDetails: Observable<IssueBook[]> | any;
+  errorMessage?: string;
+  show?: boolean;
+  config: any;
+  url: any;
+  constructor(
+    public router: Router,
+    public issueBookService: IssueBookService,
+    public userService: UserService,
+    public formBuilder: FormBuilder,
+    public activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-  
     this.mailId = localStorage.getItem('userEmail') as string;
-    this.show = true
+    this.show = true;
     this.getIssueByUserId();
   }
 
@@ -38,46 +41,36 @@ url:any
 
   getIssueByUserId() {
     {
-      this.userService.getUserByMailId(this.mailId).subscribe(data => {
-        this.user = data
-        this.user = this.user.data
-        this.userId = this.user.userId
-        this.issueBookService.getIssueDetailsByUserId(this.userId).subscribe((data: any[]) => {
+      this.userService.getUserByMailId(this.mailId).subscribe((data) => {
+        this.user = data;
+        this.user = this.user.data;
+        this.userId = this.user.userId;
+        this.issueBookService
+          .getIssueDetailsByUserId(this.userId)
+          .subscribe((data: any[]) => {
+            this.issuedDetails = data;
+            this.issuedDetails = this.issuedDetails.data;
 
-          this.issuedDetails = data;
-          this.issuedDetails = this.issuedDetails.data;
-         
-          if (this.issuedDetails == null) {
-            this.show=false
-            this.errorMessage = "No records found"
-          }
-          else {
-            this.errorMessage = ""
-            this.show = true
-          }
-          this.config = {
-            itemsPerPage: 3,
-            currentPage: 1,
-            totalItems: this.issuedDetails.count
-          };
-        }
-        )
-
-      })
+            if (this.issuedDetails == null) {
+              this.show = false;
+              this.errorMessage = 'No records found';
+            } else {
+              this.errorMessage = '';
+              this.show = true;
+            }
+            this.config = {
+              itemsPerPage: 3,
+              currentPage: 1,
+              totalItems: this.issuedDetails.count,
+            };
+          });
+      });
     }
   }
   return() {
-    this.router.navigate(['userfunctions'])
+    this.router.navigate(['userfunctions']);
   }
-  generatePdf(issueId:number){
-    
-   
-    this.url=`http://localhost:9090/issuebook/generatepdf`+`/${issueId}`
-   
+  generatePdf(issueId: number) {
+    this.url = `http://localhost:9090/issuebook/generatepdf` + `/${issueId}`;
   }
-
-
-
-
-  
 }

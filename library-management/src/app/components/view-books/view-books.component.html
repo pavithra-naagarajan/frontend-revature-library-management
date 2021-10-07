@@ -1,102 +1,116 @@
 <app-admin-functions></app-admin-functions>
-<link rel="stylesheet" 
-href=
-"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
 <body>
+  <br /><br />
+  <h2 align="center">Book Details</h2>
 
-    <br><br>
-    <h2 align="center">Book Details</h2>
+  <form novalidate [formGroup]="searchBookForm">
+    <h6>
+      <i class="fa fa-search icon"></i>Search Book
+      <input
+        type="text"
+        placeholder="Enter Book Details"
+        formControlName="value"
+        [(ngModel)]="textValue"
+        (keyup)="searchBook()"
+      />
+      <input
+        [(ngModel)]="value"
+        [ngModelOptions]="{ standalone: true }"
+        [hidden]="true"
+      />
+    </h6>
+  </form>
+  <div>
+    <br /><br />
+    <div class="reglist">
+      <div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ISBN</th>
+              <th>Book Name</th>
+              <th>Author Name</th>
+              <th>Publisher</th>
+              <th>Genre</th>
+              <th>Volume</th>
+              <th>Edition</th>
+              <th>Status</th>
+              <th>Delete</th>
+              <th>Edit</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="show">
+            <tr *ngFor="let b of books | paginate: config">
+              <td>
+                {{ b.isbn }}
+              </td>
 
-    <form novalidate [formGroup]="searchBookForm"><h6><i class="fa fa-search icon"></i>Search Book
-        <input type="text" placeholder="Enter Book Details" formControlName="value" [(ngModel)]="textValue"
-            (keyup)="searchBook()">
-        <input [(ngModel)]="value" [ngModelOptions]="{standalone: true} " [hidden]="true">
-</h6>
-    </form>
-    <div>
-
-
-        <br><br>
-        <div class="reglist">
-            <div>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-
-                            <th>ISBN </th>
-                            <th>Book Name</th>
-                            <th>Author Name</th>
-                            <th>Publisher </th>
-                            <th>Genre </th>
-                            <th>Volume</th>
-                            <th>Edition</th>
-                            <th>Status</th>
-                            <th>Delete</th>
-                            <th>Edit</th>
-                        </tr>
-                    </thead>
-                    <tbody *ngIf="show">
-                        <tr *ngFor="let b of books | paginate: config">
-
-                            <td>
-                                {{b.isbn}}
-                            </td>
-
-                            <td>
-                                {{b.bookName}}
-                            </td>
-                            <td>
-                                {{b.authorName}}
-                            </td>
-                            <td>
-                                {{b.publisher}}
-                            </td>
-                            <td>
-                                {{b.genre}}
-                            </td>
-                            <td>
-                                {{b.volume}}
-                            </td>
-                            <td>
-                                {{b.edition}}
-                            </td>
-                            <td>
-                                {{b.status}}
-                            </td>
-                            <td *ngIf="b.status=='Requested'">
-
-                                <button class="btn btn-secondary"
-                                    [disabled]="true">Delete</button>
-                            </td>
-                            <td *ngIf="b.status=='Issued'">
-
-                                <button class="btn btn-secondary"
-                                    [disabled]="true">Delete</button>
-                            </td>
-                            <td *ngIf="b.status=='Available'">
-
-                                <button class="btn btn-primary"
-                                    (click)="deleteAlertConfirmation(b.bookId)">Delete</button>
-                            </td>
-                            <td>
-
-                                <button class="btn btn-dark" (click)="editBook(b.bookId)">Edit</button>
-                            </td>
-
-                        </tr>
-                    </tbody>
-                   
-                </table>
-                <tr>
-                    <h3 style="margin-left: 500px;"> &nbsp;&nbsp;&nbsp;{{errorMessage}}</h3>
-               </tr>
-                <tr *ngIf="show">
-                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
-                </tr>
-            </div>
-        </div>
-        <br>
-        <button style="width:80px" class="btn btn-dark" (click)="return()">Back</button>
-
+              <td>
+                {{ b.bookName }}
+              </td>
+              <td>
+                {{ b.authorName }}
+              </td>
+              <td>
+                {{ b.publisher }}
+              </td>
+              <td>
+                {{ b.genre }}
+              </td>
+              <td>
+                {{ b.volume }}
+              </td>
+              <td>
+                {{ b.edition }}
+              </td>
+              <td>
+                {{ b.status }}
+              </td>
+              <td *ngIf="b.status == 'Requested'">
+                <button class="btn btn-secondary" [disabled]="true">
+                  Delete
+                </button>
+              </td>
+              <td *ngIf="b.status == 'Issued'">
+                <button class="btn btn-secondary" [disabled]="true">
+                  Delete
+                </button>
+              </td>
+              <td *ngIf="b.status == 'Available'">
+                <button
+                  class="btn btn-primary"
+                  (click)="deleteAlertConfirmation(b.bookId)"
+                >
+                  Delete
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-dark" (click)="editBook(b.bookId)">
+                  Edit
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <tr>
+          <h3 style="margin-left: 500px">
+            &nbsp;&nbsp;&nbsp;{{ errorMessage }}
+          </h3>
+        </tr>
+        <tr *ngIf="show">
+          <pagination-controls
+            (pageChange)="pageChanged($event)"
+          ></pagination-controls>
+        </tr>
+      </div>
     </div>
+    <br />
+    <button style="width: 80px" class="btn btn-dark" (click)="return()">
+      Back
+    </button>
+  </div>
 </body>

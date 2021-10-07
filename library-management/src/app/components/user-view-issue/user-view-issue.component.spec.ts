@@ -8,9 +8,8 @@ describe('UserViewIssueComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserViewIssueComponent ]
-    })
-    .compileComponents();
+      declarations: [UserViewIssueComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

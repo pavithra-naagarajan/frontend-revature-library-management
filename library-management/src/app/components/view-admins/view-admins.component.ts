@@ -9,48 +9,43 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-view-admins',
   templateUrl: './view-admins.component.html',
-  styleUrls: ['./view-admins.component.css']
+  styleUrls: ['./view-admins.component.css'],
 })
 export class ViewAdminsComponent implements OnInit {
-
   show?: boolean;
-  admins: Observable<Admin[]> | any
-  config: any
-  constructor(public router: Router, public adminService: AdminService, public formBuilder: FormBuilder) { }
+  admins: Observable<Admin[]> | any;
+  config: any;
+  constructor(
+    public router: Router,
+    public adminService: AdminService,
+    public formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-
-    this.viewAdmins()
-
-
+    this.viewAdmins();
   }
   pageChanged(event: any) {
     this.config.currentPage = event;
   }
   viewAdmins() {
-    this.adminService.getAllAdmins().subscribe(
-      (data: any[]) => {
-        this.show = true
-        this.admins = data
-        this.admins = this.admins.data
+    this.adminService.getAllAdmins().subscribe((data: any[]) => {
+      this.show = true;
+      this.admins = data;
+      this.admins = this.admins.data;
 
-        this.config = {
-          itemsPerPage: 3,
-          currentPage: 1,
-          totalItems: this.admins.count
-        };
-      }
-    )
+      this.config = {
+        itemsPerPage: 3,
+        currentPage: 1,
+        totalItems: this.admins.count,
+      };
+    });
   }
 
   return() {
-    this.router.navigate(['superadmin'])
+    this.router.navigate(['superadmin']);
   }
   deleteAdmin(adminId: number) {
-    this.adminService.deleteAdmin(adminId).subscribe(
-      (res: any) => {
-
-      });
+    this.adminService.deleteAdmin(adminId).subscribe((res: any) => {});
   }
 
   deleteAlertConfirmation(adminId: number) {
@@ -60,23 +55,15 @@ export class ViewAdminsComponent implements OnInit {
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, go ahead.',
-      cancelButtonText: 'No, let me think'
+      cancelButtonText: 'No, let me think',
     }).then((result) => {
       if (result.value) {
-        this.deleteAdmin(adminId)
-        Swal.fire(
-          'Removed!',
-          'Admin deleted successfully!',
-          'success'
-        )
-        this.viewAdmins()
+        this.deleteAdmin(adminId);
+        Swal.fire('Removed!', 'Admin deleted successfully!', 'success');
+        this.viewAdmins();
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-          'Cancelled',
-          'Admin Not Deleted!',
-          'error'
-        )
+        Swal.fire('Cancelled', 'Admin Not Deleted!', 'error');
       }
-    })
+    });
   }
 }

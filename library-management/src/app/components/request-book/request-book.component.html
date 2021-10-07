@@ -1,88 +1,103 @@
 <app-user-functions></app-user-functions>
 
 <body>
-    <br><br>
-    <div>
+  <br /><br />
+  <div>
+    <h6>
+      <table align="center">
+        <tr>
+          First Name
+          <td>:</td>
+          <td>{{ user.firstName }}</td>
+        </tr>
+        <tr>
+          Last Name
+          <td>:</td>
+          <td>{{ user.lastName }}</td>
+        </tr>
+        <tr>
+          ISBN
+          <td>:</td>
+          <td>{{ book.isbn }}</td>
+        </tr>
+        <tr>
+          Book Name
+          <td>:</td>
+          <td>{{ book.bookName }}</td>
+        </tr>
+        <tr>
+          Author Name
+          <td>:</td>
+          <td>{{ book.authorName }}</td>
+        </tr>
 
-        <h6>
-            <table align="center">
-                <tr>
-                    First Name
-                    <td>:</td>
-                    <td>{{user.firstName}}</td>
-                </tr>
-                <tr>
-                    Last Name
-                    <td>:</td>
-                    <td>{{user.lastName}}</td>
-                </tr>
-                <tr>
-                    ISBN
-                    <td>:</td>
-                    <td>{{book.isbn}}</td>
-                </tr>
-                <tr>
-                    Book Name
-                    <td>:</td>
-                    <td>{{book.bookName}}</td>
-                </tr>
-                <tr>
-                    Author Name
-                    <td>:</td>
-                    <td>{{book.authorName}}</td>
-                </tr>
+        <tr>
+          Book Genre
+          <td>:</td>
+          <td>{{ book.genre }}</td>
+        </tr>
+        <tr>
+          Publisher
+          <td>:</td>
+          <td>{{ book.publisher }}</td>
+        </tr>
+        <tr>
+          Volume
+          <td>:</td>
+          <td>{{ book.volume }}</td>
+        </tr>
+        <tr>
+          Edition
+          <td>:</td>
+          <td>{{ book.edition }}</td>
+        </tr>
+        <br />
+      </table>
+    </h6>
+  </div>
 
-                <tr>
-                    Book Genre
-                    <td>:</td>
-                    <td>{{book.genre}}</td>
-                </tr>
-                <tr>
-                    Publisher
-                    <td>:</td>
-                    <td>{{book.publisher}}</td>
-                </tr>
-                <tr>
-                    Volume
-                    <td>:</td>
-                    <td>{{book.volume}}</td>
-                </tr>
-                <tr>
-                    Edition
-                    <td>:</td>
-                    <td>{{book.edition}}</td>
-                </tr>
-                <br>
-            </table>
-        </h6>
-    </div>
+  <div class="registration-form">
+    <form
+      novalidate
+      style="margin-left: 420px; width: 450px"
+      [formGroup]="requestBookForm"
+      (ngSubmit)="addRequestBook()"
+    >
+      <div class="form-group">
+        <label>Number Of Days </label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="numberOfDays"
+        />
 
-    <div class="registration-form">
-        <form novalidate style="margin-left: 420px;width: 450px;" [formGroup]="requestBookForm"
-            (ngSubmit)="addRequestBook()">
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            requestBookForm.get('numberOfDays').hasError('required') &&
+            requestBookForm.get('numberOfDays').dirty
+          "
+        >
+          Enter the Number Of Days!
+        </div>
 
-            <div class="form-group">
-                <label>Number Of Days </label>
-                <input type="text" class="form-control" formControlName="numberOfDays">
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            requestBookForm.get('numberOfDays').hasError('max') &&
+            requestBookForm.get('numberOfDays').dirty
+          "
+        >
+          The maximum number of days should be 25!
+        </div>
+      </div>
 
-                <div class="alert alert-danger"
-                    *ngIf="requestBookForm.get('numberOfDays').hasError('required') && requestBookForm.get('numberOfDays').dirty">
-                    Enter the Number Of Days!
-                </div>
+      <br />
 
-                <div class="alert alert-danger"
-                    *ngIf="requestBookForm.get('numberOfDays').hasError('max') && requestBookForm.get('numberOfDays').dirty">
-                    The maximum number of days should be 25!
-                </div>
-            </div>
+      <button type="submit" class="btn btn-primary">Request</button>&nbsp;&nbsp;
 
-            <br>
-
-            <button type="submit" class="btn btn-primary">Request</button>&nbsp;&nbsp;
-
-            <button class="btn btn-dark" (click)="return()">Back</button>
-        </form>
-    </div>
-    <br><br>
-
+      <button class="btn btn-dark" (click)="return()">Back</button>
+    </form>
+  </div>
+  <br /><br />
 </body>

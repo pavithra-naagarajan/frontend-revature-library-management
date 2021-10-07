@@ -27,7 +27,6 @@ import { ViewRequestComponent } from './components/view-request/view-request.com
 import { ViewUsersComponent } from './components/view-users/view-users.component';
 
 const routes: Routes = [
-
   { path: 'usersignup', component: UserSignupComponent },
   { path: 'adminfunctions', component: AdminFunctionsComponent },
 
@@ -44,7 +43,10 @@ const routes: Routes = [
   { path: 'viewmore/:issueId', component: ViewMoreIssuedetailsComponent },
   { path: 'searchbooks', component: SearchBookComponent },
   { path: 'requestbook/:bookId', component: RequestBookComponent },
-  { path: 'issuebook/:userId/:bookId/:numberOfDays/:requestId', component: IssueBookComponent },
+  {
+    path: 'issuebook/:userId/:bookId/:numberOfDays/:requestId',
+    component: IssueBookComponent,
+  },
   { path: 'forgotpassword', component: ForgotPasswordComponent },
   { path: 'returnbook', component: ReturnBookComponent },
   { path: 'superadmin', component: SuperadminDashboardComponent },
@@ -55,11 +57,10 @@ const routes: Routes = [
   { path: 'renewbook', component: RenewBookComponent },
   { path: '**', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

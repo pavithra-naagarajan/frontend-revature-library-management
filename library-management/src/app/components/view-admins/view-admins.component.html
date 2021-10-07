@@ -2,54 +2,54 @@
 
 <body>
   <div *ngIf="show">
-    <br><br>
+    <br /><br />
     <h2 align="center">Admin Details</h2>
-    <br><br>
+    <br /><br />
     <div class="reglist">
       <div>
         <table class="table table-striped">
           <thead>
             <tr>
-
               <th>Admin Name</th>
               <th>Admin Role</th>
 
               <th>Mail Id</th>
 
               <th>Delete</th>
-
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let a of admins | paginate: config">
-
               <td>
-                {{a.adminName}}
+                {{ a.adminName }}
               </td>
 
               <td>
-                {{a.adminRole}}
+                {{ a.adminRole }}
               </td>
               <td>
-                {{a.mailId}}
+                {{ a.mailId }}
               </td>
-
 
               <td>
-
-                <button class="btn btn-primary" (click)="deleteAlertConfirmation(a.adminId)">Delete</button>
+                <button
+                  class="btn btn-primary"
+                  (click)="deleteAlertConfirmation(a.adminId)"
+                >
+                  Delete
+                </button>
               </td>
-
-
-
             </tr>
           </tbody>
         </table>
-        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+        <pagination-controls
+          (pageChange)="pageChanged($event)"
+        ></pagination-controls>
       </div>
     </div>
-    <br>
-    <button style="width:100px;" class="btn btn-dark" (click)="return()">Back</button>
-
+    <br />
+    <button style="width: 100px" class="btn btn-dark" (click)="return()">
+      Back
+    </button>
   </div>
 </body>

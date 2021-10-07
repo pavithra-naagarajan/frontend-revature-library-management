@@ -1,62 +1,82 @@
 <app-superadmin-dashboard></app-superadmin-dashboard>
 
-
 <body>
-    <br>
-    <h3 align="center">Enter Admin details </h3>
+  <br />
+  <h3 align="center">Enter Admin details</h3>
 
+  <div class="registration-form">
+    <form
+      novalidate
+      style="margin-left: 430px; width: 450px"
+      [formGroup]="addAdminForm"
+      (ngSubmit)="addAdminDetails()"
+    >
+      <fieldset>
+        <div class="form-group">
+          <label>Admin Name </label>
+          <input type="text" class="form-control" formControlName="adminName" />
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              addAdminForm.get('adminName').hasError('required') &&
+              addAdminForm.get('adminName').dirty
+            "
+          >
+            Admin Name is required
+          </div>
+        </div>
 
-    <div class="registration-form">
-        <form novalidate style="margin-left: 430px;width: 450px;" [formGroup]="addAdminForm"
-            (ngSubmit)="addAdminDetails()">
-            <fieldset>
+        <div class="form-group">
+          <label>Admin Role </label>
+          <input type="text" class="form-control" formControlName="adminRole" />
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              addAdminForm.get('adminRole').hasError('required') &&
+              addAdminForm.get('adminRole').dirty
+            "
+          >
+            Admin Role is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Admin MailId </label>
+          <input type="text" class="form-control" formControlName="mailId" />
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              addAdminForm.get('mailId').hasError('required') &&
+              addAdminForm.get('mailId').dirty
+            "
+          >
+            Admin Mail Id is required
+          </div>
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              addAdminForm.get('mailId').hasError('email') &&
+              addAdminForm.get('mailId').dirty
+            "
+          >
+            Enter valid Email Id!
+          </div>
+        </div>
+      </fieldset>
 
+      <br />
 
-                <div class="form-group">
-                    <label>Admin Name </label>
-                    <input type="text" class="form-control" formControlName="adminName">
-                    <div class="alert alert-danger"
-                        *ngIf="addAdminForm.get('adminName').hasError('required') && addAdminForm.get('adminName').dirty">
-                        Admin Name is required
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-                    <label>Admin Role </label>
-                    <input type="text" class="form-control" formControlName="adminRole">
-                    <div class="alert alert-danger"
-                        *ngIf="addAdminForm.get('adminRole').hasError('required') && addAdminForm.get('adminRole').dirty">
-                        Admin Role is required
-                    </div>
-
-                </div>
-                <div class="form-group">
-                    <label>Admin MailId </label>
-                    <input type="text" class="form-control" formControlName="mailId">
-                    <div class="alert alert-danger"
-                        *ngIf="addAdminForm.get('mailId').hasError('required') && addAdminForm.get('mailId').dirty">
-                        Admin Mail Id is required
-                    </div>
-                    <div class="alert alert-danger"
-                        *ngIf="addAdminForm.get('mailId').hasError('email') && addAdminForm.get('mailId').dirty">
-                        Enter valid Email Id!
-                    </div>
-                </div>
-
-            </fieldset>
-
-            <br>
-
-            <td>
-                <button type="submit" class="btn btn-primary" [disabled]="addAdminForm.invalid">Add
-                    Admin</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                <button style="width:100px;" class="btn btn-dark" (click)="return()">Back</button>
-            </td>
-
-
-
-        </form>
-    </div>
-
+      <td>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="addAdminForm.invalid"
+        >
+          Add Admin</button
+        >&nbsp;&nbsp;&nbsp;&nbsp;
+        <button style="width: 100px" class="btn btn-dark" (click)="return()">
+          Back
+        </button>
+      </td>
+    </form>
+  </div>
 </body>

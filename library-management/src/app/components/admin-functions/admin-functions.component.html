@@ -1,7 +1,8 @@
 <ul>
-  <li><a>Library Management System</a>
+  <li><a>Library Management System</a></li>
+  <li style="margin-left: 100px">
+    <a (click)="viewAdminProfile()">My Profile&nbsp;&nbsp;&nbsp;&nbsp; </a>
   </li>
-  <li style="margin-left: 100px;"><a (click)="viewAdminProfile()">My Profile&nbsp;&nbsp;&nbsp;&nbsp; </a></li>
 
   <li><a (click)="viewUsers()">View Users&nbsp;&nbsp;&nbsp;&nbsp; </a></li>
 
@@ -11,9 +12,15 @@
 
   <li><a (click)="viewRequest()">View Request&nbsp;&nbsp;&nbsp;&nbsp; </a></li>
 
-  <li><a (click)="viewIssuedDetails()">View Issued Details&nbsp;&nbsp;&nbsp;&nbsp; </a></li>
+  <li>
+    <a (click)="viewIssuedDetails()"
+      >View Issued Details&nbsp;&nbsp;&nbsp;&nbsp;
+    </a>
+  </li>
 
-
-  <li><a (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-
+  <li>
+    <a (click)="logout()"
+      ><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a
+    >&nbsp;&nbsp;&nbsp;&nbsp;
+  </li>
 </ul>

@@ -8,9 +8,8 @@ describe('ViewAdminsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ViewAdminsComponent ]
-    })
-    .compileComponents();
+      declarations: [ViewAdminsComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

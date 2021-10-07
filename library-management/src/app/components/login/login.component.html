@@ -1,56 +1,85 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login</title>
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login</title>
-</head>
+  <body>
+    <div class="registration-form">
+      <main class="form-signin">
+        <form
+          #userForm="ngForm"
+          (ngSubmit)="onLogin(userForm.value)"
+          style="width: 450px"
+        >
+          <h1 class="h3 mb-3 fw-normal" align="center">Login</h1>
 
-<body>
+          <div class="form-floating">
+            <label for="floatingInput">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              id="floatingInput"
+              name="username"
+              #username="ngModel"
+              ngModel
+              placeholder="Enter Username"
+              required
+            />
+          </div>
+          <div
+            *ngIf="username.invalid && (username?.touched || username?.dirty)"
+          >
+            <small *ngIf="username?.errors?.required" class="text-danger"
+              >Username is required</small
+            >
+          </div>
 
-  <div class="registration-form">
-    <main class="form-signin">
-      <form #userForm="ngForm" (ngSubmit)='onLogin(userForm.value)' style="width:450px">
-
-        <h1 class="h3 mb-3 fw-normal" align="center">Login</h1>
-
-        <div class="form-floating">
-          <label for="floatingInput">Username</label>
-          <input type="text" class="form-control" id="floatingInput" name="username" #username="ngModel" ngModel
-            placeholder="Enter Username" required>
-
-        </div>
-        <div *ngIf="username.invalid &&(username?.touched||username?.dirty)">
-          <small *ngIf="username?.errors?.required" class="text-danger">Username is required</small>
-
-        </div>
-
-        <div class="form-floating">
-          <label for="floatingPassword">Password</label>
-          <input type="password" class="form-control" id="floatingPassword" name="password" minlength="5"
-            #password="ngModel" ngModel placeholder="Enter Password" required>
-
-        </div>
-        <div *ngIf="password.invalid &&(password?.touched||password?.dirty)">
-          <small *ngIf="password?.errors?.required" class="text-danger">Password is required</small>
-          <small *ngIf="password?.errors?.minlength" class="text-danger">Password must be atleast 5 letters</small>
-        </div>
-        <td>
-          <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button style="margin-left:70px;width:80px;" class="btn btn-primary"
-            type="submit" [disabled]="userForm.invalid">Login</button>
-          <br><br><br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="usersignup"> Sign Up?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="forgotpassword">Forgot Password?</a>&nbsp;&nbsp;
-        </td>
-
-      </form>
-    </main>
-
-
-  </div>
-  <br><br><br><br>
-</body>
-
+          <div class="form-floating">
+            <label for="floatingPassword">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="floatingPassword"
+              name="password"
+              minlength="5"
+              #password="ngModel"
+              ngModel
+              placeholder="Enter Password"
+              required
+            />
+          </div>
+          <div
+            *ngIf="password.invalid && (password?.touched || password?.dirty)"
+          >
+            <small *ngIf="password?.errors?.required" class="text-danger"
+              >Password is required</small
+            >
+            <small *ngIf="password?.errors?.minlength" class="text-danger"
+              >Password must be atleast 5 letters</small
+            >
+          </div>
+          <td>
+            <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button
+              style="margin-left: 70px; width: 80px"
+              class="btn btn-primary"
+              type="submit"
+              [disabled]="userForm.invalid"
+            >
+              Login
+            </button>
+            <br /><br /><br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="usersignup">
+              Sign Up?</a
+            >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="forgotpassword">Forgot Password?</a>&nbsp;&nbsp;
+          </td>
+        </form>
+      </main>
+    </div>
+    <br /><br /><br /><br />
+  </body>
 </html>

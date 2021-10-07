@@ -71,20 +71,22 @@ import { ViewMoreIssuedetailsComponent } from './components/view-more-issuedetai
     RenewBookComponent,
     LoginComponent,
     ViewMoreIssuedetailsComponent,
-
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, HttpClientModule, 
-    ReactiveFormsModule, FormsModule, 
-    FormsModule, BrowserAnimationsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    FormsModule,
+    BrowserAnimationsModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
-    MatInputModule, NgxPaginationModule
-
+    MatInputModule,
+    NgxPaginationModule,
   ],
   providers: [ToasterService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
