@@ -62,6 +62,7 @@
       [formGroup]="issueForm"
       (ngSubmit)="addIssueBook()"
     >
+    
       <div class="form-group">
         <mat-form-field>
           <label>Issue Date </label>
@@ -89,20 +90,16 @@
         </div>
       </div>
 
-      <div>
-        <h4>
-          <font color="red" style="font-size: large">{{ errorMessage }}</font>
-        </h4>
-        <br />
-      </div>
+      
 
       <br />
-
-      <button type="submit" class="btn btn-primary">Issue Book</button
+      
+      <button type="submit" class="btn btn-primary" [disabled]="issueForm.invalid">Issue Book</button
       >&nbsp;&nbsp;&nbsp;&nbsp;
 
       <button class="btn btn-dark" (click)="return()">Back</button>
+     
     </form>
   </div>
-  <br /><br />
+ 
 </body>

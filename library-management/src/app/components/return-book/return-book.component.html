@@ -27,7 +27,7 @@
       </fieldset>
       <br />
       <td>
-        <button type="submit" class="btn btn-primary">Return Book</button
+        <button type="submit" class="btn btn-primary" [disabled]="returnForm.invalid">Return Book</button
         >&nbsp;&nbsp;&nbsp;&nbsp;
         <button class="btn btn-dark" (click)="return()">Back</button><br />
       </td>

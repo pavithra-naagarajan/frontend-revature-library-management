@@ -36,7 +36,7 @@ export class UserSignupComponent implements OnInit {
         confirmPassword: ['', [Validators.required]],
         gender: ['', [Validators.required]],
         userRole: ['', [Validators.required]],
-        age: ['', [Validators.required, Validators.minLength(18)]],
+        age: ['', [Validators.required, Validators.min(18)]],
         mobileNumber: [
           '',
           [
