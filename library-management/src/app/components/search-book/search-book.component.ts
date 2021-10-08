@@ -35,23 +35,25 @@ export class SearchBookComponent implements OnInit {
   }
 
   refreshBooks() {
-    this.bookService.getAllBooks().subscribe((data: any[]) => {
-      this.books = data;
-      this.books = this.books.data;
+    this.bookService.getAllBooks().subscribe(
+      (data: any[]) => {
+        this.books = data;
+        this.books = this.books.data;
 
-      if (this.books == null) {
-        this.show = false;
-        this.errorMessage = 'No records found';
-      } else {
         this.show = true;
         this.errorMessage = '';
+
+        this.config = {
+          itemsPerPage: 3,
+          currentPage: 1,
+          totalItems: this.books.count,
+        };
+      },
+      (error) => {
+        this.show = false;
+        this.errorMessage = error.error.message;
       }
-      this.config = {
-        itemsPerPage: 3,
-        currentPage: 1,
-        totalItems: this.books.count,
-      };
-    });
+    );
   }
   pageChanged(event: any) {
     this.config.currentPage = event;
@@ -63,17 +65,20 @@ export class SearchBookComponent implements OnInit {
     } else {
       this.bookService
         .searchBook(this.searchBookForm.get('value')?.value)
-        .subscribe((data: any[]) => {
-          this.books = data;
-          this.books = this.books.data;
-          if (this.books == null) {
-            this.show = false;
-            this.errorMessage = 'No records found';
-          } else {
+        .subscribe(
+          (data: any[]) => {
+            this.books = data;
+            this.books = this.books.data;
+
             this.show = true;
             this.errorMessage = '';
+          },
+
+          (error) => {
+            this.show = false;
+            this.errorMessage = error.error.message;
           }
-        });
+        );
     }
   }
 

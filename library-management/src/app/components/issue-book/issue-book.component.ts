@@ -64,11 +64,9 @@ export class IssueBookComponent implements OnInit {
     });
 
     this.issueForm = this.formBuilder.group({
-      issueDate: ['', Validators.required]
-     
+      issueDate: ['', Validators.required],
     });
   }
- 
 
   addIssueBook() {
     this.issueBook.book = this.book;

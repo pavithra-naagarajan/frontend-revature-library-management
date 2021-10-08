@@ -304,8 +304,6 @@
             User Address is required
           </div>
         </div>
-
-       
       </fieldset>
       <div>
         <h4>
@@ -313,14 +311,18 @@
         </h4>
         <br />
       </div>
-      <br>
-<td>
-      &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary" [disabled]="signupForm.invalid">
-        Create account
-      </button>
-      &nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-dark" (click)="return()">
-        Back
-      </button>
+      <br />
+      <td>
+        &nbsp;&nbsp;&nbsp;&nbsp;<button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="signupForm.invalid"
+        >
+          Create account
+        </button>
+        &nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-dark" (click)="return()">
+          Back
+        </button>
       </td>
     </form>
   </div>

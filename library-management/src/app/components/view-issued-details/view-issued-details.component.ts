@@ -53,23 +53,25 @@ export class ViewIssuedDetailsComponent implements OnInit {
     Swal.fire('Success', 'Fine Amount updated Successfully!', 'success');
   }
   viewIssuedBooks() {
-    this.issueBookService.getAllIssuedDetails().subscribe((data: any[]) => {
-      this.show = true;
-      this.issuedDetails = data;
-      this.issuedDetails = this.issuedDetails.data;
+    this.issueBookService.getAllIssuedDetails().subscribe(
+      (data: any[]) => {
+        this.show = true;
+        this.issuedDetails = data;
+        this.issuedDetails = this.issuedDetails.data;
 
-      if (this.issuedDetails == null) {
-        this.show = false;
-        this.errorMessage = 'No records found';
-      } else {
         this.errorMessage = '';
+
+        this.config = {
+          itemsPerPage: 3,
+          currentPage: 1,
+          totalItems: this.issuedDetails.count,
+        };
+      },
+      (error) => {
+        this.show = false;
+        this.errorMessage = error.error.message;
       }
-      this.config = {
-        itemsPerPage: 3,
-        currentPage: 1,
-        totalItems: this.issuedDetails.count,
-      };
-    });
+    );
   }
 
   pageChanged(event: any) {
@@ -86,17 +88,19 @@ export class ViewIssuedDetailsComponent implements OnInit {
     } else {
       this.issueBookService
         .getIssueDetailsByDueDate(this.searchByDueDate.get('dueDate')?.value)
-        .subscribe((data: any[]) => {
-          this.issuedDetails = data;
-          this.issuedDetails = this.issuedDetails.data;
-          if (this.issuedDetails == null) {
-            this.show = false;
-            this.errorMessage = 'No records found';
-          } else {
+        .subscribe(
+          (data: any[]) => {
+            this.issuedDetails = data;
+            this.issuedDetails = this.issuedDetails.data;
+
             this.show = true;
             this.errorMessage = '';
+          },
+          (error) => {
+            this.show = false;
+            this.errorMessage = error.error.message;
           }
-        });
+        );
     }
   }
   getByIssueDate() {
@@ -107,17 +111,19 @@ export class ViewIssuedDetailsComponent implements OnInit {
         .getIssueDetailsByIssueDate(
           this.searchByIssueDate.get('issueDate')?.value
         )
-        .subscribe((data: any[]) => {
-          this.issuedDetails = data;
-          this.issuedDetails = this.issuedDetails.data;
-          if (this.issuedDetails == null) {
-            this.show = false;
-            this.errorMessage = 'No records found';
-          } else {
+        .subscribe(
+          (data: any[]) => {
+            this.issuedDetails = data;
+            this.issuedDetails = this.issuedDetails.data;
+
             this.show = true;
             this.errorMessage = '';
+          },
+          (error) => {
+            this.show = false;
+            this.errorMessage = error.error.message;
           }
-        });
+        );
     }
   }
 

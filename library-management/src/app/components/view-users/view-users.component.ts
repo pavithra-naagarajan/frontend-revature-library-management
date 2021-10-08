@@ -41,22 +41,25 @@ export class ViewUsersComponent implements OnInit {
   }
 
   viewUsers() {
-    this.userService.getAllUsers().subscribe((data: any[]) => {
-      this.users = data;
-      this.users = this.users.data;
-      this.show = true;
+    this.userService.getAllUsers().subscribe(
+      (data: any[]) => {
+        this.users = data;
+        this.users = this.users.data;
+        this.show = true;
 
-      this.config = {
-        itemsPerPage: 3,
-        currentPage: 1,
-        totalItems: this.users.count,
-      };
-      if (this.users == null) {
-        this.errorMessage = 'No records found';
-      } else {
+        this.config = {
+          itemsPerPage: 3,
+          currentPage: 1,
+          totalItems: this.users.count,
+        };
+
         this.errorMessage = '';
+      },
+      (error) => {
+        this.show = false;
+        this.errorMessage = error.error.message;
       }
-    });
+    );
   }
 
   pageChanged(event: any) {
@@ -96,17 +99,19 @@ export class ViewUsersComponent implements OnInit {
     } else {
       this.userService
         .searchUser(this.searchUserForm.get('value')?.value)
-        .subscribe((data: any[]) => {
-          this.users = data;
-          this.users = this.users.data;
+        .subscribe(
+          (data: any[]) => {
+            this.users = data;
+            this.users = this.users.data;
 
-          if (this.users == null) {
-            this.show = false;
-            this.errorMessage = 'No records found';
-          } else {
+            this.show = true;
             this.errorMessage = '';
+          },
+          (error) => {
+            this.show = false;
+            this.errorMessage = error.error.message;
           }
-        });
+        );
     }
   }
 

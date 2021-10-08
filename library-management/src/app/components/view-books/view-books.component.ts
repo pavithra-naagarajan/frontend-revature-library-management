@@ -46,22 +46,25 @@ export class ViewBooksComponent implements OnInit {
     this.router.navigate(['editbook', bookId]);
   }
   viewBooks() {
-    this.bookService.getAllBooks().subscribe((data: any) => {
-      this.show = true;
-      this.books = data;
-      this.books = this.books.data;
+    this.bookService.getAllBooks().subscribe(
+      (data: any) => {
+        this.show = true;
+        this.books = data;
+        this.books = this.books.data;
 
-      this.config = {
-        itemsPerPage: 4,
-        currentPage: 1,
-        totalItems: this.books.count,
-      };
-      if (this.books == null) {
-        this.errorMessage = 'No records found';
-      } else {
+        this.config = {
+          itemsPerPage: 4,
+          currentPage: 1,
+          totalItems: this.books.count,
+        };
+
         this.errorMessage = '';
+      },
+      (error) => {
+        this.show = false;
+        this.errorMessage = error.error.message;
       }
-    });
+    );
   }
   pageChanged(event: any) {
     this.config.currentPage = event;
@@ -99,16 +102,19 @@ export class ViewBooksComponent implements OnInit {
     } else {
       this.bookService
         .searchBook(this.searchBookForm.get('value')?.value)
-        .subscribe((data: any[]) => {
-          this.books = data;
-          this.books = this.books.data;
-          if (this.books == null) {
-            this.show = false;
-            this.errorMessage = 'No records found';
-          } else {
+        .subscribe(
+          (data: any[]) => {
+            this.books = data;
+            this.books = this.books.data;
+
+            this.show = true;
             this.errorMessage = '';
+          },
+          (error) => {
+            this.show = false;
+            this.errorMessage = error.error.message;
           }
-        });
+        );
     }
   }
 }

@@ -30,7 +30,7 @@ export class AddAdminComponent implements OnInit {
   addAdminDetails() {
     this.adminService
       .addAdmin(this.addAdminForm?.value)
-      .subscribe(response => {
+      .subscribe((response) => {
         this.success();
 
         this.addAdminForm.reset();
