@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+
 import { User } from 'src/app/models/user';
+import { ToasterService } from 'src/app/services/toaster.service';
 import { UserService } from 'src/app/services/user.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-forgot-password',
@@ -20,7 +21,8 @@ export class ForgotPasswordComponent implements OnInit {
   constructor(
     public router: Router,
     public userService: UserService,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    public toaster: ToasterService
   ) {}
   ngOnInit() {
     this.forgotPasswordForm = this.formBuilder.group({
@@ -31,25 +33,32 @@ export class ForgotPasswordComponent implements OnInit {
   forgotPassword() {
     this.userService
       .forgotPassword(this.forgotPasswordForm.get('mailId')?.value)
-      .subscribe((data) => {
+      .subscribe(async (data) => {
         this.user = data;
 
         this.passwordGeneration();
+        await delay(1000);
         this.router.navigate(['userlogin']);
       });
   }
   mailCheck(mailId: string) {
-    this.userService.getUserByMailId(mailId).subscribe((data) => {
-      this.user = data;
-      if (this.user == null) {
-        this.errorMessage = 'You are not a registered User!';
-      } else {
+    this.userService.getUserByMailId(mailId).subscribe(
+      (data) => {
+        this.user = data;
+
         this.errorMessage = '';
+      },
+      (error) => {
+        this.errorMessage = 'You are not a registered User!';
       }
-    });
+    );
   }
 
   passwordGeneration() {
-    Swal.fire('Success', 'Password generated succesfully!', 'success');
+    this.toaster.success('Password generated succesfully!');
   }
+}
+
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }

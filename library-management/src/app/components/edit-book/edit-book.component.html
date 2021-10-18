@@ -57,6 +57,7 @@
             Publisher Name is required
           </div>
         </div>
+
         <div class="form-group">
           <div class="col-md-13">
             <label for="genre">Genre </label><br />
@@ -64,10 +65,9 @@
               class="form-control form-control-lg"
               name="genre"
               formControlName="genre"
-              ngModel
               required
+              [(ngModel)]="book.genre"
             >
-              <option selected="selected">{{ this.book.genre }}</option>
               <option>Java</option>
               <option>Python</option>
               <option>Autobiography</option>

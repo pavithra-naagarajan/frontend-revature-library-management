@@ -48,34 +48,6 @@
             Last Name is required
           </div>
         </div>
-        <br />
-        <div class="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            class="form-control"
-            formControlName="password"
-          />
-          <div
-            class="alert alert-danger"
-            *ngIf="
-              editUserForm.get('password').hasError('required') &&
-              editUserForm.get('password').dirty
-            "
-          >
-            Password is required
-          </div>
-          <div
-            class="alert alert-danger"
-            *ngIf="
-              editUserForm.get('password').hasError('minlength') &&
-              editUserForm.get('password').dirty
-            "
-          >
-            Password should be minimum of 6 characters.
-          </div>
-        </div>
-        <br />
 
         <br />
         <div class="form-group">
@@ -124,7 +96,6 @@
           </div>
         </div>
 
-        <br />
         <div class="form-group">
           <label>Age </label>
           <input type="text" class="form-control" formControlName="age" />
@@ -149,22 +120,16 @@
         </div>
         <br />
         <div class="form-group">
-          <div class="col-md-13">
-            <label for="userRole">Role</label><br /><br />
-            <input
-              type="text"
-              class="form-control"
-              formControlName="userRole"
-            />
-            <div
-              class="alert alert-danger"
-              *ngIf="
-                editUserForm.get('userRole').hasError('required') &&
-                editUserForm.get('userRole').dirty
-              "
-            >
-              User Type is required
-            </div>
+          <label for="userRole">Role</label>
+          <input type="text" class="form-control" formControlName="userRole" />
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editUserForm.get('userRole').hasError('required') &&
+              editUserForm.get('userRole').dirty
+            "
+          >
+            User Type is required
           </div>
         </div>
         <br />

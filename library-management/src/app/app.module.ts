@@ -38,10 +38,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 import { MatNativeDateModule } from '@angular/material/core';
-
+import { MatIconModule } from '@angular/material/icon';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToasterService } from './services/toaster.service';
 import { ViewMoreIssuedetailsComponent } from './components/view-more-issuedetails/view-more-issuedetails.component';
+import { UserChangePasswordComponent } from './components/user-change-password/user-change-password.component';
+import { ChangeAdminPasswordComponent } from './components/change-admin-password/change-admin-password.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +73,8 @@ import { ViewMoreIssuedetailsComponent } from './components/view-more-issuedetai
     RenewBookComponent,
     LoginComponent,
     ViewMoreIssuedetailsComponent,
+    UserChangePasswordComponent,
+    ChangeAdminPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,6 +89,7 @@ import { ViewMoreIssuedetailsComponent } from './components/view-more-issuedetai
     MatFormFieldModule,
     MatInputModule,
     NgxPaginationModule,
+    MatIconModule,
   ],
   providers: [ToasterService],
   bootstrap: [AppComponent],

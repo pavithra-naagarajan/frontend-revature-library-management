@@ -45,31 +45,28 @@ export class UserViewIssueComponent implements OnInit {
         this.user = data;
         this.user = this.user.data;
         this.userId = this.user.userId;
-        this.issueBookService
-          .getIssueDetailsByUserId(this.userId)
-          .subscribe((data: any[]) => {
+        this.issueBookService.getIssueDetailsByUserId(this.userId).subscribe(
+          (data: any[]) => {
             this.issuedDetails = data;
             this.issuedDetails = this.issuedDetails.data;
 
-            if (this.issuedDetails == null) {
-              this.show = false;
-              this.errorMessage = 'No records found';
-            } else {
-              this.errorMessage = '';
-              this.show = true;
-            }
+            this.errorMessage = '';
+            this.show = true;
+
             this.config = {
               itemsPerPage: 3,
               currentPage: 1,
               totalItems: this.issuedDetails.count,
             };
-          });
+          },
+          (error) => {
+            this.errorMessage = 'No records found';
+          }
+        );
       });
     }
   }
-  return() {
-    this.router.navigate(['userfunctions']);
-  }
+
   generatePdf(issueId: number) {
     this.url = `http://localhost:9090/issuebook/generatepdf` + `/${issueId}`;
   }

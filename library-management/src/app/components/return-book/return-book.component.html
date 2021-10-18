@@ -17,8 +17,10 @@
               required
             >
               <option>---select</option>
-              <option *ngFor="let d of details" [value]="d.issueId">
-                {{ d.book.isbn }}-{{ d.book.bookName }}-{{ d.book.authorName }}
+              <option *ngFor="let issue of details" [value]="issue.issueId">
+                {{ issue.book.isbn }}-{{ issue.book.bookName }}-{{
+                  issue.book.authorName
+                }}
               </option>
             </select>
           </div>

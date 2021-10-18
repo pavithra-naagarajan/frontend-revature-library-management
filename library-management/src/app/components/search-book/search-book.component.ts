@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, ObservableInput } from 'rxjs';
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/services/book.service';
+import { ToasterService } from 'src/app/services/toaster.service';
 
 @Component({
   selector: 'app-search-book',
@@ -22,7 +23,8 @@ export class SearchBookComponent implements OnInit {
   constructor(
     public bookService: BookService,
     public formBuilder: FormBuilder,
-    public router: Router
+    public router: Router,
+    public toaster: ToasterService
   ) {}
 
   ngOnInit(): void {
@@ -85,7 +87,10 @@ export class SearchBookComponent implements OnInit {
   requestBook(bookId: number) {
     this.router.navigate(['requestbook', bookId]);
   }
-  return() {
-    this.router.navigate(['userfunctions']);
+  issueNotification() {
+    this.toaster.error('This book is already Issued!');
+  }
+  requestNotification() {
+    this.toaster.error('This book is already Requested!');
   }
 }

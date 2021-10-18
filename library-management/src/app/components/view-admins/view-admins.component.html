@@ -19,22 +19,22 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let a of admins | paginate: config">
+            <tr *ngFor="let admin of admins | paginate: config">
               <td>
-                {{ a.adminName }}
+                {{ admin.adminName }}
               </td>
 
               <td>
-                {{ a.adminRole }}
+                {{ admin.adminRole }}
               </td>
               <td>
-                {{ a.mailId }}
+                {{ admin.mailId }}
               </td>
 
               <td>
                 <button
                   class="btn btn-primary"
-                  (click)="deleteAlertConfirmation(a.adminId)"
+                  (click)="deleteAlertConfirmation(admin.adminId)"
                 >
                   Delete
                 </button>
@@ -48,8 +48,5 @@
       </div>
     </div>
     <br />
-    <button style="width: 100px" class="btn btn-dark" (click)="return()">
-      Back
-    </button>
   </div>
 </body>

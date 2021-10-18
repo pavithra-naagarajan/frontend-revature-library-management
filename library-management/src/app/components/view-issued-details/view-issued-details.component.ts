@@ -126,8 +126,4 @@ export class ViewIssuedDetailsComponent implements OnInit {
         );
     }
   }
-
-  return() {
-    this.router.navigate(['adminfunctions']);
-  }
 }

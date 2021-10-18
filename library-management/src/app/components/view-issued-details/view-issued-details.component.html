@@ -75,23 +75,23 @@
         </thead>
 
         <tbody *ngIf="show">
-          <tr *ngFor="let br of issuedDetails | paginate: config">
-            <td>{{ br.user.firstName }}</td>
-            <td>{{ br.user.lastName }}</td>
+          <tr *ngFor="let detail of issuedDetails | paginate: config">
+            <td>{{ detail.user.firstName }}</td>
+            <td>{{ detail.user.lastName }}</td>
 
-            <td>{{ br.user.userRole }}</td>
+            <td>{{ detail.user.userRole }}</td>
 
-            <td>{{ br.book.isbn }}</td>
-            <td>{{ br.book.bookName }}</td>
-            <td>{{ br.book.authorName }}</td>
-            <td>{{ br.issueDate }}</td>
-            <td>{{ br.dueDate }}</td>
-            <td>{{ br.fineAmount | currency: "INR" }}</td>
+            <td>{{ detail.book.isbn }}</td>
+            <td>{{ detail.book.bookName }}</td>
+            <td>{{ detail.book.authorName }}</td>
+            <td>{{ detail.issueDate }}</td>
+            <td>{{ detail.dueDate }}</td>
+            <td>{{ detail.fineAmount | currency: "INR" }}</td>
 
             <td>
               <button
                 class="btn btn-link"
-                (click)="viewMoreIssuedDetails(br.issueId)"
+                (click)="viewMoreIssuedDetails(detail.issueId)"
               >
                 View More
               </button>
@@ -107,7 +107,4 @@
       </tr>
     </div>
   </div>
-  <button style="width: 80px" class="btn btn-dark" (click)="return()">
-    Back
-  </button>
 </body>

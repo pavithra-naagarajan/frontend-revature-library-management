@@ -67,7 +67,4 @@ export class ViewRequestComponent implements OnInit {
       requestId,
     ]);
   }
-  return() {
-    this.router.navigate(['adminfunctions']);
-  }
 }

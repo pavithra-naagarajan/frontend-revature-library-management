@@ -62,6 +62,16 @@ export class UserService {
     );
   }
 
+  // http://localhost:9090/user/changepassword/pavithra.n@revature.com/560429/pavi123
+  //change user password
+  changeUserPassword(mailId: string, password: string, newPassword: string) {
+    console.log('service');
+    return this.http.put(
+      `${URL}/changepassword/${mailId}/${password}/${newPassword}`,
+      this.httpOptions
+    );
+  }
+
   //get all users
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`http://localhost:9090/user`);

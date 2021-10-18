@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddAdminComponent } from './components/add-admin/add-admin.component';
 import { AddBookComponent } from './components/add-book/add-book.component';
 import { AdminFunctionsComponent } from './components/admin-functions/admin-functions.component';
+import { ChangeAdminPasswordComponent } from './components/change-admin-password/change-admin-password.component';
 import { EditAdminComponent } from './components/edit-admin/edit-admin.component';
 import { EditBookComponent } from './components/edit-book/edit-book.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
@@ -14,6 +15,7 @@ import { RequestBookComponent } from './components/request-book/request-book.com
 import { ReturnBookComponent } from './components/return-book/return-book.component';
 import { SearchBookComponent } from './components/search-book/search-book.component';
 import { SuperadminDashboardComponent } from './components/superadmin-dashboard/superadmin-dashboard.component';
+import { UserChangePasswordComponent } from './components/user-change-password/user-change-password.component';
 import { UserFunctionsComponent } from './components/user-functions/user-functions.component';
 import { UserSignupComponent } from './components/user-signup/user-signup.component';
 import { UserViewIssueComponent } from './components/user-view-issue/user-view-issue.component';
@@ -31,6 +33,9 @@ const routes: Routes = [
   { path: 'adminfunctions', component: AdminFunctionsComponent },
 
   { path: 'viewusers', component: ViewUsersComponent },
+  { path: 'userchangepassword', component: UserChangePasswordComponent },
+  { path: 'changeadminpassword', component: ChangeAdminPasswordComponent },
+
   { path: 'viewbooks', component: ViewBooksComponent },
   { path: 'addbooks', component: AddBookComponent },
   { path: 'viewrequest', component: ViewRequestComponent },

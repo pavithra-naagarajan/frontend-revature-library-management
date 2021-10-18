@@ -21,7 +21,7 @@ export class ViewBooksComponent implements OnInit {
   textValue: any = null;
   errorMessage?: string;
   searchBookForm?: FormGroup;
-
+  count?: number;
   adminId?: number;
 
   config: any;
@@ -51,9 +51,9 @@ export class ViewBooksComponent implements OnInit {
         this.show = true;
         this.books = data;
         this.books = this.books.data;
-
+        this.count = this.books.length;
         this.config = {
-          itemsPerPage: 4,
+          itemsPerPage: 3,
           currentPage: 1,
           totalItems: this.books.count,
         };
@@ -70,9 +70,6 @@ export class ViewBooksComponent implements OnInit {
     this.config.currentPage = event;
   }
 
-  return() {
-    this.router.navigate(['adminfunctions']);
-  }
   deleteBook(bookId: number) {
     this.bookService.deleteBook(bookId).subscribe((res: any) => {});
   }

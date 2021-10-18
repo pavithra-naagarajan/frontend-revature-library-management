@@ -51,45 +51,49 @@
           </tr>
         </thead>
         <tbody *ngIf="show">
-          <tr *ngFor="let b of books | paginate: config">
+          <tr *ngFor="let book of books | paginate: config">
             <td>
-              {{ b.isbn }}
+              {{ book.isbn }}
             </td>
 
             <td>
-              {{ b.bookName }}
+              {{ book.bookName }}
             </td>
             <td>
-              {{ b.authorName }}
+              {{ book.authorName }}
             </td>
             <td>
-              {{ b.publisher }}
+              {{ book.publisher }}
             </td>
             <td>
-              {{ b.genre }}
+              {{ book.genre }}
             </td>
             <td>
-              {{ b.volume }}
+              {{ book.volume }}
             </td>
             <td>
-              {{ b.edition }}
+              {{ book.edition }}
             </td>
             <td>
-              {{ b.status }}
+              {{ book.status }}
             </td>
 
-            <td *ngIf="b.status == 'Available'">
-              <button class="btn btn-primary" (click)="requestBook(b.bookId)">
+            <td *ngIf="book.status == 'Available'">
+              <button class="btn btn-link" (click)="requestBook(book.bookId)">
                 Send Request
               </button>
             </td>
 
-            <td *ngIf="b.status == 'Issued'">
-              <button class="btn btn-warning" [disabled]>Issued</button>
+            <td *ngIf="book.status == 'Issued'">
+              <button class="btn btn-warning" (click)="issueNotification()">
+                Issued
+              </button>
             </td>
 
-            <td *ngIf="b.status == 'Requested'">
-              <button class="btn btn-secondary" [disabled]>Requested</button>
+            <td *ngIf="book.status == 'Requested'">
+              <button class="btn btn-secondary" (click)="requestNotification()">
+                Requested
+              </button>
             </td>
             <br /><br />
           </tr>
@@ -103,7 +107,6 @@
           (pageChange)="pageChanged($event)"
         ></pagination-controls>
       </tr>
-      <button class="btn btn-dark" (click)="return()">Back</button>
     </div>
   </div>
 </body>

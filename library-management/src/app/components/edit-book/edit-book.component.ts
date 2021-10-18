@@ -17,6 +17,7 @@ export class EditBookComponent implements OnInit {
   book: Observable<Book> | any;
   bookId?: number;
   adminId?: number;
+
   constructor(
     public router: Router,
     public bookService: BookService,

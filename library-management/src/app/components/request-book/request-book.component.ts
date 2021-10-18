@@ -66,12 +66,12 @@ export class RequestBookComponent implements OnInit {
       .subscribe(async (response) => {
         this.success();
         await delay(1000);
-        this.router.navigate(['userfunctions']);
+        this.router.navigate(['searchbooks']);
       });
   }
 
   return() {
-    this.router.navigate(['userfunctions']);
+    this.router.navigate(['searchbooks']);
   }
 
   success() {

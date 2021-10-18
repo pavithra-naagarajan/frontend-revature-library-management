@@ -55,7 +55,7 @@
             Publisher Name is required
           </div>
         </div>
-        <div class="form-group">
+        <!--  <div class="form-group">
           <div class="col-md-13">
             <label for="genre">Genre </label><br />
             <select
@@ -91,8 +91,33 @@
             </div>
           </div>
         </div>
-        <br />
+        <br /> -->
 
+        <div class="form-group">
+          <div class="col-md-13">
+            <label for="genre">Genre </label><br />
+            <select
+              class="form-control form-control-lg"
+              name="genre"
+              formControlName="genre"
+              ngModel
+              required
+            >
+              <option *ngFor="let bookGenre of genreValues">
+                {{ bookGenre[1] }}
+              </option>
+            </select>
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                addBookForm.get('genre').hasError('required') &&
+                addBookForm.get('genre').dirty
+              "
+            >
+              Book Genre is required
+            </div>
+          </div>
+        </div>
         <div class="form-group">
           <label>Volume </label>
           <input type="text" class="form-control" formControlName="volume" />

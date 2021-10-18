@@ -14,8 +14,10 @@ import { ToasterService } from 'src/app/services/toaster.service';
 })
 export class EditAdminComponent implements OnInit {
   editAdminForm: FormGroup;
+  updatePasswordForm: FormGroup;
   admin: Observable<Admin> | any;
-  adminId?: number;
+  mailId?: string;
+  showpassword?: boolean;
   constructor(
     public router: Router,
     public adminService: AdminService,
@@ -25,16 +27,16 @@ export class EditAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.admin = new Admin();
-    this.adminId = localStorage.getItem('adminId') as any;
+    this.mailId = localStorage.getItem('adminEmail') as any;
 
-    this.adminService.getAdminById(this.adminId).subscribe((data) => {
+    this.adminService.getAdminByMailId(this.mailId).subscribe((data) => {
       this.admin = data;
       this.admin = this.admin.data;
       this.editAdminForm = this.formBuilder.group({
         adminId: [this.admin.adminId],
         adminName: [this.admin.adminName, [Validators.required]],
+        adminPassword: [this.admin.adminPassword],
 
-        adminPassword: [this.admin.adminPassword, [Validators.required]],
         adminRole: [this.admin.adminRole],
         updatedOn: [this.admin.updatedOn],
         createdOn: [this.admin.createdOn],
@@ -43,6 +45,13 @@ export class EditAdminComponent implements OnInit {
     });
   }
 
+  updatePassword() {
+    this.showpassword = true;
+    console.log('show');
+  }
+  updateAdminPassword() {
+    console.log('password updated');
+  }
   updateAdminDetails() {
     this.adminService
       .updateAdmin(this.editAdminForm?.value)

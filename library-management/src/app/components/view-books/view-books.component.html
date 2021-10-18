@@ -25,7 +25,9 @@
     </h6>
   </form>
   <div>
-    <br /><br />
+    <br />
+    <h5>Total entries of the table: {{ count }}</h5>
+    <br />
     <div class="reglist">
       <div>
         <table class="table table-striped">
@@ -44,52 +46,52 @@
             </tr>
           </thead>
           <tbody *ngIf="show">
-            <tr *ngFor="let b of books | paginate: config">
+            <tr *ngFor="let book of books | paginate: config">
               <td>
-                {{ b.isbn }}
+                {{ book.isbn }}
               </td>
 
               <td>
-                {{ b.bookName }}
+                {{ book.bookName }}
               </td>
               <td>
-                {{ b.authorName }}
+                {{ book.authorName }}
               </td>
               <td>
-                {{ b.publisher }}
+                {{ book.publisher }}
               </td>
               <td>
-                {{ b.genre }}
+                {{ book.genre }}
               </td>
               <td>
-                {{ b.volume }}
+                {{ book.volume }}
               </td>
               <td>
-                {{ b.edition }}
+                {{ book.edition }}
               </td>
               <td>
-                {{ b.status }}
+                {{ book.status }}
               </td>
-              <td *ngIf="b.status == 'Requested'">
+              <td *ngIf="book.status == 'Requested'">
                 <button class="btn btn-secondary" [disabled]="true">
                   Delete
                 </button>
               </td>
-              <td *ngIf="b.status == 'Issued'">
+              <td *ngIf="book.status == 'Issued'">
                 <button class="btn btn-secondary" [disabled]="true">
                   Delete
                 </button>
               </td>
-              <td *ngIf="b.status == 'Available'">
+              <td *ngIf="book.status == 'Available'">
                 <button
                   class="btn btn-primary"
-                  (click)="deleteAlertConfirmation(b.bookId)"
+                  (click)="deleteAlertConfirmation(book.bookId)"
                 >
                   Delete
                 </button>
               </td>
               <td>
-                <button class="btn btn-dark" (click)="editBook(b.bookId)">
+                <button class="btn btn-dark" (click)="editBook(book.bookId)">
                   Edit
                 </button>
               </td>
@@ -109,8 +111,5 @@
       </div>
     </div>
     <br />
-    <button style="width: 80px" class="btn btn-dark" (click)="return()">
-      Back
-    </button>
   </div>
 </body>

@@ -33,9 +33,11 @@ export class AdminFunctionsComponent implements OnInit {
   viewIssuedDetails() {
     this.router.navigate(['viewissuedbooks']);
   }
-
+  changeAdminPassword() {
+    this.router.navigate(['changeadminpassword']);
+  }
   logout() {
-    localStorage.removeItem('adminId');
+    localStorage.removeItem('adminEmail');
 
     this.router.navigate(['login']);
   }

@@ -38,6 +38,9 @@ export class UserFunctionsComponent implements OnInit {
   renewBook() {
     this.router.navigate(['renewbook']);
   }
+  userChangePassword() {
+    this.router.navigate(['userchangepassword']);
+  }
   logout() {
     localStorage.removeItem('userEmail');
     this.router.navigate(['login']);

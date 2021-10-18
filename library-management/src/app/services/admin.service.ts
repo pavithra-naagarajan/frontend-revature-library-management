@@ -27,8 +27,20 @@ export class AdminService {
   }
 
   //adminlogin
-  adminLogin(adminId: number, adminPassword: string): Observable<Admin> {
-    return this.http.get<Admin>(`${URL}/login/${adminId}/${adminPassword}`);
+  adminLogin(mailId: string, adminPassword: string): Observable<Admin> {
+    return this.http.get<Admin>(`${URL}/login/${mailId}/${adminPassword}`);
+  }
+  //change admin password
+  changeAdminPassword(mailId: string, password: string, newPassword: string) {
+    console.log('service');
+    return this.http.put(
+      `${URL}/changepassword/${mailId}/${password}/${newPassword}`,
+      this.httpOptions
+    );
+  }
+
+  getAdminByMailId(mailId: string): Observable<Admin> {
+    return this.http.get<Admin>(`${URL}/mail/${mailId}`);
   }
 
   //delete a admin

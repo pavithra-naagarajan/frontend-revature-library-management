@@ -26,7 +26,9 @@
   </form>
 
   <div>
-    <br /><br />
+    <br />
+    <h5>Total entries of the table: {{ count }}</h5>
+    <br />
     <div class="reglist">
       <div>
         <table class="table table-striped">
@@ -43,34 +45,34 @@
             </tr>
           </thead>
           <tbody *ngIf="show">
-            <tr *ngFor="let u of users | paginate: config">
+            <tr *ngFor="let user of users | paginate: config">
               <td>
-                {{ u.firstName }}
+                {{ user.firstName }}
               </td>
 
               <td>
-                {{ u.lastName }}
+                {{ user.lastName }}
               </td>
               <td>
-                {{ u.mailId }}
+                {{ user.mailId }}
               </td>
               <td>
-                {{ u.userRole }}
+                {{ user.userRole }}
               </td>
               <td>
-                {{ u.mobileNumber }}
+                {{ user.mobileNumber }}
               </td>
 
-              <td *ngIf="u.status == 'Exist'">
+              <td *ngIf="user.status == 'Exist'">
                 <button
                   class="btn btn-primary"
-                  (click)="deleteAlertConfirmation(u.userId)"
+                  (click)="deleteAlertConfirmation(user.userId)"
                 >
                   Delete
                 </button>
               </td>
 
-              <td *ngIf="u.status == 'Active'">
+              <td *ngIf="user.status == 'Active'">
                 <button class="btn btn-secondary" (click)="notification()">
                   Delete
                 </button>
@@ -91,9 +93,5 @@
       </div>
     </div>
     <br />
-
-    <button style="width: 80px" class="btn btn-dark" (click)="return()">
-      Back
-    </button>
   </div>
 </body>

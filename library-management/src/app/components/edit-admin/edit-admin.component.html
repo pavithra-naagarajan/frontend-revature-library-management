@@ -7,7 +7,6 @@
       novalidate
       style="margin-left: 430px; width: 420px"
       [formGroup]="editAdminForm"
-      (ngSubmit)="updateAdminDetails()"
     >
       <br />
       <fieldset>
@@ -24,23 +23,7 @@
             Admin Name is required
           </div>
         </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            class="form-control"
-            formControlName="adminPassword"
-          />
-          <div
-            class="alert alert-danger"
-            *ngIf="
-              editAdminForm.get('adminPassword').hasError('required') &&
-              editAdminForm.get('adminPassword').dirty
-            "
-          >
-            Password is required
-          </div>
-        </div>
+
         <div class="form-group">
           <label>Mail Id</label>
           <input type="text" class="form-control" formControlName="mailId" />
@@ -63,16 +46,13 @@
             Enter Valid Email Id!
           </div>
         </div>
-
-        <br />
       </fieldset>
 
-      <br />
-
+      <br /><br />
       <button
-        type="submit"
         class="btn btn-primary"
         [disabled]="editAdminForm.invalid"
+        (click)="updateAdminDetails()"
       >
         Update</button
       >&nbsp;&nbsp;&nbsp;&nbsp;

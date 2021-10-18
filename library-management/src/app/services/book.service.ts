@@ -60,4 +60,8 @@ export class BookService {
   getAllBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(`http://localhost:9090/book`);
   }
+
+  getAllBookGenre(): Observable<any> {
+    return this.http.get(`${URL}/getbookgenre`);
+  }
 }

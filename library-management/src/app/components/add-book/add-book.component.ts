@@ -15,7 +15,7 @@ export class AddBookComponent implements OnInit {
 
   errorMessage: string;
   adminId?: number;
-
+  genreValues: [number, string][] = [];
   constructor(
     public bookService: BookService,
     public formBuilder: FormBuilder,
@@ -37,6 +37,8 @@ export class AddBookComponent implements OnInit {
       volume: ['', Validators.required],
       edition: ['', Validators.required],
     });
+
+    this.getGenreData();
   }
 
   addBookDetails() {
@@ -55,5 +57,12 @@ export class AddBookComponent implements OnInit {
 
   success() {
     this.toasterService.success('Book Addded successfully!');
+  }
+
+  getGenreData() {
+    this.bookService.getAllBookGenre().subscribe((data) => {
+      this.genreValues = data.data;
+      console.log(this.genreValues);
+    });
   }
 }

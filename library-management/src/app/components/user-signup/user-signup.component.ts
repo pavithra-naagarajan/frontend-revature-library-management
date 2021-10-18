@@ -36,7 +36,7 @@ export class UserSignupComponent implements OnInit {
         confirmPassword: ['', [Validators.required]],
         gender: ['', [Validators.required]],
         userRole: ['', [Validators.required]],
-        age: ['', [Validators.required, Validators.min(18)]],
+        age: ['', [Validators.required, Validators.min(15)]],
         mobileNumber: [
           '',
           [
@@ -55,25 +55,29 @@ export class UserSignupComponent implements OnInit {
   }
 
   mailCheck(mailId: string) {
-    this.userService.getUserByMailId(mailId).subscribe((data) => {
-      this.mailUser = data;
-      if (this.mailUser == null) {
-        this.errorMessage = '';
-      } else {
+    this.userService.getUserByMailId(mailId).subscribe(
+      (data) => {
+        this.mailUser = data;
+
         this.errorMessage = '*** MailId already exists!';
+      },
+      (error) => {
+        this.errorMessage = '';
       }
-    });
+    );
   }
 
   mobileCheck(mobileNumber: string) {
-    this.userService.getUserByMobileNumber(mobileNumber).subscribe((data) => {
-      this.mobileUser = data;
-      if (this.mobileUser == null) {
-        this.errorMessage = '';
-      } else {
+    this.userService.getUserByMobileNumber(mobileNumber).subscribe(
+      (data) => {
+        this.mobileUser = data;
+
         this.errorMessage = '*** Mobile Number already exists!';
+      },
+      (error) => {
+        this.errorMessage = '';
       }
-    });
+    );
   }
 
   userSignUp() {

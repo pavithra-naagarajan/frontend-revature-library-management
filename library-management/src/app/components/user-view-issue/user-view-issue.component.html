@@ -24,20 +24,23 @@
         </thead>
 
         <tbody *ngIf="show">
-          <tr *ngFor="let br of issuedDetails | paginate: config">
-            <td>{{ br.issueDate }}</td>
-            <td>{{ br.dueDate }}</td>
-            <td>{{ br.fineAmount | currency: "INR" }}</td>
+          <tr *ngFor="let detail of issuedDetails | paginate: config">
+            <td>{{ detail.issueDate }}</td>
+            <td>{{ detail.dueDate }}</td>
+            <td>{{ detail.fineAmount | currency: "INR" }}</td>
 
-            <td>{{ br.user.firstName }}</td>
-            <td>{{ br.user.lastName }}</td>
+            <td>{{ detail.user.firstName }}</td>
+            <td>{{ detail.user.lastName }}</td>
 
-            <td>{{ br.book.isbn }}</td>
-            <td>{{ br.book.bookName }}</td>
-            <td>{{ br.book.authorName }}</td>
-            <td>{{ br.book.genre }}</td>
+            <td>{{ detail.book.isbn }}</td>
+            <td>{{ detail.book.bookName }}</td>
+            <td>{{ detail.book.authorName }}</td>
+            <td>{{ detail.book.genre }}</td>
             <td>
-              <button class="btn btn-link" (click)="generatePdf(br.issueId)">
+              <button
+                class="btn btn-link"
+                (click)="generatePdf(detail.issueId)"
+              >
                 <a href="{{ url }}">Fine Receipt</a>
               </button>
             </td>
@@ -45,7 +48,9 @@
         </tbody>
       </table>
       <tr>
-        <h3>&nbsp;&nbsp;&nbsp;{{ errorMessage }}</h3>
+        <h3 style="margin-left: 500px">
+          {{ errorMessage }}
+        </h3>
       </tr>
       <tr *ngIf="show">
         <pagination-controls
@@ -54,6 +59,4 @@
       </tr>
     </div>
   </div>
-
-  <button class="btn btn-dark" (click)="return()">Back</button>
 </body>

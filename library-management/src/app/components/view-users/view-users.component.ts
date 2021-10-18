@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
+import { ToasterService } from 'src/app/services/toaster.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -20,14 +21,15 @@ export class ViewUsersComponent implements OnInit {
   searchBy: String = 'default';
   textValue: any = null;
   errorMessage?: string;
-
+  count?: number;
   searchUserForm?: FormGroup;
   adminId?: number;
   constructor(
     public router: Router,
     public userService: UserService,
     public formBuilder: FormBuilder,
-    public activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute,
+    public toaster: ToasterService
   ) {}
 
   ngOnInit(): void {
@@ -46,7 +48,8 @@ export class ViewUsersComponent implements OnInit {
         this.users = data;
         this.users = this.users.data;
         this.show = true;
-
+        this.count = this.users.length;
+        console.log(this.count);
         this.config = {
           itemsPerPage: 3,
           currentPage: 1,
@@ -66,9 +69,6 @@ export class ViewUsersComponent implements OnInit {
     this.config.currentPage = event;
   }
 
-  return() {
-    this.router.navigate(['adminfunctions']);
-  }
   deleteUser(userId: number) {
     this.userService.deleteUser(userId).subscribe((res: any) => {});
   }
@@ -116,6 +116,6 @@ export class ViewUsersComponent implements OnInit {
   }
 
   notification() {
-    Swal.fire('WRONG', 'You cannot delete Active user!', 'error');
+    this.toaster.error('You cannot delete Active user!');
   }
 }

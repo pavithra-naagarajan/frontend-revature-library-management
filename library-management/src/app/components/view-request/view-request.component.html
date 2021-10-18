@@ -24,26 +24,26 @@
         </thead>
 
         <tbody *ngIf="show">
-          <tr *ngFor="let br of bookRequests | paginate: config">
-            <td>{{ br.user.firstName }}</td>
-            <td>{{ br.user.lastName }}</td>
+          <tr *ngFor="let detail of bookRequests | paginate: config">
+            <td>{{ detail.user.firstName }}</td>
+            <td>{{ detail.user.lastName }}</td>
 
-            <td>{{ br.user.userRole }}</td>
+            <td>{{ detail.user.userRole }}</td>
 
-            <td>{{ br.book.isbn }}</td>
-            <td>{{ br.book.bookName }}</td>
-            <td>{{ br.book.authorName }}</td>
+            <td>{{ detail.book.isbn }}</td>
+            <td>{{ detail.book.bookName }}</td>
+            <td>{{ detail.book.authorName }}</td>
 
-            <td>{{ br.numberOfDays }}</td>
+            <td>{{ detail.numberOfDays }}</td>
             <td>
               <button
                 class="btn btn-primary"
                 (click)="
                   approveRequest(
-                    br.user.userId,
-                    br.book.bookId,
-                    br.numberOfDays,
-                    br.requestId
+                    detail.user.userId,
+                    detail.book.bookId,
+                    detail.numberOfDays,
+                    detail.requestId
                   )
                 "
               >
@@ -61,7 +61,4 @@
       </tr>
     </div>
   </div>
-  <button style="width: 80px" class="btn btn-dark" (click)="return()">
-    Back
-  </button>
 </body>

@@ -41,9 +41,6 @@ export class ViewAdminsComponent implements OnInit {
     });
   }
 
-  return() {
-    this.router.navigate(['superadmin']);
-  }
   deleteAdmin(adminId: number) {
     this.adminService.deleteAdmin(adminId).subscribe((res: any) => {});
   }
