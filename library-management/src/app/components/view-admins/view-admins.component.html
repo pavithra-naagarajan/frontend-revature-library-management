@@ -1,0 +1,52 @@
+<app-superadmin-dashboard></app-superadmin-dashboard>
+
+<body>
+  <div *ngIf="show">
+    <br /><br />
+    <h2 align="center">Admin Details</h2>
+    <br /><br />
+    <div class="reglist">
+      <div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Admin Name</th>
+              <th>Admin Role</th>
+
+              <th>Mail Id</th>
+
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let admin of admins | paginate: config">
+              <td>
+                {{ admin.adminName }}
+              </td>
+
+              <td>
+                {{ admin.adminRole }}
+              </td>
+              <td>
+                {{ admin.mailId }}
+              </td>
+
+              <td>
+                <button
+                  class="btn btn-primary"
+                  (click)="deleteAlertConfirmation(admin.adminId)"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination-controls
+          (pageChange)="pageChanged($event)"
+        ></pagination-controls>
+      </div>
+    </div>
+    <br />
+  </div>
+</body>

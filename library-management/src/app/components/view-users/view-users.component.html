@@ -1,0 +1,97 @@
+<app-admin-functions></app-admin-functions>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+
+<body>
+  <br />
+  <h2 align="center">Users Details</h2>
+  <form novalidate [formGroup]="searchUserForm">
+    <h6>
+      <i class="fa fa-search icon"></i>Search User
+      <input
+        type="text"
+        placeholder="Enter User Details"
+        formControlName="value"
+        [(ngModel)]="textValue"
+        (keyup)="searchUser()"
+      />
+      <input
+        [(ngModel)]="value"
+        [ngModelOptions]="{ standalone: true }"
+        [hidden]="true"
+      />
+    </h6>
+  </form>
+
+  <div>
+    <br />
+    <h5>Total entries of the table: {{ count }}</h5>
+    <br />
+    <div class="reglist">
+      <div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+
+              <th>Mail Id</th>
+              <th>User Role</th>
+              <th>Mobile Number</th>
+
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="show">
+            <tr *ngFor="let user of users | paginate: config">
+              <td>
+                {{ user.firstName }}
+              </td>
+
+              <td>
+                {{ user.lastName }}
+              </td>
+              <td>
+                {{ user.mailId }}
+              </td>
+              <td>
+                {{ user.userRole }}
+              </td>
+              <td>
+                {{ user.mobileNumber }}
+              </td>
+
+              <td *ngIf="user.status == 'Exist'">
+                <button
+                  class="btn btn-primary"
+                  (click)="deleteAlertConfirmation(user.userId)"
+                >
+                  Delete
+                </button>
+              </td>
+
+              <td *ngIf="user.status == 'Active'">
+                <button class="btn btn-secondary" (click)="notification()">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <tr>
+          <h3 style="margin-left: 500px">
+            &nbsp;&nbsp;&nbsp;{{ errorMessage }}
+          </h3>
+        </tr>
+        <tr *ngIf="show">
+          <pagination-controls
+            (pageChange)="pageChanged($event)"
+          ></pagination-controls>
+        </tr>
+      </div>
+    </div>
+    <br />
+  </div>
+</body>

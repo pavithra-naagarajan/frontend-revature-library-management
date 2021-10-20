@@ -1,0 +1,105 @@
+<app-admin-functions></app-admin-functions>
+
+<body>
+  <div class="registration-form">
+    <h6>
+      <table align="center">
+        <tr>
+          First Name
+          <td>:</td>
+          <td>{{ user.firstName }}</td>
+        </tr>
+        <tr>
+          Last Name
+          <td>:</td>
+          <td>{{ user.lastName }}</td>
+        </tr>
+        <tr>
+          User Role
+          <td>:</td>
+          <td>{{ user.userRole }}</td>
+        </tr>
+        <tr>
+          ISBN
+          <td>:</td>
+          <td>{{ book.isbn }}</td>
+        </tr>
+        <tr>
+          Book Name
+          <td>:</td>
+          <td>{{ book.bookName }}</td>
+        </tr>
+        <tr>
+          Author Name
+          <td>:</td>
+          <td>{{ book.authorName }}</td>
+        </tr>
+        <tr>
+          Book Genre
+          <td>:</td>
+          <td>{{ book.genre }}</td>
+        </tr>
+
+        <tr>
+          Publisher
+          <td>:</td>
+          <td>{{ book.publisher }}</td>
+        </tr>
+
+        <tr>
+          Number Of Days
+          <td>:</td>
+          <td>{{ this.numberOfDays }} days</td>
+        </tr>
+      </table>
+    </h6>
+  </div>
+
+  <div class="registration-form">
+    <form
+      novalidate
+      style="margin-left: 420px; width: 450px"
+      [formGroup]="issueForm"
+      (ngSubmit)="addIssueBook()"
+    >
+      <div class="form-group">
+        <mat-form-field>
+          <label>Issue Date </label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            [min]="minDate"
+            class="form-control"
+            formControlName="issueDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            issueForm.get('issueDate').hasError('required') &&
+            issueForm.get('issueDate').dirty
+          "
+        >
+          Issue Date is required
+        </div>
+      </div>
+
+      <br />
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="issueForm.invalid"
+      >
+        Issue Book</button
+      >&nbsp;&nbsp;&nbsp;&nbsp;
+
+      <button class="btn btn-dark" (click)="return()">Back</button>
+    </form>
+  </div>
+</body>

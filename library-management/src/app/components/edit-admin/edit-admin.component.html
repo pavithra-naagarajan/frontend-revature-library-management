@@ -1,0 +1,65 @@
+<app-admin-functions></app-admin-functions>
+
+<body>
+  <div class="registration-form">
+    <h3 align="center" style="color: black; font-size: x-large">My Profile</h3>
+    <form
+      novalidate
+      style="margin-left: 430px; width: 420px"
+      [formGroup]="editAdminForm"
+    >
+      <br />
+      <fieldset>
+        <div class="form-group">
+          <label>Admin Name</label>
+          <input type="text" class="form-control" formControlName="adminName" />
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editAdminForm.get('adminName').hasError('required') &&
+              editAdminForm.get('adminName').dirty
+            "
+          >
+            Admin Name is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Mail Id</label>
+          <input type="text" class="form-control" formControlName="mailId" />
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editAdminForm.get('mailId').hasError('required') &&
+              editAdminForm.get('mailId').dirty
+            "
+          >
+            Mail Id is required
+          </div>
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editAdminForm.get('mailId').hasError('email') &&
+              editAdminForm.get('mailId').dirty
+            "
+          >
+            Enter Valid Email Id!
+          </div>
+        </div>
+      </fieldset>
+
+      <br /><br />
+      <button
+        class="btn btn-primary"
+        [disabled]="editAdminForm.invalid"
+        (click)="updateAdminDetails()"
+      >
+        Update</button
+      >&nbsp;&nbsp;&nbsp;&nbsp;
+
+      <button style="width: 80px" class="btn btn-dark" (click)="return()">
+        Back
+      </button>
+    </form>
+  </div>
+</body>
