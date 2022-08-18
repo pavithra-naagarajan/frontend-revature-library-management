@@ -1,0 +1,47 @@
+<ul>
+  <li>
+    <a>Library Management System <br />Welcome, {{ user.firstName }}!</a>
+  </li>
+  <li style="margin-left: 10px">
+    <a (click)="view()"
+      ><i class="fa fa-user-circle-o" aria-hidden="true"></i>View
+      Profile&nbsp;&nbsp;&nbsp;&nbsp;</a
+    >
+  </li>
+  <li>
+    <a (click)="userChangePassword()"
+      ><i class="fa fa-key" aria-hidden="true"></i>Change Password
+      &nbsp;&nbsp;&nbsp;&nbsp;</a
+    >
+  </li>
+  <li>
+    <a (click)="searchBooks()"
+      ><i class="fa fa-search" aria-hidden="true"></i>Search
+      Books&nbsp;&nbsp;&nbsp;&nbsp;</a
+    >
+  </li>
+  <li>
+    <a (click)="renewBook()"
+      ><i class="fa fa-repeat" aria-hidden="true"></i>Renew
+      Book&nbsp;&nbsp;&nbsp;&nbsp;</a
+    >
+  </li>
+  <li>
+    <a (click)="returnBook()"
+      ><i class="fa fa-registered" aria-hidden="true"></i>Return
+      Book&nbsp;&nbsp;&nbsp;&nbsp;</a
+    >
+  </li>
+  <li>
+    <a (click)="viewIssueDetails()"
+      ><i class="fa fa-th-list" aria-hidden="true"></i>View Issue
+      Details&nbsp;&nbsp;&nbsp;&nbsp;
+    </a>
+  </li>
+
+  <li style="margin-left: 10px">
+    <a (click)="logout()"
+      ><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a
+    >
+  </li>
+</ul>

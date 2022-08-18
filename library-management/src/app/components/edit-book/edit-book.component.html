@@ -1,0 +1,144 @@
+<app-admin-functions></app-admin-functions>
+
+<body>
+  <div class="registration-form">
+    <br />
+    <h3 align="center" style="color: black; font-size: x-large">
+      Edit Book details
+    </h3>
+    <form
+      novalidate
+      style="margin-left: 430px; width: 450px"
+      [formGroup]="editBookForm"
+      (ngSubmit)="updateBookDetails()"
+    >
+      <br />
+      <fieldset>
+        <div class="form-group">
+          <label>Book Name </label>
+          <input type="text" class="form-control" formControlName="bookName" />
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editBookForm.get('bookName').hasError('required') &&
+              editBookForm.get('bookName').dirty
+            "
+          >
+            Book Name is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Author Name </label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="authorName"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editBookForm.get('authorName').hasError('required') &&
+              editBookForm.get('authorName').dirty
+            "
+          >
+            Author Name is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Publisher </label>
+          <input type="text" class="form-control" formControlName="publisher" />
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editBookForm.get('publisher').hasError('required') &&
+              editBookForm.get('publisher').dirty
+            "
+          >
+            Publisher Name is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-13">
+            <label for="genre">Genre </label><br />
+            <select
+              class="form-control form-control-lg"
+              name="genre"
+              formControlName="genre"
+              required
+              [(ngModel)]="book.genre"
+            >
+              <option>Java</option>
+              <option>Python</option>
+              <option>Autobiography</option>
+              <option>RomCom</option>
+              <option>Love</option>
+              <option>Nature</option>
+              <option>Politics</option>
+              <option>History</option>
+              <option>Comic</option>
+              <option>Maths</option>
+              <option>Advanced technology</option>
+              <option>Science</option>
+              <option>Others</option>
+            </select>
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                editBookForm.get('genre').hasError('required') &&
+                editBookForm.get('genre').dirty
+              "
+            >
+              Book Genre is required
+            </div>
+          </div>
+        </div>
+        <br />
+
+        <div class="form-group">
+          <label>Volume </label>
+          <input type="text" class="form-control" formControlName="volume" />
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editBookForm.get('volume').hasError('required') &&
+              editBookForm.get('volume').dirty
+            "
+          >
+            Book Volume is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Edition </label>
+          <input type="text" class="form-control" formControlName="edition" />
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editBookForm.get('edition').hasError('required') &&
+              editBookForm.get('edition').dirty
+            "
+          >
+            Book Edition is required
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <label>Book Status </label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="status"
+            [readonly]="true"
+          />
+        </div>
+      </fieldset>
+      <br />
+
+      <button type="submit" class="btn btn-primary">Update</button>&nbsp;&nbsp;
+
+      <button style="width: 80px" class="btn btn-dark" (click)="return()">
+        Back
+      </button>
+    </form>
+  </div>
+</body>

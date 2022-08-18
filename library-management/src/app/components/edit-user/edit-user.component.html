@@ -1,0 +1,222 @@
+<app-user-functions></app-user-functions>
+
+<body>
+  <div class="registration-form" id="center">
+    <h3 align="center" style="color: black; font-size: x-large">My Profile</h3>
+    <form
+      novalidate
+      style="margin-left: 430px; width: 450px"
+      [formGroup]="editUserForm"
+      (ngSubmit)="updateUserDetails()"
+    >
+      <br />
+      <fieldset>
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" class="form-control" formControlName="firstName" />
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editUserForm.get('firstName').hasError('required') &&
+              editUserForm.get('firstName').dirty
+            "
+          >
+            First Name is required
+          </div>
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editUserForm.get('firstName').hasError('minlength') &&
+              editUserForm.get('firstName').dirty
+            "
+          >
+            First Name should be minimum of 3 characters.
+          </div>
+        </div>
+
+        <br />
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" class="form-control" formControlName="lastName" />
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editUserForm.get('lastName').hasError('required') &&
+              editUserForm.get('lastName').dirty
+            "
+          >
+            Last Name is required
+          </div>
+        </div>
+
+        <br />
+        <div class="form-group">
+          <tr>
+            <label>Gender </label
+            >&nbsp;&nbsp;&nbsp;&nbsp;
+            <td>
+              <input
+                type="radio"
+                formControlName="gender"
+                name="gender"
+                value="Male"
+              />
+              <label>Male</label>
+            </td>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <td>
+              <input
+                type="radio"
+                formControlName="gender"
+                name="gender"
+                value="Female"
+              />
+              <label>Female</label>
+            </td>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <td>
+              <input
+                type="radio"
+                formControlName="gender"
+                name="gender"
+                value="Others"
+              />
+              <label>Others</label>
+            </td>
+          </tr>
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editUserForm.get('gender').hasError('required') &&
+              editUserForm.get('gender').dirty
+            "
+          >
+            User Gender is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Age </label>
+          <input type="text" class="form-control" formControlName="age" />
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editUserForm.get('age').hasError('required') &&
+              editUserForm.get('age').dirty
+            "
+          >
+            User Age is required
+          </div>
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editUserForm.get('age').hasError('min') &&
+              editUserForm.get('age').dirty
+            "
+          >
+            User Age should be greater than 15.
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <label for="userRole">Role</label>
+          <input type="text" class="form-control" formControlName="userRole" />
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editUserForm.get('userRole').hasError('required') &&
+              editUserForm.get('userRole').dirty
+            "
+          >
+            User Type is required
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <label>Mail Id </label>
+          <input
+            type="email"
+            placeholder="pavithra@gmail.com"
+            class="form-control"
+            formControlName="mailId"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editUserForm.get('mailId').hasError('required') &&
+              editUserForm.get('mailId').dirty
+            "
+          >
+            User Mail Id is required
+          </div>
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editUserForm.get('mailId').hasError('email') &&
+              editUserForm.get('mailId').dirty
+            "
+          >
+            Enter Appropriate Mail Id!
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <label>Mobile Number </label>
+          <input
+            type="tel"
+            class="form-control"
+            formControlName="mobileNumber"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editUserForm.get('mobileNumber').hasError('required') &&
+              editUserForm.get('mobileNumber').dirty
+            "
+          >
+            Mobile Number is required
+          </div>
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editUserForm.get('mobileNumber').hasError('minlength') &&
+              editUserForm.get('mobileNumber').dirty
+            "
+          >
+            Enter Appropriate 10 digit Mobile Number
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <label>Address </label>
+          <input type="text" class="form-control" formControlName="address" />
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              editUserForm.get('address').hasError('required') &&
+              editUserForm.get('address').dirty
+            "
+          >
+            User Address is required
+          </div>
+        </div>
+        <h4>
+          <font color="red" style="font-size: large">{{ errorMessage }}</font>
+        </h4>
+        <br />
+      </fieldset>
+
+      <br />
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="editUserForm.invalid"
+      >
+        Update</button
+      >&nbsp;&nbsp;
+      <button class="btn btn-dark" (click)="return()">Back</button>
+    </form>
+  </div>
+</body>
